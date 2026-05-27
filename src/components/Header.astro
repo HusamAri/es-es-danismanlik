@@ -12,8 +12,8 @@ const isActive = (href: string) =>
 <header
   class="sticky top-0 z-50 border-b border-navy-100/60 bg-white/85 backdrop-blur supports-[backdrop-filter]:bg-white/70"
 >
-  <div class="container-wide flex h-20 items-center justify-between gap-6">
-    <a href={link("/")} class="shrink-0" aria-label={`${siteConfig.brand.name} — Ana Sayfa`}>
+  <div class="container-wide flex h-16 items-center justify-between gap-3 sm:h-20 sm:gap-6">
+    <a href={link("/")} class="min-w-0 shrink" aria-label={`${siteConfig.brand.name} — Ana Sayfa`}>
       <Logo variant="dark" />
     </a>
 
@@ -83,7 +83,7 @@ const isActive = (href: string) =>
 
   <div
     id="mobile-nav"
-    class="hidden border-t border-navy-100 bg-white lg:hidden"
+    class="hidden max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-navy-100 bg-white lg:hidden"
     aria-hidden="true"
   >
     <nav aria-label="Mobil navigasyon" class="container-wide py-4">
