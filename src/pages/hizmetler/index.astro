@@ -3,6 +3,7 @@ import BaseLayout from "~/layouts/BaseLayout.astro";
 import SectionHeading from "~/components/SectionHeading.astro";
 import ServiceCard from "~/components/ServiceCard.astro";
 import CTASection from "~/components/CTASection.astro";
+import { link } from "~/lib/url";
 ---
 
 <BaseLayout
@@ -28,19 +29,19 @@ import CTASection from "~/components/CTASection.astro";
           icon="user"
           title="Bireysel Akademik Mentörlük"
           description="Öğrenciye özel hedef belirleme, planlama, motivasyon takibi ve düzenli geri bildirim odaklı 1-1 mentörlük programı."
-          href="/hizmetler/bireysel-mentorluk"
+          href={link("/hizmetler/bireysel-mentorluk")}
         />
         <ServiceCard
           icon="users"
           title="Grup Mentörlük Programları"
           description="Sınırlı kontenjanlı, modüler temalarla işlenen, akran etkileşimi ve ortak hedef oluşturmaya dayalı grup süreci."
-          href="/hizmetler/grup-programlari"
+          href={link("/hizmetler/grup-programlari")}
         />
         <ServiceCard
           icon="building"
           title="Kurumsal Danışmanlık"
           description="Okul ve eğitim kurumları için öğretmen gelişimi, rehberlik birimi danışmanlığı ve süreç tasarımı."
-          href="/hizmetler/kurumsal"
+          href={link("/hizmetler/kurumsal")}
         />
       </div>
     </div>
