@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import CTASection from "~/components/CTASection.astro";
+import { link } from "~/lib/url";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -29,8 +30,8 @@ const jsonLd = {
           yelpazede sürdürülebilir danışmanlık sağlıyoruz.
         </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/iletisim?konu=kurumsal" class="btn btn-primary">Kurumsal Teklif Talep Et</a>
-          <a href="/yaklasimimiz" class="btn btn-ghost-light">Çalışma Yaklaşımımız</a>
+          <a href={link("/iletisim?konu=kurumsal")} class="btn btn-primary">Kurumsal Teklif Talep Et</a>
+          <a href={link("/yaklasimimiz")} class="btn btn-ghost-light">Çalışma Yaklaşımımız</a>
         </div>
       </div>
     </div>

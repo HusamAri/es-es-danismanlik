@@ -1,4 +1,6 @@
 ---
+import { link } from "~/lib/url";
+
 interface Props {
   title?: string;
   description?: string;
@@ -27,8 +29,8 @@ const {
         <p class="text-cream-100/80 md:text-lg">{description}</p>
       </div>
       <div class="flex flex-wrap gap-3 md:col-span-4 md:justify-end">
-        <a href={primaryHref} class="btn btn-primary">{primaryLabel}</a>
-        <a href={secondaryHref} class="btn btn-ghost-light">{secondaryLabel}</a>
+        <a href={link(primaryHref)} class="btn btn-primary">{primaryLabel}</a>
+        <a href={link(secondaryHref)} class="btn btn-ghost-light">{secondaryLabel}</a>
       </div>
     </div>
   </div>

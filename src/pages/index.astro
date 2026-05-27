@@ -9,6 +9,7 @@ import QuoteBlock from "~/components/QuoteBlock.astro";
 import FAQ from "~/components/FAQ.astro";
 import CTASection from "~/components/CTASection.astro";
 import { getCollection } from "astro:content";
+import { link } from "~/lib/url";
 
 const faqs = (await getCollection("faq"))
   .sort((a, b) => a.data.order - b.data.order)
@@ -49,19 +50,19 @@ const homeJsonLd = {
           icon="user"
           title="Bireysel Akademik Mentörlük"
           description="Öğrencinin hedefine, çalışma stiline ve önceliklerine göre kişiselleştirilmiş planlama ve düzenli takip."
-          href="/hizmetler/bireysel-mentorluk"
+          href={link("/hizmetler/bireysel-mentorluk")}
         />
         <ServiceCard
           icon="users"
           title="Grup Mentörlük Programları"
           description="Sınırlı kontenjanlı, modüler programlarla motivasyon ve akran etkileşimini güçlendiren süreçler."
-          href="/hizmetler/grup-programlari"
+          href={link("/hizmetler/grup-programlari")}
         />
         <ServiceCard
           icon="building"
           title="Kurumsal Danışmanlık"
           description="Okullar ve eğitim kurumları için öğretmen gelişimi, rehberlik desteği ve süreç tasarımı."
-          href="/hizmetler/kurumsal"
+          href={link("/hizmetler/kurumsal")}
         />
       </div>
     </div>
@@ -147,8 +148,8 @@ const homeJsonLd = {
             </li>
           </ul>
           <div class="mt-8 flex flex-wrap gap-3">
-            <a href="/hizmetler/kurumsal" class="btn btn-primary">Kurumsal Çözümleri Gör</a>
-            <a href="/iletisim?konu=kurumsal" class="btn btn-secondary">Teklif Talep Et</a>
+            <a href={link("/hizmetler/kurumsal")} class="btn btn-primary">Kurumsal Çözümleri Gör</a>
+            <a href={link("/iletisim?konu=kurumsal")} class="btn btn-secondary">Teklif Talep Et</a>
           </div>
         </div>
         <div class="md:col-span-6">
@@ -186,7 +187,7 @@ const homeJsonLd = {
         <FAQ items={faqs} />
       </div>
       <div class="mt-8 text-center">
-        <a href="/sss" class="btn btn-secondary">Tüm Soruları Gör</a>
+        <a href={link("/sss")} class="btn btn-secondary">Tüm Soruları Gör</a>
       </div>
     </div>
   </section>

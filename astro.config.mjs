@@ -3,8 +3,12 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 
+const site = process.env.SITE_URL || "https://husamari.github.io";
+const base = process.env.BASE_PATH || "/es-es-danismanlik";
+
 export default defineConfig({
-  site: "https://es-esdanismanlik.com",
+  site,
+  base,
   trailingSlash: "never",
   integrations: [
     sitemap({
@@ -20,6 +24,7 @@ export default defineConfig({
   },
   build: {
     inlineStylesheets: "auto",
+    assets: "_assets",
   },
   prefetch: {
     defaultStrategy: "viewport",

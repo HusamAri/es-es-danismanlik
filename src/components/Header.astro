@@ -1,8 +1,10 @@
 ---
 import Logo from "./Logo.astro";
 import { siteConfig } from "~/lib/siteConfig";
+import { link } from "~/lib/url";
 
-const pathname = Astro.url.pathname;
+const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+const pathname = Astro.url.pathname.replace(new RegExp(`^${base}`), "") || "/";
 const isActive = (href: string) =>
   href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 ---
@@ -11,7 +13,7 @@ const isActive = (href: string) =>
   class="sticky top-0 z-50 border-b border-navy-100/60 bg-white/85 backdrop-blur supports-[backdrop-filter]:bg-white/70"
 >
   <div class="container-wide flex h-20 items-center justify-between gap-6">
-    <a href="/" class="shrink-0" aria-label={`${siteConfig.brand.name} — Ana Sayfa`}>
+    <a href={link("/")} class="shrink-0" aria-label={`${siteConfig.brand.name} — Ana Sayfa`}>
       <Logo variant="dark" />
     </a>
 
@@ -21,7 +23,7 @@ const isActive = (href: string) =>
           siteConfig.nav.map((item) => (
             <li class="relative group">
               <a
-                href={item.href}
+                href={link(item.href)}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 class={`inline-flex items-center px-3 py-2 text-sm font-medium transition-colors ${
                   isActive(item.href) ? "text-navy-800" : "text-navy-700 hover:text-gold-500"
@@ -45,7 +47,7 @@ const isActive = (href: string) =>
                     {item.children.map((child) => (
                       <li>
                         <a
-                          href={child.href}
+                          href={link(child.href)}
                           class="block px-4 py-3 text-sm text-navy-700 transition-colors hover:bg-cream-50 hover:text-gold-600"
                         >
                           {child.label}
@@ -62,7 +64,7 @@ const isActive = (href: string) =>
     </nav>
 
     <div class="hidden lg:block">
-      <a href="/iletisim#tanisma" class="btn btn-primary">Tanışma Görüşmesi</a>
+      <a href={link("/iletisim#tanisma")} class="btn btn-primary">Tanışma Görüşmesi</a>
     </div>
 
     <button
@@ -90,7 +92,7 @@ const isActive = (href: string) =>
           siteConfig.nav.map((item) => (
             <li>
               <a
-                href={item.href}
+                href={link(item.href)}
                 class="block rounded-md px-3 py-3 text-base font-medium text-navy-800 hover:bg-cream-50"
               >
                 {item.label}
@@ -100,7 +102,7 @@ const isActive = (href: string) =>
                   {item.children.map((child) => (
                     <li>
                       <a
-                        href={child.href}
+                        href={link(child.href)}
                         class="block rounded-md px-3 py-2 text-sm text-navy-700 hover:bg-cream-50"
                       >
                         {child.label}
@@ -113,7 +115,7 @@ const isActive = (href: string) =>
           ))
         }
         <li class="mt-3">
-          <a href="/iletisim#tanisma" class="btn btn-primary w-full">Tanışma Görüşmesi</a>
+          <a href={link("/iletisim#tanisma")} class="btn btn-primary w-full">Tanışma Görüşmesi</a>
         </li>
       </ul>
     </nav>

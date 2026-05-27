@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import { siteConfig } from "~/lib/siteConfig";
+import { link } from "~/lib/url";
 ---
 
 <BaseLayout
@@ -63,7 +64,7 @@ import { siteConfig } from "~/lib/siteConfig";
         <h2>Haklarınız</h2>
         <p>
           KVKK md. 11 kapsamındaki tüm haklarınızı kullanmak için detaylı bilgi için
-          <a href="/kvkk-aydinlatma">KVKK Aydınlatma Metni</a> sayfamıza bakabilirsiniz.
+          <a href={link("/kvkk-aydinlatma")}>KVKK Aydınlatma Metni</a> sayfamıza bakabilirsiniz.
         </p>
 
         <p class="text-xs text-muted">

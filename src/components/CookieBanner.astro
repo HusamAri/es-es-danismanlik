@@ -1,4 +1,5 @@
 ---
+import { link } from "~/lib/url";
 ---
 
 <div
@@ -11,7 +12,7 @@
   <div class="container-wide flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between">
     <p class="max-w-2xl text-sm text-navy-800">
       Bu sitede yalnızca işlevsel ve isteğe bağlı analitik çerezler kullanıyoruz. Detaylar için
-      <a href="/cerez-politikasi" class="underline">Çerez Politikası</a> sayfasını
+      <a href={link("/cerez-politikasi")} class="underline">Çerez Politikası</a> sayfasını
       inceleyebilirsiniz.
     </p>
     <div class="flex items-center gap-2">

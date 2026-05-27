@@ -1,7 +1,10 @@
 ---
 import { siteConfig } from "~/lib/siteConfig";
+import { link } from "~/lib/url";
 
 const accessKey = siteConfig.forms.web3formsAccessKey;
+const origin = Astro.site?.toString().replace(/\/$/, "") ?? siteConfig.url;
+const redirectUrl = `${origin}${link("/iletisim?gonderildi=1")}`;
 ---
 
 <form
@@ -12,9 +15,9 @@ const accessKey = siteConfig.forms.web3formsAccessKey;
   novalidate
 >
   <input type="hidden" name="access_key" value={accessKey} />
-  <input type="hidden" name="subject" value="Yeni İletişim Formu — es-esdanismanlik.com" />
+  <input type="hidden" name="subject" value="Yeni İletişim Formu — ES-ES Danışmanlık" />
   <input type="hidden" name="from_name" value="ES-ES Danışmanlık Web Sitesi" />
-  <input type="hidden" name="redirect" value="https://es-esdanismanlik.com/iletisim?gonderildi=1" />
+  <input type="hidden" name="redirect" value={redirectUrl} />
   <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
 
   <div class="grid gap-4 md:grid-cols-2">
@@ -84,7 +87,7 @@ const accessKey = siteConfig.forms.web3formsAccessKey;
       class="mt-1 h-4 w-4 shrink-0 accent-gold-500"
     />
     <span class="text-navy-800">
-      <a href="/kvkk-aydinlatma" class="underline">KVKK Aydınlatma Metni</a>'ni okudum;
+      <a href={link("/kvkk-aydinlatma")} class="underline">KVKK Aydınlatma Metni</a>'ni okudum;
       kişisel verilerimin formdaki amaç doğrultusunda işlenmesine
       <strong>açık rızam ile</strong> onay veriyorum.
     </span>

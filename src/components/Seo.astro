@@ -19,8 +19,12 @@ const {
   canonical,
 } = Astro.props;
 
-const pageUrl = canonical ?? new URL(Astro.url.pathname, siteConfig.url).toString();
-const imageUrl = new URL(image, siteConfig.url).toString();
+const siteOrigin = Astro.site?.toString().replace(/\/$/, "") ?? siteConfig.url;
+const base = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+const absolute = (p: string) => `${siteOrigin}${base}${p.startsWith("/") ? p : `/${p}`}`;
+
+const pageUrl = canonical ?? `${siteOrigin}${Astro.url.pathname}`;
+const imageUrl = absolute(image);
 const fullTitle = title.includes(siteConfig.brand.name)
   ? title
   : `${title} | ${siteConfig.brand.name}`;
@@ -29,8 +33,8 @@ const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: siteConfig.brand.legalName,
-  url: siteConfig.url,
-  logo: new URL("/og-default.png", siteConfig.url).toString(),
+  url: `${siteOrigin}${base}`,
+  logo: absolute("/og-default.png"),
   email: siteConfig.contact.email,
   telephone: siteConfig.contact.phoneE164,
   address: {
