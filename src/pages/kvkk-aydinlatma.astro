@@ -1,0 +1,96 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { siteConfig } from "~/lib/siteConfig";
+const c = siteConfig.contact;
+---
+
+<BaseLayout
+  title="KVKK Aydınlatma Metni"
+  description="ES-ES Danışmanlık Kişisel Verilerin Korunması Kanunu (6698) kapsamında veri sahibi aydınlatma metni."
+  noindex={false}
+>
+  <section class="bg-navy-800 py-16 text-white">
+    <div class="container-wide">
+      <h1 class="text-white">KVKK Aydınlatma Metni</h1>
+      <hr class="gold-divider" />
+      <p class="max-w-2xl text-cream-100/85">
+        6698 sayılı Kişisel Verilerin Korunması Kanunu uyarınca veri sahiplerini bilgilendirme metnidir.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="container-wide">
+      <article class="prose-tr mx-auto max-w-3xl">
+        <h2>1. Veri Sorumlusu</h2>
+        <p>
+          Bu metin kapsamındaki kişisel verilerin işlenmesinden sorumlu veri sorumlusu, aşağıda
+          iletişim bilgileri paylaşılan <strong>{siteConfig.brand.legalName}</strong>'tır.
+          Adres: {c.address.street}, {c.address.district}/{c.address.city}.
+          E-posta: <a href={`mailto:${c.email}`}>{c.email}</a>.
+          Telefon: <a href={`tel:${c.phoneE164}`}>{c.phone}</a>.
+        </p>
+
+        <h2>2. İşlenen Kişisel Veri Kategorileri</h2>
+        <ul>
+          <li><strong>Kimlik bilgileri:</strong> ad, soyad.</li>
+          <li><strong>İletişim bilgileri:</strong> e-posta, telefon, adres.</li>
+          <li><strong>Müşteri işlem bilgileri:</strong> ilgi alanı (bireysel/grup/kurumsal), mesaj içeriği, randevu tercihi.</li>
+          <li><strong>İşitsel/görsel kayıt (uygulanırsa):</strong> tarafların açık rızasıyla online görüşme kaydı (varsayılan olarak kayıt alınmaz).</li>
+          <li><strong>İşlem güvenliği:</strong> IP, tarayıcı, çerez tanımlayıcıları.</li>
+        </ul>
+
+        <h2>3. İşleme Amaçları</h2>
+        <ul>
+          <li>Hizmet sunumu ve danışmanlık sürecinin yürütülmesi,</li>
+          <li>İletişim talebine yanıt verilmesi,</li>
+          <li>Randevu ve takvim yönetimi,</li>
+          <li>Sözleşmesel yükümlülüklerin yerine getirilmesi,</li>
+          <li>Yasal saklama yükümlülüklerinin yerine getirilmesi,</li>
+          <li>Web sitesinin güvenliği ve hizmet kalitesinin geliştirilmesi.</li>
+        </ul>
+
+        <h2>4. İşlemenin Hukuki Sebepleri</h2>
+        <p>
+          KVKK md. 5/2 kapsamında: <em>sözleşmenin kurulması veya ifası, hukuki yükümlülük,
+          meşru menfaat</em>; rıza gerektiren durumlarda <em>açık rıza</em> (KVKK md. 5/1).
+        </p>
+
+        <h2>5. Kişisel Verilerin Aktarılması</h2>
+        <p>
+          Kişisel verileriniz yalnızca hizmetin gerektirdiği ölçüde; e-posta servis sağlayıcıları,
+          form altyapı sağlayıcıları (Web3Forms), takvim/online görüşme platformları
+          (Calendly, Google Meet, Zoom) ve hosting/altyapı hizmeti sağlayıcıları (Vercel) ile
+          paylaşılabilir. Yurt dışı aktarım yapılması halinde KVKK md. 9 kapsamındaki koşullara
+          uyulur.
+        </p>
+
+        <h2>6. Veri Sahibinin Hakları</h2>
+        <p>KVKK md. 11 uyarınca:</p>
+        <ul>
+          <li>Verilerinizin işlenip işlenmediğini öğrenme,</li>
+          <li>İşlenmişse buna ilişkin bilgi talep etme,</li>
+          <li>İşleme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme,</li>
+          <li>Yurt içinde/yurt dışında aktarıldığı üçüncü kişileri bilme,</li>
+          <li>Eksik/yanlış işlenmişse düzeltilmesini isteme,</li>
+          <li>KVKK md. 7 çerçevesinde silinmesini/yok edilmesini isteme,</li>
+          <li>Aktarıldığı üçüncü kişilere yukarıdaki taleplerin bildirilmesini isteme,</li>
+          <li>Otomatik sistemlerle analiz edilmesi nedeniyle aleyhe sonuca itiraz etme,</li>
+          <li>Hukuka aykırı işleme nedeniyle uğradığınız zararın giderilmesini talep etme.</li>
+        </ul>
+
+        <h2>7. Başvuru Yöntemi</h2>
+        <p>
+          KVKK md. 13 uyarınca taleplerinizi; ıslak imzalı dilekçe ile yukarıdaki adrese veya
+          kayıtlı elektronik posta (KEP) ile <a href={`mailto:${c.email}`}>{c.email}</a> adresine
+          iletebilirsiniz. Başvurular en geç 30 gün içinde sonuçlandırılır.
+        </p>
+
+        <p class="text-xs text-muted">
+          Bu metin, kullanılan altyapı ve hizmetlerde değişiklik olması durumunda güncellenir.
+          Son güncelleme: {new Date().toLocaleDateString("tr-TR")}.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

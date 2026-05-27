@@ -1,0 +1,96 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import CTASection from "~/components/CTASection.astro";
+import QuoteBlock from "~/components/QuoteBlock.astro";
+---
+
+<BaseLayout
+  title="Hakkımızda"
+  description="ES-ES Danışmanlık; öğrencilere ve eğitim kurumlarına bireysel ve kurumsal mentörlük/danışmanlık hizmeti sunan profesyonel bir danışmanlık markasıdır."
+>
+  <section class="bg-navy-800 py-20 text-white">
+    <div class="container-wide">
+      <span class="eyebrow text-gold-300">Hakkımızda</span>
+      <h1 class="mt-2 text-white">Süreç odaklı, sürdürülebilir bir danışmanlık.</h1>
+      <hr class="gold-divider" />
+      <p class="max-w-2xl text-cream-100/85 md:text-lg">
+        Hedeflerine ulaşmak isteyen öğrencilerin yanında, eğitim süreçlerini güçlendirmek isteyen
+        kurumların da yanındayız. Hizmetlerimizi rastgele bir program olarak değil; ölçülebilir bir
+        süreç olarak tasarlıyoruz.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="container-wide grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-7">
+        <h2>Biz Kimiz?</h2>
+        <hr class="gold-divider" />
+        <div class="prose-tr">
+          <p>
+            ES-ES Danışmanlık, yılların öğretmenlik, mentörlük ve rehberlik deneyimiyle bir araya
+            gelen bir profesyonel danışmanlık markasıdır. Adımız, “<strong>Etkili Süreç, Etkili
+            Sonuç</strong>” ilkemizden gelir; çünkü kalıcı başarının kısa yolu değil; doğru
+            tasarlanmış, sürekliliği olan bir sürecin sonucu olduğuna inanırız.
+          </p>
+          <p>
+            Bireysel öğrencilerle çalışırken sürecin merkezine öğrencinin kendisini koyuyoruz;
+            hedefleri, çalışma alışkanlıkları ve önceliklerini birlikte konuşuyoruz. Kurumsal
+            danışmanlıkta ise okulların ve eğitim kurumlarının iç dinamiklerine saygı duyan,
+            uygulanabilir öneriler sunuyoruz.
+          </p>
+          <h3>Misyonumuz</h3>
+          <p>
+            Öğrencilerin ve kurumların kendilerine en uygun planı tasarlamasına; bu planı
+            sürdürülebilir bir ritim ile uygulamasına ve elde ettikleri sonuçları ölçerek
+            geliştirmesine destek olmak.
+          </p>
+          <h3>Vizyonumuz</h3>
+          <p>
+            Türkiye'de eğitim danışmanlığını; abartılı vaatlerden uzak, ölçülebilir ve şeffaf bir
+            zeminde yeniden tanımlayan referans bir marka olmak.
+          </p>
+          <h3>Değerlerimiz</h3>
+          <ul>
+            <li><strong>Şeffaflık:</strong> Vaatlerimizde gerçekçi, süreçte açıklayıcıyız.</li>
+            <li><strong>Süreklilik:</strong> Tek seferlik müdahale değil, düzenli takip esastır.</li>
+            <li><strong>Etik:</strong> Öğrenci ve kurum bilgileri özenle korunur, KVKK uyumludur.</li>
+            <li><strong>Bireysellik:</strong> Standart program değil, kişiye/kuruma özel tasarım.</li>
+          </ul>
+        </div>
+      </div>
+
+      <aside class="md:col-span-5">
+        <div class="card-dark">
+          <h3 class="text-white">Ne Yapmıyoruz?</h3>
+          <hr class="gold-divider" />
+          <p class="text-sm text-cream-100/85 leading-relaxed">
+            Yasal mevzuat ve mesleki etik gereği, sıkça karıştırılan bazı hizmetleri
+            <strong>sunmadığımızı</strong> açıkça belirtmek isteriz:
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-cream-100/90">
+            <li>✗ Konu anlatımı, özel ders, etüt veya kurs hizmeti vermeyiz.</li>
+            <li>✗ Sınav garantisi ya da puan/yerleşim taahhüdü vermeyiz.</li>
+            <li>✗ Öğrencilerin yazılı izni olmadan isim, fotoğraf veya başarı bilgisi paylaşmayız.</li>
+            <li>✗ 5580 sayılı kanun kapsamında bir özel öğretim kurumu değiliz.</li>
+          </ul>
+          <p class="mt-4 text-xs text-cream-200/70">
+            Hizmetlerimiz; danışmanlık, mentörlük ve rehberlik kapsamında planlama, takip ve
+            süreç yönetimi başlıklarından oluşur.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bg-cream-50 py-20">
+    <div class="container-wide">
+      <QuoteBlock text="Başarı tesadüf değil, doğru strateji ve güçlü mentörlükle mümkündür." />
+    </div>
+  </section>
+
+  <CTASection
+    title="Tanışalım mı?"
+    description="Önce sizi dinleyelim, beklentilerinizi anlayalım, sonra birlikte doğru süreci tasarlayalım."
+  />
+</BaseLayout>

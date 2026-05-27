@@ -1,0 +1,63 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Çerez Politikası"
+  description="ES-ES Danışmanlık web sitesinde kullanılan çerezler, türleri, amaçları ve onayınızı yönetme yollarınız."
+>
+  <section class="bg-navy-800 py-16 text-white">
+    <div class="container-wide">
+      <h1 class="text-white">Çerez Politikası</h1>
+      <hr class="gold-divider" />
+    </div>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="container-wide">
+      <article class="prose-tr mx-auto max-w-3xl">
+        <p>
+          Çerezler, ziyaret ettiğiniz web sitelerinin tarayıcınız aracılığıyla cihazınıza kaydettiği
+          küçük metin dosyalarıdır. Bu sayfa, sitemizde kullanılan çerezleri ve onayınızı nasıl
+          yönetebileceğinizi açıklar. Kişisel Verileri Koruma Kurumu rehber dokümanı dikkate
+          alınarak hazırlanmıştır.
+        </p>
+
+        <h2>Kullandığımız Çerez Kategorileri</h2>
+        <h3>1. Zorunlu Çerezler</h3>
+        <p>Sitenin çalışması için gereklidir; örneğin sayfa tercihlerinizin hatırlanması, form gönderimi.</p>
+        <h3>2. İşlevsel Çerezler</h3>
+        <p>Form ön doldurma, dil/tema tercihi gibi kolaylık sağlayan çerezlerdir.</p>
+        <h3>3. Analitik Çerezler (Onayınıza Tabi)</h3>
+        <p>
+          Sayfa görüntüleme, ziyaret süresi gibi anonim ölçümler için kullanılır. Yalnızca onay
+          verirseniz aktif edilir (örn. Vercel Analytics).
+        </p>
+        <h3>4. Üçüncü Taraf Çerezler (Onayınıza Tabi)</h3>
+        <p>
+          Calendly, WhatsApp gibi gömülü hizmetler kullanıldığında, ilgili sağlayıcı kendi
+          çerezlerini kullanabilir. Bu hizmetler yalnızca açık rıza verildiğinde yüklenir.
+        </p>
+
+        <h2>Onay Yönetimi</h2>
+        <p>
+          Site ziyaretinizde gördüğünüz çerez bildiriminden “Tümünü kabul et” veya “Sadece
+          zorunlu” seçeneklerinden birini tercih edebilirsiniz. Tercihinizi daha sonra değiştirmek
+          için tarayıcınızdaki yerel depolama (localStorage) kaydını silebilirsiniz.
+        </p>
+
+        <h2>Tarayıcı Üzerinden Yönetim</h2>
+        <ul>
+          <li><strong>Chrome:</strong> Ayarlar → Gizlilik ve Güvenlik → Çerezler ve diğer site verileri.</li>
+          <li><strong>Safari:</strong> Tercihler → Gizlilik → Çerezler.</li>
+          <li><strong>Firefox:</strong> Ayarlar → Gizlilik ve Güvenlik → Çerezler ve Site Verileri.</li>
+          <li><strong>Edge:</strong> Ayarlar → Çerezler ve site izinleri.</li>
+        </ul>
+
+        <p class="text-xs text-muted">
+          Son güncelleme: {new Date().toLocaleDateString("tr-TR")}.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

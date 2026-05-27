@@ -1,0 +1,35 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+
+const {
+  title = "Birlikte etkili bir süreç tasarlayalım.",
+  description = "Ücretsiz tanışma görüşmesinde önceliklerinizi konuşalım; size en uygun yaklaşımı birlikte belirleyelim.",
+  primaryLabel = "Tanışma Görüşmesi Talep Et",
+  primaryHref = "/iletisim#tanisma",
+  secondaryLabel = "Hizmetleri İncele",
+  secondaryHref = "/hizmetler",
+} = Astro.props;
+---
+
+<section class="bg-navy-800 text-white">
+  <div class="container-wide py-16 md:py-20">
+    <div class="grid items-center gap-8 md:grid-cols-12">
+      <div class="md:col-span-8">
+        <h2 class="text-white">{title}</h2>
+        <hr class="gold-divider" />
+        <p class="text-cream-100/80 md:text-lg">{description}</p>
+      </div>
+      <div class="flex flex-wrap gap-3 md:col-span-4 md:justify-end">
+        <a href={primaryHref} class="btn btn-primary">{primaryLabel}</a>
+        <a href={secondaryHref} class="btn btn-ghost-light">{secondaryLabel}</a>
+      </div>
+    </div>
+  </div>
+</section>

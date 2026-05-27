@@ -1,0 +1,57 @@
+---
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  steps?: Step[];
+}
+
+const defaultSteps: Step[] = [
+  {
+    number: "01",
+    title: "Tanışma",
+    description:
+      "Kısa, ücretsiz bir görüşme ile hedeflerinizi, mevcut durumunuzu ve beklentilerinizi dinleriz.",
+  },
+  {
+    number: "02",
+    title: "Analiz",
+    description:
+      "Çalışma alışkanlıkları, zaman yönetimi ve hedefe uzaklık birlikte değerlendirilir.",
+  },
+  {
+    number: "03",
+    title: "Kişiye Özel Plan",
+    description:
+      "Önceliklendirilmiş, ölçülebilir ve uygulanabilir bir yol haritası birlikte oluşturulur.",
+  },
+  {
+    number: "04",
+    title: "Takip & Geri Bildirim",
+    description:
+      "Düzenli görüşmeler ile süreç izlenir, ihtiyaç olduğunda plan yeniden ayarlanır.",
+  },
+];
+
+const { steps = defaultSteps } = Astro.props;
+---
+
+<ol class="grid gap-6 md:grid-cols-2 lg:grid-cols-4" role="list">
+  {
+    steps.map((step) => (
+      <li class="relative rounded-2xl border border-cream-300 bg-cream-50 p-6">
+        <span
+          class="font-serif text-3xl text-gold-500"
+          aria-hidden="true"
+        >
+          {step.number}
+        </span>
+        <h3 class="mt-2 text-lg">{step.title}</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">{step.description}</p>
+      </li>
+    ))
+  }
+</ol>

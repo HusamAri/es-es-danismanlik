@@ -1,0 +1,135 @@
+---
+import Logo from "./Logo.astro";
+import { siteConfig } from "~/lib/siteConfig";
+
+const pathname = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-navy-100/60 bg-white/85 backdrop-blur supports-[backdrop-filter]:bg-white/70"
+>
+  <div class="container-wide flex h-20 items-center justify-between gap-6">
+    <a href="/" class="shrink-0" aria-label={`${siteConfig.brand.name} — Ana Sayfa`}>
+      <Logo variant="dark" />
+    </a>
+
+    <nav aria-label="Ana navigasyon" class="hidden lg:block">
+      <ul class="flex items-center gap-1">
+        {
+          siteConfig.nav.map((item) => (
+            <li class="relative group">
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                class={`inline-flex items-center px-3 py-2 text-sm font-medium transition-colors ${
+                  isActive(item.href) ? "text-navy-800" : "text-navy-700 hover:text-gold-500"
+                }`}
+              >
+                {item.label}
+                {item.children && (
+                  <svg
+                    class="ml-1 h-3 w-3 opacity-70"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                )}
+              </a>
+              {item.children && (
+                <div class="invisible absolute left-0 top-full z-50 mt-1 w-72 opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  <ul class="overflow-hidden rounded-xl border border-navy-100 bg-white shadow-[var(--shadow-elev)]">
+                    {item.children.map((child) => (
+                      <li>
+                        <a
+                          href={child.href}
+                          class="block px-4 py-3 text-sm text-navy-700 transition-colors hover:bg-cream-50 hover:text-gold-600"
+                        >
+                          {child.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="hidden lg:block">
+      <a href="/iletisim#tanisma" class="btn btn-primary">Tanışma Görüşmesi</a>
+    </div>
+
+    <button
+      type="button"
+      id="mobile-nav-toggle"
+      class="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-navy-200 text-navy-800 lg:hidden"
+      aria-label="Menüyü aç"
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    id="mobile-nav"
+    class="hidden border-t border-navy-100 bg-white lg:hidden"
+    aria-hidden="true"
+  >
+    <nav aria-label="Mobil navigasyon" class="container-wide py-4">
+      <ul class="flex flex-col gap-1">
+        {
+          siteConfig.nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="block rounded-md px-3 py-3 text-base font-medium text-navy-800 hover:bg-cream-50"
+              >
+                {item.label}
+              </a>
+              {item.children && (
+                <ul class="ml-3 border-l border-cream-300 pl-3">
+                  {item.children.map((child) => (
+                    <li>
+                      <a
+                        href={child.href}
+                        class="block rounded-md px-3 py-2 text-sm text-navy-700 hover:bg-cream-50"
+                      >
+                        {child.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+        <li class="mt-3">
+          <a href="/iletisim#tanisma" class="btn btn-primary w-full">Tanışma Görüşmesi</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById("mobile-nav-toggle");
+  const panel = document.getElementById("mobile-nav");
+  if (toggle && panel) {
+    toggle.addEventListener("click", () => {
+      const open = panel.classList.toggle("hidden");
+      const isOpen = !open;
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      panel.setAttribute("aria-hidden", String(!isOpen));
+      toggle.setAttribute("aria-label", isOpen ? "Menüyü kapat" : "Menüyü aç");
+    });
+  }
+</script>

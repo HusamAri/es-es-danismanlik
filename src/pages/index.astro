@@ -1,0 +1,195 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Hero from "~/components/Hero.astro";
+import SectionHeading from "~/components/SectionHeading.astro";
+import ServiceCard from "~/components/ServiceCard.astro";
+import ValueBadge from "~/components/ValueBadge.astro";
+import ProcessSteps from "~/components/ProcessSteps.astro";
+import QuoteBlock from "~/components/QuoteBlock.astro";
+import FAQ from "~/components/FAQ.astro";
+import CTASection from "~/components/CTASection.astro";
+import { getCollection } from "astro:content";
+
+const faqs = (await getCollection("faq"))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 5)
+  .map((entry) => entry.data);
+
+const homeJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "ES-ES Danışmanlık",
+  url: "https://es-esdanismanlik.com",
+  areaServed: "TR",
+  serviceType: [
+    "Bireysel Akademik Mentörlük",
+    "Grup Mentörlük Programları",
+    "Kurumsal Eğitim Danışmanlığı",
+  ],
+  slogan: "Doğru Rehberlik, Etkili Süreç, Etkili Sonuç.",
+};
+---
+
+<BaseLayout
+  title="ES-ES Danışmanlık — Doğru Rehberlik, Etkili Süreç, Etkili Sonuç"
+  description="ES-ES Danışmanlık; bireysel akademik mentörlük, grup programları ve okullara yönelik kurumsal danışmanlık hizmetleri sunar. Ders veya kurs vermez; planlama, takip ve mentörlük süreçleriyle hedeflerinize giden yolda yanınızdadır."
+  jsonLd={homeJsonLd}
+>
+  <Hero />
+
+  <section class="bg-white py-20">
+    <div class="container-wide">
+      <SectionHeading
+        eyebrow="Hizmetlerimiz"
+        title="Bireyden Kuruma, Uçtan Uca Mentörlük"
+        description="Öğrencilerimize bireysel ve grup formatında destek olurken, okullara da içerik ve süreç danışmanlığı sunarız."
+      />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <ServiceCard
+          icon="user"
+          title="Bireysel Akademik Mentörlük"
+          description="Öğrencinin hedefine, çalışma stiline ve önceliklerine göre kişiselleştirilmiş planlama ve düzenli takip."
+          href="/hizmetler/bireysel-mentorluk"
+        />
+        <ServiceCard
+          icon="users"
+          title="Grup Mentörlük Programları"
+          description="Sınırlı kontenjanlı, modüler programlarla motivasyon ve akran etkileşimini güçlendiren süreçler."
+          href="/hizmetler/grup-programlari"
+        />
+        <ServiceCard
+          icon="building"
+          title="Kurumsal Danışmanlık"
+          description="Okullar ve eğitim kurumları için öğretmen gelişimi, rehberlik desteği ve süreç tasarımı."
+          href="/hizmetler/kurumsal"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream-50 py-16">
+    <div class="container-wide">
+      <SectionHeading
+        eyebrow="Değerlerimiz"
+        title="Etkili Sürecin Dört Temel Direği"
+      />
+      <div class="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4">
+        <ValueBadge
+          icon="target"
+          title="Hedef Belirleme ve Planlama"
+          description="Net, gerçekçi ve ölçülebilir hedefler ile bir yol haritası."
+        />
+        <ValueBadge
+          icon="calendar"
+          title="Düzenli Takip"
+          description="Süreklilik ve geri bildirim ile sürdürülebilir ilerleme."
+        />
+        <ValueBadge
+          icon="spark"
+          title="Motivasyon ve Odak"
+          description="Dikkat dağıtıcıları yönetmek için pratik stratejiler."
+        />
+        <ValueBadge
+          icon="check"
+          title="Doğru Strateji"
+          description="Verimli çalışmayı sonuca dönüştüren yöntemler."
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="container-wide">
+      <SectionHeading
+        eyebrow="Yaklaşımımız"
+        title="Süreç Odaklı, Şeffaf ve Ölçülebilir"
+        description="Her öğrencinin ve her kurumun ihtiyaçları farklıdır. Yaklaşımımız standart bir program dayatmak değil; birlikte tasarlanan, izlenebilir ve sürdürülebilir bir süreç kurmaktır."
+      />
+      <div class="mt-12">
+        <ProcessSteps />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-navy-800 py-20 text-white">
+    <div class="container-wide">
+      <QuoteBlock text="Doğru rehberlik, etkili süreçle birleştiğinde etkili sonuçlar doğurur." />
+    </div>
+  </section>
+
+  <section class="bg-cream-50 py-20">
+    <div class="container-wide">
+      <div class="grid items-center gap-10 md:grid-cols-12">
+        <div class="md:col-span-6">
+          <span class="eyebrow">Okullar ve Eğitim Kurumları</span>
+          <h2 class="mt-2">Kurumlara Özel Danışmanlık</h2>
+          <hr class="gold-divider" />
+          <p class="text-muted md:text-lg">
+            Öğretmenlerinizin mesleki gelişimi, rehberlik biriminizin etkinliği ve kurumunuzun
+            akademik süreçlerinin sürdürülebilirliği için kapsamlı çözüm setleri tasarlıyoruz.
+          </p>
+          <ul class="mt-6 space-y-3 text-sm text-navy-800">
+            <li class="flex gap-3">
+              <span class="mt-1 text-gold-500" aria-hidden="true">●</span>
+              Öğretmen mesleki gelişim atölyeleri
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 text-gold-500" aria-hidden="true">●</span>
+              Rehberlik birimi danışmanlığı
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 text-gold-500" aria-hidden="true">●</span>
+              Veli bilgilendirme seminerleri
+            </li>
+            <li class="flex gap-3">
+              <span class="mt-1 text-gold-500" aria-hidden="true">●</span>
+              Süreç ve ölçme-değerlendirme tasarımı
+            </li>
+          </ul>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/hizmetler/kurumsal" class="btn btn-primary">Kurumsal Çözümleri Gör</a>
+            <a href="/iletisim?konu=kurumsal" class="btn btn-secondary">Teklif Talep Et</a>
+          </div>
+        </div>
+        <div class="md:col-span-6">
+          <div class="card-dark relative overflow-hidden">
+            <div
+              aria-hidden="true"
+              class="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-gold-400/20 blur-2xl"
+            >
+            </div>
+            <h3 class="text-white">Birlikte Çalıştığımız Kurum Türleri</h3>
+            <hr class="gold-divider" />
+            <ul class="space-y-3 text-sm text-cream-100/85">
+              <li>Özel okullar ve kolejler</li>
+              <li>Devlet okullarındaki rehberlik birimleri</li>
+              <li>Yurt dışı eğitim hazırlayan eğitim kurumları</li>
+              <li>Sınıf öğretmenleri ve branş öğretmenleri grupları</li>
+            </ul>
+            <p class="mt-6 text-xs text-cream-200/70">
+              Çalıştığımız kurumların isimleri, açık yazılı onay olmadan paylaşılmaz.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="container-wide">
+      <SectionHeading
+        eyebrow="Merak Edilenler"
+        title="Sıkça Sorulan Sorular"
+        description="Aklınızdaki ilk soruların kısa cevapları aşağıda. Tüm sorular için SSS sayfamızı inceleyebilirsiniz."
+      />
+      <div class="mt-10">
+        <FAQ items={faqs} />
+      </div>
+      <div class="mt-8 text-center">
+        <a href="/sss" class="btn btn-secondary">Tüm Soruları Gör</a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

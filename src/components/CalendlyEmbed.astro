@@ -1,0 +1,40 @@
+---
+import { siteConfig } from "~/lib/siteConfig";
+
+interface Props {
+  url?: string;
+  height?: number;
+}
+
+const { url = siteConfig.calendly.introUrl, height = 700 } = Astro.props;
+const enabled = siteConfig.calendly.enabled;
+---
+
+{
+  enabled ? (
+    <div class="rounded-2xl border border-cream-300 bg-cream-50 p-2">
+      <iframe
+        src={url}
+        loading="lazy"
+        title="Tanışma görüşmesi takvimi"
+        width="100%"
+        height={String(height)}
+        class="block w-full rounded-xl bg-white"
+      />
+    </div>
+  ) : (
+    <div class="rounded-2xl border border-dashed border-navy-200 bg-cream-50 p-8 text-center">
+      <h3 class="text-lg">Online Randevu Yakında</h3>
+      <hr class="gold-divider mx-auto" />
+      <p class="text-sm text-muted">
+        Online randevu sistemi yakında bu sayfada yer alacak. Şimdilik aşağıdaki form, telefon
+        veya WhatsApp ile bize ulaşabilirsiniz.
+      </p>
+      <div class="mt-5 flex justify-center gap-3">
+        <a href={`tel:${siteConfig.contact.phoneE164}`} class="btn btn-primary">
+          {siteConfig.contact.phone}
+        </a>
+      </div>
+    </div>
+  )
+}
