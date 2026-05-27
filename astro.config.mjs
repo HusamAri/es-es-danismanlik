@@ -3,8 +3,8 @@ import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import tailwindcss from "@tailwindcss/vite";
 
-const site = process.env.SITE_URL || "https://husamari.github.io";
-const base = process.env.BASE_PATH || "/es-es-danismanlik";
+const site = process.env.SITE_URL || "https://esesdanismanlik.net";
+const base = process.env.BASE_PATH || "/";
 
 export default defineConfig({
   site,

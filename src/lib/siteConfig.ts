@@ -7,12 +7,12 @@ export const siteConfig = {
       "Doğru rehberlik, etkili süreçle birleştiğinde etkili sonuçlar doğurur.",
     motto: "Etkili Süreç Etkili Sonuç",
   },
-  url: "https://es-esdanismanlik.com",
+  url: "https://esesdanismanlik.net",
   locale: "tr-TR",
   contact: {
     phone: "0506 380 44 41",
     phoneE164: "+905063804441",
-    email: "info@es-esdanismanlik.com",
+    email: "info@esesdanismanlik.net",
     legacyEmail: "salih.akbay2@gmail.com",
     whatsapp: "+905063804441",
     address: {

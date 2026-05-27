@@ -34,8 +34,8 @@ jobs:
 
       - name: Build (Astro)
         env:
-          SITE_URL: https://husamari.github.io
-          BASE_PATH: /es-es-danismanlik
+          SITE_URL: https://esesdanismanlik.net
+          BASE_PATH: /
         run: npm run build
 
       - name: Add 404 fallback

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://husamari.github.io/es-es-danismanlik/sitemap-index.xml
+Sitemap: https://esesdanismanlik.net/sitemap-index.xml
