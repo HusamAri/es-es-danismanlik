@@ -1,0 +1,19 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+}
+
+const { eyebrow, title, description, align = "center" } = Astro.props;
+const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
+---
+
+<div class={`max-w-2xl ${alignClass}`}>
+  {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+  <h2 class="mt-2">{title}</h2>
+  {align === "center" && <hr class="gold-divider mx-auto" />}
+  {align === "left" && <hr class="gold-divider" />}
+  {description && <p class="text-muted text-base md:text-lg">{description}</p>}
+</div>

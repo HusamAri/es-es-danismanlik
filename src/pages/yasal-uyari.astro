@@ -1,0 +1,63 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { siteConfig } from "~/lib/siteConfig";
+---
+
+<BaseLayout
+  title="Yasal Uyarı"
+  description="ES-ES Danışmanlık web sitesi yasal uyarı metni — hizmet kapsamı, sorumluluk reddi, telif ve marka beyanları."
+>
+  <section class="bg-navy-800 py-16 text-white">
+    <div class="container-wide">
+      <h1 class="text-white">Yasal Uyarı</h1>
+      <hr class="gold-divider" />
+    </div>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="container-wide">
+      <article class="prose-tr mx-auto max-w-3xl">
+        <h2>Hizmet Kapsamı</h2>
+        <p>
+          <strong>{siteConfig.brand.legalName}</strong>, 5580 sayılı Özel Öğretim Kurumları
+          Kanunu kapsamında bir özel öğretim kurumu <strong>değildir</strong>; ders, kurs,
+          etüt, sınava hazırlık dersi veya konu anlatımı hizmeti vermez. Sunulan tüm
+          hizmetler; <em>danışmanlık, mentörlük, planlama, takip ve süreç yönetimi</em>
+          başlıkları altında profesyonel danışmanlık niteliğindedir.
+        </p>
+
+        <h2>Sonuç Garantisi Verilmez</h2>
+        <p>
+          Hiçbir sınav puanı, başarı veya yerleşim taahhüt edilmez. Hizmetlerimiz, ölçülebilir
+          bir süreç tasarlamak ve birlikte uygulamaktır; sonuç birden çok değişkene bağlıdır.
+        </p>
+
+        <h2>İçerik Doğruluğu</h2>
+        <p>
+          Web sitesindeki içerikler genel bilgi amaçlıdır. Mevzuat ve hizmet detaylarında
+          değişiklik olabileceğinden, kararlarınızı verirken bizimle iletişime geçerek
+          güncel bilgiyi almanızı öneririz.
+        </p>
+
+        <h2>Telif ve Marka</h2>
+        <p>
+          Bu sitedeki tüm metin, görsel, logo ve tasarım unsurlarının fikri ve sınai mülkiyet
+          hakları {siteConfig.brand.legalName}'a aittir. İzinsiz kopyalanması, çoğaltılması
+          veya üçüncü mecralarda kullanılması yasaktır.
+        </p>
+
+        <h2>Üçüncü Taraf Bağlantıları</h2>
+        <p>
+          Sitemiz; harita, takvim, mesajlaşma ve benzeri üçüncü taraf hizmetlere bağlantılar
+          içerebilir. Bu hizmetlerin kendi kullanım koşulları ve gizlilik politikaları geçerlidir.
+        </p>
+
+        <h2>İletişim</h2>
+        <p>
+          Yasal taleplerinizi <a href={`mailto:${siteConfig.contact.email}`}>{siteConfig.contact.email}</a>
+          adresine iletebilirsiniz.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

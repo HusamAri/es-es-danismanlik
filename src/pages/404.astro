@@ -1,0 +1,24 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Sayfa Bulunamadı"
+  description="Aradığınız sayfa bulunamadı."
+  noindex={true}
+>
+  <section class="bg-navy-800 py-24 text-white">
+    <div class="container-wide text-center">
+      <span class="eyebrow text-gold-300">404</span>
+      <h1 class="mt-2 text-white">Bu Sayfa Bulunamadı</h1>
+      <hr class="gold-divider mx-auto" />
+      <p class="mx-auto max-w-xl text-cream-100/85">
+        Aradığınız sayfa taşınmış, kaldırılmış veya hiç var olmamış olabilir.
+      </p>
+      <div class="mt-8 flex justify-center gap-3">
+        <a href="/" class="btn btn-primary">Ana Sayfaya Dön</a>
+        <a href="/iletisim" class="btn btn-ghost-light">İletişime Geç</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,72 @@
+---
+---
+
+<div
+  id="cookie-banner"
+  hidden
+  class="fixed inset-x-0 bottom-0 z-50 border-t border-navy-100 bg-white/95 backdrop-blur"
+  role="region"
+  aria-label="Çerez tercihleri"
+>
+  <div class="container-wide flex flex-col gap-4 py-4 md:flex-row md:items-center md:justify-between">
+    <p class="max-w-2xl text-sm text-navy-800">
+      Bu sitede yalnızca işlevsel ve isteğe bağlı analitik çerezler kullanıyoruz. Detaylar için
+      <a href="/cerez-politikasi" class="underline">Çerez Politikası</a> sayfasını
+      inceleyebilirsiniz.
+    </p>
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        id="cookie-reject"
+        class="rounded-full border border-navy-200 px-4 py-2 text-sm font-medium text-navy-800 hover:border-gold-400"
+      >
+        Sadece zorunlu
+      </button>
+      <button
+        type="button"
+        id="cookie-accept"
+        class="rounded-full bg-gold-400 px-4 py-2 text-sm font-medium text-navy-900 hover:bg-gold-300"
+      >
+        Tümünü kabul et
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = "es_es_cookie_consent_v1";
+    var banner = document.getElementById("cookie-banner");
+    var accept = document.getElementById("cookie-accept");
+    var reject = document.getElementById("cookie-reject");
+    if (!banner || !accept || !reject) return;
+
+    function setConsent(value) {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({ choice: value, ts: Date.now() }));
+      } catch (e) {}
+      banner.hidden = true;
+      document.documentElement.setAttribute("data-consent", value);
+      if (value === "all") {
+        document.dispatchEvent(new CustomEvent("consent:granted"));
+      }
+    }
+
+    var existing = null;
+    try {
+      existing = JSON.parse(localStorage.getItem(KEY) || "null");
+    } catch (e) {}
+
+    if (!existing) {
+      banner.hidden = false;
+    } else {
+      document.documentElement.setAttribute("data-consent", existing.choice);
+      if (existing.choice === "all") {
+        document.dispatchEvent(new CustomEvent("consent:granted"));
+      }
+    }
+
+    accept.addEventListener("click", function () { setConsent("all"); });
+    reject.addEventListener("click", function () { setConsent("necessary"); });
+  })();
+</script>

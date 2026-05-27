@@ -1,0 +1,45 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import FAQ from "~/components/FAQ.astro";
+import CTASection from "~/components/CTASection.astro";
+import { getCollection } from "astro:content";
+
+const all = (await getCollection("faq")).sort((a, b) => a.data.order - b.data.order);
+const items = all.map((entry) => entry.data);
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+
+<BaseLayout
+  title="Sıkça Sorulan Sorular"
+  description="ES-ES Danışmanlık hizmetleri, fiyatlandırma, format, KVKK ve kurumsal danışmanlık hakkında en sık sorulan soruların cevapları."
+  jsonLd={faqJsonLd}
+>
+  <section class="bg-navy-800 py-20 text-white">
+    <div class="container-wide">
+      <span class="eyebrow text-gold-300">SSS</span>
+      <h1 class="mt-2 text-white">Sıkça Sorulan Sorular</h1>
+      <hr class="gold-divider" />
+      <p class="max-w-2xl text-cream-100/85 md:text-lg">
+        Hizmetlerimizle ilgili en sık sorulan soruları aşağıda toparladık. Aradığınız cevabı
+        bulamazsanız iletişim formundan veya WhatsApp üzerinden bize ulaşabilirsiniz.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="container-wide">
+      <FAQ items={items} />
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

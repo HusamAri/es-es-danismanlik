@@ -1,0 +1,130 @@
+---
+import { siteConfig } from "~/lib/siteConfig";
+
+const accessKey = siteConfig.forms.web3formsAccessKey;
+---
+
+<form
+  id="contact-form"
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  class="grid gap-4"
+  novalidate
+>
+  <input type="hidden" name="access_key" value={accessKey} />
+  <input type="hidden" name="subject" value="Yeni İletişim Formu — es-esdanismanlik.com" />
+  <input type="hidden" name="from_name" value="ES-ES Danışmanlık Web Sitesi" />
+  <input type="hidden" name="redirect" value="https://es-esdanismanlik.com/iletisim?gonderildi=1" />
+  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <label class="block">
+      <span class="text-sm font-medium text-navy-800">Ad Soyad <span class="text-red-600" aria-hidden="true">*</span></span>
+      <input
+        type="text"
+        name="ad_soyad"
+        required
+        autocomplete="name"
+        class="mt-1 w-full rounded-lg border border-navy-100 bg-white px-3 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
+      />
+    </label>
+    <label class="block">
+      <span class="text-sm font-medium text-navy-800">E-posta <span class="text-red-600" aria-hidden="true">*</span></span>
+      <input
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        class="mt-1 w-full rounded-lg border border-navy-100 bg-white px-3 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
+      />
+    </label>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <label class="block">
+      <span class="text-sm font-medium text-navy-800">Telefon</span>
+      <input
+        type="tel"
+        name="telefon"
+        autocomplete="tel"
+        inputmode="tel"
+        class="mt-1 w-full rounded-lg border border-navy-100 bg-white px-3 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
+      />
+    </label>
+    <label class="block">
+      <span class="text-sm font-medium text-navy-800">Konu</span>
+      <select
+        name="konu"
+        id="konu-select"
+        class="mt-1 w-full rounded-lg border border-navy-100 bg-white px-3 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
+      >
+        <option value="genel">Genel Bilgi</option>
+        <option value="bireysel">Bireysel Mentörlük</option>
+        <option value="grup">Grup Programları</option>
+        <option value="kurumsal">Kurumsal Danışmanlık</option>
+      </select>
+    </label>
+  </div>
+
+  <label class="block">
+    <span class="text-sm font-medium text-navy-800">Mesajınız <span class="text-red-600" aria-hidden="true">*</span></span>
+    <textarea
+      name="mesaj"
+      rows="5"
+      required
+      class="mt-1 w-full resize-y rounded-lg border border-navy-100 bg-white px-3 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
+    ></textarea>
+  </label>
+
+  <label class="flex items-start gap-3 rounded-lg bg-cream-50 p-3 text-sm">
+    <input
+      type="checkbox"
+      name="kvkk_onay"
+      required
+      class="mt-1 h-4 w-4 shrink-0 accent-gold-500"
+    />
+    <span class="text-navy-800">
+      <a href="/kvkk-aydinlatma" class="underline">KVKK Aydınlatma Metni</a>'ni okudum;
+      kişisel verilerimin formdaki amaç doğrultusunda işlenmesine
+      <strong>açık rızam ile</strong> onay veriyorum.
+    </span>
+  </label>
+
+  <div class="flex items-center justify-between gap-4">
+    <button type="submit" class="btn btn-primary">Gönder</button>
+    <p id="form-status" class="text-sm text-muted" role="status" aria-live="polite"></p>
+  </div>
+</form>
+
+<script is:inline>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var konu = params.get("konu");
+    var select = document.getElementById("konu-select");
+    if (konu && select) {
+      var valid = Array.from(select.options).map(function (o) { return o.value; });
+      if (valid.indexOf(konu) >= 0) select.value = konu;
+    }
+
+    var status = document.getElementById("form-status");
+    if (params.get("gonderildi") === "1" && status) {
+      status.textContent = "Mesajınız iletildi. En kısa sürede dönüş yapacağız.";
+      status.classList.add("text-green-700");
+    }
+
+    var form = document.getElementById("contact-form");
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        var bot = form.querySelector('input[name="botcheck"]');
+        if (bot && bot.checked) {
+          e.preventDefault();
+          return;
+        }
+        if (status) {
+          status.textContent = "Gönderiliyor...";
+          status.classList.remove("text-green-700", "text-red-700");
+        }
+      });
+    }
+  })();
+</script>

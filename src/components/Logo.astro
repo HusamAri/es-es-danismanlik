@@ -1,0 +1,57 @@
+---
+interface Props {
+  variant?: "dark" | "light";
+  showWordmark?: boolean;
+  class?: string;
+  title?: string;
+}
+const { variant = "dark", showWordmark = true, class: className = "", title = "ES-ES Danışmanlık" } = Astro.props;
+
+const stroke = variant === "dark" ? "#0B1E3F" : "#FFFFFF";
+const gold = "#C9A35A";
+const text = variant === "dark" ? "#0B1E3F" : "#FFFFFF";
+---
+
+<div class={`flex items-center gap-3 ${className}`} aria-label={title}>
+  <svg
+    width="56"
+    height="56"
+    viewBox="0 0 80 80"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+    aria-hidden="true"
+  >
+    <rect x="2" y="2" width="76" height="76" rx="2" stroke={stroke} stroke-width="2" fill="none" />
+    <circle cx="40" cy="40" r="26" stroke={stroke} stroke-width="2" fill="none" />
+    <text
+      x="40"
+      y="46"
+      text-anchor="middle"
+      font-family="Cormorant Garamond, Georgia, serif"
+      font-size="14"
+      font-weight="600"
+      fill={stroke}
+      letter-spacing="0.5"
+    >ES-ES</text>
+    <line x1="22" y1="52" x2="58" y2="52" stroke={gold} stroke-width="1.4" />
+  </svg>
+  {
+    showWordmark && (
+      <div class="flex flex-col leading-tight">
+        <span
+          class="font-serif text-xl tracking-wider"
+          style={`color: ${text}`}
+        >
+          DANIŞMANLIK
+        </span>
+        <span
+          class="text-[0.65rem] uppercase tracking-[0.18em]"
+          style={`color: ${gold}`}
+        >
+          Etkili Süreç · Etkili Sonuç
+        </span>
+      </div>
+    )
+  }
+</div>

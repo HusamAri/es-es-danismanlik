@@ -1,0 +1,75 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { siteConfig } from "~/lib/siteConfig";
+---
+
+<BaseLayout
+  title="Gizlilik Politikası"
+  description="ES-ES Danışmanlık web sitesinin gizlilik politikası — toplanan veriler, kullanım amaçları, saklama süreleri ve haklarınız."
+>
+  <section class="bg-navy-800 py-16 text-white">
+    <div class="container-wide">
+      <h1 class="text-white">Gizlilik Politikası</h1>
+      <hr class="gold-divider" />
+    </div>
+  </section>
+
+  <section class="bg-white py-16">
+    <div class="container-wide">
+      <article class="prose-tr mx-auto max-w-3xl">
+        <p>
+          {siteConfig.brand.legalName} olarak; web sitemizi (<a href={siteConfig.url}>{siteConfig.url}</a>)
+          ziyaret eden, formlarımızı dolduran ve hizmetlerimizden yararlanan tüm kişilerin gizlilik
+          haklarına saygı duyarız. Bu politika, hangi verileri topladığımızı, nasıl kullandığımızı
+          ve nasıl koruduğumuzu açıklar.
+        </p>
+
+        <h2>Toplanan Veriler</h2>
+        <ul>
+          <li>İletişim formu üzerinden gönderdiğiniz isim, e-posta, telefon, ilgi alanı, mesaj.</li>
+          <li>Online randevu sırasında takvim sağlayıcımız üzerinden iletilen randevu bilgileri.</li>
+          <li>Tarayıcı ve cihaz teknik bilgileri (IP, oturum, çerez tanımlayıcıları).</li>
+        </ul>
+
+        <h2>Kullanım Amaçları</h2>
+        <ul>
+          <li>Hizmet talebinize cevap vermek ve danışmanlık sürecini yürütmek,</li>
+          <li>Randevu ve hatırlatmaları yönetmek,</li>
+          <li>Yasal yükümlülükleri yerine getirmek,</li>
+          <li>Site güvenliğini sağlamak ve hizmet kalitesini iyileştirmek.</li>
+        </ul>
+
+        <h2>Saklama Süresi</h2>
+        <p>
+          Verileriniz; yasal saklama süreleri ve hizmetin gerektirdiği süre boyunca saklanır.
+          İlgili süre dolduğunda silinir veya anonimleştirilir.
+        </p>
+
+        <h2>Üçüncü Taraflar</h2>
+        <p>
+          Web sitesi altyapısı (Vercel), form servisi (Web3Forms), online görüşme ve takvim
+          (Calendly, Google Meet, Zoom) gibi tedarikçilerle çalışırız. Bu tedarikçiler kendi
+          gizlilik politikalarına sahiptir; veri aktarımı yalnızca hizmetin gerektirdiği ölçüde
+          yapılır.
+        </p>
+
+        <h2>Çocukların Gizliliği</h2>
+        <p>
+          18 yaş altı kişilerden form yoluyla bilinçli olarak kişisel veri toplamayız; ergen veya
+          küçük çocuk içeren danışmanlık taleplerinde veli/yasal temsilci üzerinden iletişim
+          kurulur.
+        </p>
+
+        <h2>Haklarınız</h2>
+        <p>
+          KVKK md. 11 kapsamındaki tüm haklarınızı kullanmak için detaylı bilgi için
+          <a href="/kvkk-aydinlatma">KVKK Aydınlatma Metni</a> sayfamıza bakabilirsiniz.
+        </p>
+
+        <p class="text-xs text-muted">
+          Bu metin gerektikçe güncellenir. Son güncelleme: {new Date().toLocaleDateString("tr-TR")}.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

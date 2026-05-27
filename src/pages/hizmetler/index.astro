@@ -1,0 +1,60 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import SectionHeading from "~/components/SectionHeading.astro";
+import ServiceCard from "~/components/ServiceCard.astro";
+import CTASection from "~/components/CTASection.astro";
+---
+
+<BaseLayout
+  title="Hizmetlerimiz"
+  description="Bireysel akademik mentörlük, grup mentörlük programları ve okullara yönelik kurumsal danışmanlık hizmetlerimizin tamamına buradan ulaşabilirsiniz."
+>
+  <section class="bg-navy-800 py-20 text-white">
+    <div class="container-wide">
+      <span class="eyebrow text-gold-300">Hizmetler</span>
+      <h1 class="mt-2 text-white">Hangi alanda destek olabiliriz?</h1>
+      <hr class="gold-divider" />
+      <p class="max-w-2xl text-cream-100/85 md:text-lg">
+        Bireysel öğrencilerden okullara kadar farklı ölçeklerde danışmanlık ve mentörlük
+        sunuyoruz. Aşağıdaki üç ana hizmet, ihtiyacınıza göre özelleştirilebilir.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="container-wide">
+      <div class="grid gap-6 md:grid-cols-3">
+        <ServiceCard
+          icon="user"
+          title="Bireysel Akademik Mentörlük"
+          description="Öğrenciye özel hedef belirleme, planlama, motivasyon takibi ve düzenli geri bildirim odaklı 1-1 mentörlük programı."
+          href="/hizmetler/bireysel-mentorluk"
+        />
+        <ServiceCard
+          icon="users"
+          title="Grup Mentörlük Programları"
+          description="Sınırlı kontenjanlı, modüler temalarla işlenen, akran etkileşimi ve ortak hedef oluşturmaya dayalı grup süreci."
+          href="/hizmetler/grup-programlari"
+        />
+        <ServiceCard
+          icon="building"
+          title="Kurumsal Danışmanlık"
+          description="Okul ve eğitim kurumları için öğretmen gelişimi, rehberlik birimi danışmanlığı ve süreç tasarımı."
+          href="/hizmetler/kurumsal"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream-50 py-20">
+    <div class="container-wide">
+      <SectionHeading
+        eyebrow="Hizmetlerimizin Tamamı"
+        title="Net olalım: ders, kurs, etüt sunmuyoruz."
+        description="Hizmetlerimiz; çalışma stratejisi, zaman ve odak yönetimi, hedef belirleme, sınav süreç planlaması, motivasyon takibi, kariyer ve tercih süreçlerine destek gibi danışmanlık ve mentörlük başlıklarından oluşur. Konu anlatımı, sınav garantisi veya kurs hizmeti vermeyiz."
+      />
+    </div>
+  </section>
+
+  <CTASection />
+</BaseLayout>

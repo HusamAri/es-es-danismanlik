@@ -1,0 +1,92 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import ContactForm from "~/components/ContactForm.astro";
+import CalendlyEmbed from "~/components/CalendlyEmbed.astro";
+import { siteConfig } from "~/lib/siteConfig";
+
+const c = siteConfig.contact;
+---
+
+<BaseLayout
+  title="İletişim & Tanışma Görüşmesi"
+  description="ES-ES Danışmanlık ile iletişime geçin: form, telefon, e-posta, WhatsApp ve online randevu seçenekleriyle size en uygun yöntemi seçin."
+>
+  <section class="bg-navy-800 py-20 text-white">
+    <div class="container-wide">
+      <span class="eyebrow text-gold-300">İletişim</span>
+      <h1 class="mt-2 text-white">Tanışalım, Birlikte Doğru Süreci Tasarlayalım.</h1>
+      <hr class="gold-divider" />
+      <p class="max-w-2xl text-cream-100/85 md:text-lg">
+        Bize en uygun yöntemden ulaşabilirsiniz. İlk görüşme ücretsiz ve bağlayıcı değildir.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-20" id="tanisma">
+    <div class="container-wide grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-7">
+        <h2>Bize Yazın</h2>
+        <hr class="gold-divider" />
+        <p class="text-sm text-muted">
+          Formu doldurduğunuzda mesajınız e-posta ile bize ulaşır; 1-2 iş günü içinde geri dönüş
+          yaparız.
+        </p>
+        <div class="mt-6">
+          <ContactForm />
+        </div>
+      </div>
+
+      <aside class="md:col-span-5">
+        <div class="card-dark">
+          <h3 class="text-white">İletişim Bilgileri</h3>
+          <hr class="gold-divider" />
+          <ul class="space-y-4 text-sm text-cream-100/90">
+            <li>
+              <p class="text-cream-200/65 text-xs uppercase tracking-wider">Adres</p>
+              <p>{c.address.street}<br />{c.address.district} / {c.address.city}</p>
+              <a href={c.address.mapsUrl} target="_blank" rel="noopener" class="mt-1 inline-block text-xs text-gold-300 underline">
+                Haritada aç
+              </a>
+            </li>
+            <li>
+              <p class="text-cream-200/65 text-xs uppercase tracking-wider">Telefon</p>
+              <a href={`tel:${c.phoneE164}`} class="hover:text-gold-200">{c.phone}</a>
+            </li>
+            <li>
+              <p class="text-cream-200/65 text-xs uppercase tracking-wider">E-posta</p>
+              <a href={`mailto:${c.email}`} class="break-all hover:text-gold-200">{c.email}</a>
+            </li>
+            <li>
+              <p class="text-cream-200/65 text-xs uppercase tracking-wider">WhatsApp</p>
+              <a
+                href={`https://wa.me/${c.whatsapp.replace(/^\+/, "")}`}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-xs font-semibold text-white"
+              >
+                WhatsApp'ta Yaz
+              </a>
+            </li>
+          </ul>
+          <p class="mt-6 text-xs text-cream-200/65">
+            Merkez ofisimizde dersi/etüt verilmemektedir. Yüz yüze görüşmeler yalnızca randevuludur.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bg-cream-50 py-20">
+    <div class="container-wide">
+      <h2 class="text-center">Online Randevu</h2>
+      <hr class="gold-divider mx-auto" />
+      <p class="mx-auto max-w-xl text-center text-muted">
+        Takvimden size uygun bir saat seçin; tanışma görüşmesi için randevunuzu birkaç tıkla
+        oluşturun.
+      </p>
+      <div class="mx-auto mt-10 max-w-3xl">
+        <CalendlyEmbed />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

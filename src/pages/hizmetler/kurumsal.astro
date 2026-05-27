@@ -1,0 +1,128 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import CTASection from "~/components/CTASection.astro";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Kurumsal Eğitim Danışmanlığı",
+  provider: { "@type": "Organization", name: "ES-ES Danışmanlık" },
+  areaServed: "TR",
+  audience: { "@type": "BusinessAudience" },
+};
+---
+
+<BaseLayout
+  title="Kurumsal Danışmanlık (Okullar İçin)"
+  description="Özel okullar, kolejler ve devlet okullarının rehberlik birimlerine yönelik öğretmen gelişimi, süreç tasarımı ve veli iletişimi konularında uçtan uca danışmanlık hizmetleri."
+  jsonLd={jsonLd}
+>
+  <section class="bg-navy-800 py-20 text-white">
+    <div class="container-wide grid gap-8 md:grid-cols-12">
+      <div class="md:col-span-8">
+        <span class="eyebrow text-gold-300">Kurumsal</span>
+        <h1 class="mt-2 text-white">Okullar ve Eğitim Kurumları İçin Danışmanlık</h1>
+        <hr class="gold-divider" />
+        <p class="max-w-2xl text-cream-100/85 md:text-lg">
+          Kurumunuzdaki öğretmen kadrosunun mesleki gelişiminden, rehberlik biriminizin
+          etkinliğine; öğrenci süreç tasarımından, veli iletişim modellerine kadar geniş bir
+          yelpazede sürdürülebilir danışmanlık sağlıyoruz.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/iletisim?konu=kurumsal" class="btn btn-primary">Kurumsal Teklif Talep Et</a>
+          <a href="/yaklasimimiz" class="btn btn-ghost-light">Çalışma Yaklaşımımız</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="container-wide">
+      <h2 class="text-center">Hizmet Başlıklarımız</h2>
+      <hr class="gold-divider mx-auto" />
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <article class="card">
+          <h3 class="text-lg">Öğretmen Mesleki Gelişim Atölyeleri</h3>
+          <hr class="gold-divider" />
+          <p class="text-sm text-muted">
+            Sınıf yönetimi, motivasyon, kuşak farkları, ölçme-değerlendirme yaklaşımları gibi
+            konularda atölye formatında çalışmalar.
+          </p>
+        </article>
+        <article class="card">
+          <h3 class="text-lg">Rehberlik Birimi Danışmanlığı</h3>
+          <hr class="gold-divider" />
+          <p class="text-sm text-muted">
+            Rehber öğretmenlere süreç tasarımı, dönem planlaması, veli iletişimi ve raporlama
+            konularında danışmanlık.
+          </p>
+        </article>
+        <article class="card">
+          <h3 class="text-lg">Veli Bilgilendirme Seminerleri</h3>
+          <hr class="gold-divider" />
+          <p class="text-sm text-muted">
+            Sınav süreçleri, motivasyon, ergenlikte iletişim gibi başlıklarda veli toplulukları
+            için seminerler.
+          </p>
+        </article>
+        <article class="card">
+          <h3 class="text-lg">Müfredat Dışı Program Tasarımı</h3>
+          <hr class="gold-divider" />
+          <p class="text-sm text-muted">
+            Kulüp, kariyer günleri, hedef belirleme atölyeleri gibi müfredat dışı içeriklerin
+            uçtan uca tasarımı.
+          </p>
+        </article>
+        <article class="card">
+          <h3 class="text-lg">Süreç ve Ölçme-Değerlendirme Danışmanlığı</h3>
+          <hr class="gold-divider" />
+          <p class="text-sm text-muted">
+            Akademik süreçlerin tasarımı, ölçüm araçları ve geri bildirim mekanizmaları için
+            kurumsal raporlama desteği.
+          </p>
+        </article>
+        <article class="card">
+          <h3 class="text-lg">Liderlik & Yönetici Koçluğu</h3>
+          <hr class="gold-divider" />
+          <p class="text-sm text-muted">
+            Müdür, müdür yardımcısı ve birim sorumlularına yönelik bireysel mesleki gelişim
+            görüşmeleri.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream-50 py-20">
+    <div class="container-wide">
+      <h2 class="text-center">Kurumsal Süreç Akışı</h2>
+      <hr class="gold-divider mx-auto" />
+      <ol class="mt-10 grid gap-6 md:grid-cols-5" role="list">
+        {
+          [
+            { n: "1", t: "Keşif Görüşmesi", d: "Beklenti, kapsam ve hedeflerin ortaya konduğu ilk toplantı." },
+            { n: "2", t: "İhtiyaç Analizi", d: "Kurum içi gözlem, anket veya kısa görüşmelerle mevcut durum analizi." },
+            { n: "3", t: "Teklif & Plan", d: "Kapsam, zaman ve bütçe netleştirilir; sözleşme onaylanır." },
+            { n: "4", t: "Uygulama", d: "Atölyeler, görüşmeler ve danışmanlık seansları planlandığı şekilde yürütülür." },
+            { n: "5", t: "Raporlama", d: "Süreç sonunda kurum yönetimine bulgular ve öneriler özetlenir." },
+          ].map((s) => (
+            <li class="rounded-2xl border border-cream-300 bg-white p-5">
+              <span class="font-serif text-3xl text-gold-500" aria-hidden="true">0{s.n}</span>
+              <h3 class="mt-2 text-base">{s.t}</h3>
+              <p class="mt-2 text-sm text-muted">{s.d}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <CTASection
+    title="Kurumunuza özel bir teklif hazırlayalım."
+    description="Kurumsal görüşmelerimiz NDA çerçevesinde gizlilikle yürütülür. İlk görüşme bağlayıcı değildir."
+    primaryLabel="Kurumsal Teklif Talep Et"
+    primaryHref="/iletisim?konu=kurumsal"
+    secondaryLabel="Hizmetlere Geri Dön"
+    secondaryHref="/hizmetler"
+  />
+</BaseLayout>

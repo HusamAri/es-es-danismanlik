@@ -1,0 +1,116 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import CTASection from "~/components/CTASection.astro";
+import ProcessSteps from "~/components/ProcessSteps.astro";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Bireysel Akademik Mentörlük",
+  provider: { "@type": "Organization", name: "ES-ES Danışmanlık" },
+  areaServed: "TR",
+  audience: { "@type": "EducationalAudience", educationalRole: "student" },
+};
+---
+
+<BaseLayout
+  title="Bireysel Akademik Mentörlük"
+  description="Öğrencinin hedeflerine, çalışma stiline ve önceliklerine uygun olarak tasarlanan, düzenli takip ve kişiselleştirilmiş plana dayalı 1-1 akademik mentörlük programı."
+  jsonLd={jsonLd}
+>
+  <section class="bg-navy-800 py-20 text-white">
+    <div class="container-wide grid gap-8 md:grid-cols-12">
+      <div class="md:col-span-8">
+        <span class="eyebrow text-gold-300">Hizmet</span>
+        <h1 class="mt-2 text-white">Bireysel Akademik Mentörlük</h1>
+        <hr class="gold-divider" />
+        <p class="max-w-2xl text-cream-100/85 md:text-lg">
+          Her öğrencinin hedefi, çalışma stili ve gündemi farklıdır. Bireysel mentörlük programımız;
+          standart bir takvim dayatmak yerine, öğrencinin yaşamına uyum sağlayan ve sonucu sürece
+          dönüştüren bir destek modeli sunar.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/iletisim?konu=bireysel" class="btn btn-primary">Tanışma Görüşmesi</a>
+          <a href="/yaklasimimiz" class="btn btn-ghost-light">Yaklaşımımızı İncele</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-20">
+    <div class="container-wide grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-7">
+        <h2>Bu Program Kimler İçin?</h2>
+        <hr class="gold-divider" />
+        <ul class="space-y-3 text-base text-navy-800">
+          <li class="flex gap-3"><span class="text-gold-500" aria-hidden="true">●</span> Lise dönemindeki öğrenciler</li>
+          <li class="flex gap-3"><span class="text-gold-500" aria-hidden="true">●</span> Üniversite sınavına hazırlanan öğrenciler</li>
+          <li class="flex gap-3"><span class="text-gold-500" aria-hidden="true">●</span> Üniversite öğrencileri (bölüm, kariyer ve süreç yönetimi)</li>
+          <li class="flex gap-3"><span class="text-gold-500" aria-hidden="true">●</span> Veliyle birlikte takip edilmek istenen orta-lise süreçleri</li>
+        </ul>
+
+        <h2 class="mt-12">Hangi Konularda Çalışıyoruz?</h2>
+        <hr class="gold-divider" />
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="rounded-xl border border-cream-300 p-5">
+            <h3 class="text-base">Çalışma Stratejisi</h3>
+            <p class="mt-1 text-sm text-muted">Verimli, sürdürülebilir çalışma yöntemleri.</p>
+          </div>
+          <div class="rounded-xl border border-cream-300 p-5">
+            <h3 class="text-base">Zaman ve Odak Yönetimi</h3>
+            <p class="mt-1 text-sm text-muted">Dikkat dağıtıcılarla başa çıkma, ritim kurma.</p>
+          </div>
+          <div class="rounded-xl border border-cream-300 p-5">
+            <h3 class="text-base">Hedef Belirleme</h3>
+            <p class="mt-1 text-sm text-muted">Net, ölçülebilir ve gerçekçi hedef tasarımı.</p>
+          </div>
+          <div class="rounded-xl border border-cream-300 p-5">
+            <h3 class="text-base">Sınav Süreç Planlama</h3>
+            <p class="mt-1 text-sm text-muted">Aylık-haftalık-günlük plan ve revizyonlar.</p>
+          </div>
+          <div class="rounded-xl border border-cream-300 p-5">
+            <h3 class="text-base">Motivasyon ve Süreklilik</h3>
+            <p class="mt-1 text-sm text-muted">Düşüş dönemlerinde toparlanma stratejileri.</p>
+          </div>
+          <div class="rounded-xl border border-cream-300 p-5">
+            <h3 class="text-base">Kariyer ve Tercih Süreci</h3>
+            <p class="mt-1 text-sm text-muted">Bölüm, üniversite ve yön seçim danışmanlığı.</p>
+          </div>
+        </div>
+        <p class="mt-4 text-xs text-muted">
+          Hatırlatma: Konu anlatımı, çözüm dersi veya etüt verilmez; çalışma ortağı/mentör olarak
+          süreci birlikte yönetiriz.
+        </p>
+      </div>
+
+      <aside class="md:col-span-5">
+        <div class="card-dark sticky top-28">
+          <h3 class="text-white">Program Detayları</h3>
+          <hr class="gold-divider" />
+          <dl class="space-y-3 text-sm text-cream-100/90">
+            <div><dt class="text-cream-200/65">Format</dt><dd>Online (Meet/Zoom) veya randevulu yüz yüze</dd></div>
+            <div><dt class="text-cream-200/65">Süre</dt><dd>30-60 dakika / haftalık</dd></div>
+            <div><dt class="text-cream-200/65">Periyot</dt><dd>3 ay (dönemlik) veya yıl boyu</dd></div>
+            <div><dt class="text-cream-200/65">İlk Görüşme</dt><dd>Ücretsiz, bağlayıcı değil</dd></div>
+          </dl>
+          <a href="/iletisim?konu=bireysel" class="btn btn-primary mt-6 w-full">Görüşme Talep Et</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bg-cream-50 py-16">
+    <div class="container-wide">
+      <h2 class="text-center">Bireysel Mentörlük Akışı</h2>
+      <hr class="gold-divider mx-auto" />
+      <div class="mt-10">
+        <ProcessSteps />
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    title="Birlikte planlı, izlenebilir bir süreç kuralım."
+    description="Önce dinleyelim, sonra birlikte hedefleri belirleyelim. İlk görüşme her zaman ücretsiz."
+  />
+</BaseLayout>

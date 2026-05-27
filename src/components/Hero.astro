@@ -1,0 +1,70 @@
+---
+import { siteConfig } from "~/lib/siteConfig";
+---
+
+<section class="relative overflow-hidden bg-navy-800 text-white">
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 opacity-[0.25]"
+    style="background-image: radial-gradient(ellipse at top left, rgba(201,163,90,0.45), transparent 55%), radial-gradient(ellipse at bottom right, rgba(255,255,255,0.10), transparent 55%);"
+  >
+  </div>
+
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-y-0 right-[-15%] hidden w-1/2 lg:block"
+    style="background: radial-gradient(circle at 35% 65%, rgba(201,163,90,0.25), transparent 60%);"
+  >
+  </div>
+
+  <div class="container-wide relative grid gap-10 py-20 md:py-28 lg:grid-cols-12">
+    <div class="lg:col-span-7">
+      <span class="eyebrow text-gold-300">ES-ES Danışmanlık</span>
+      <h1 class="mt-4 text-white">
+        Doğru Rehberlik,<br />
+        Etkili Süreç,<br />
+        <span class="text-gold-300">Etkili Sonuç.</span>
+      </h1>
+      <hr class="gold-divider" />
+      <p class="mt-5 max-w-xl text-base text-cream-100/85 md:text-lg">
+        Öğrencilere ve eğitim kurumlarına yönelik danışmanlık ve mentörlük hizmetleriyle;
+        hedeflerinize giden yolda doğru planlama, sürdürülebilir motivasyon ve etkili takip
+        sunuyoruz.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/iletisim#tanisma" class="btn btn-primary">Ücretsiz Tanışma Görüşmesi</a>
+        <a href="/hizmetler" class="btn btn-ghost-light">Hizmetlerimizi İncele</a>
+      </div>
+      <p class="mt-5 text-xs text-cream-200/65">
+        Ders, kurs veya etüt vermeyiz; yalnızca danışmanlık ve mentörlük hizmeti sunarız.
+      </p>
+    </div>
+
+    <div class="hidden items-center justify-center lg:col-span-5 lg:flex">
+      <div class="relative w-full max-w-md">
+        <div
+          class="absolute inset-0 -translate-x-6 -translate-y-6 rounded-3xl border border-gold-400/40"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="relative rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+          <p class="font-serif text-2xl leading-snug text-cream-100">
+            <span class="text-gold-300">“</span>
+            {siteConfig.brand.subTagline}
+            <span class="text-gold-300">”</span>
+          </p>
+          <div class="mt-6 grid grid-cols-2 gap-4 text-sm">
+            <div class="rounded-xl bg-white/5 p-4">
+              <p class="text-2xl font-semibold text-gold-300">Yıllarca</p>
+              <p class="text-cream-200/80">profesyonel mentörlük deneyimi</p>
+            </div>
+            <div class="rounded-xl bg-white/5 p-4">
+              <p class="text-2xl font-semibold text-gold-300">Bireysel + Kurumsal</p>
+              <p class="text-cream-200/80">iki kanallı danışmanlık</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
