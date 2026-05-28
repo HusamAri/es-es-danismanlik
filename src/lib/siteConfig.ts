@@ -34,7 +34,10 @@ export const siteConfig = {
     enabled: false,
   },
   forms: {
-    web3formsAccessKey: "REPLACE_WITH_WEB3FORMS_ACCESS_KEY",
+    // FormSubmit.co — anahtarsız form→e-posta rölesi. Gönderimler doğrudan
+    // contact.email adresine düşer. İlk gönderimde gelen onay linkine bir kez
+    // tıklanması gerekir (etkinleştirme).
+    provider: "formsubmit",
   },
   nav: [
     { label: "Hakkımızda", href: "/hakkimizda" },

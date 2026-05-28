@@ -2,7 +2,8 @@
 import { siteConfig } from "~/lib/siteConfig";
 import { link } from "~/lib/url";
 
-const accessKey = siteConfig.forms.web3formsAccessKey;
+// FormSubmit.co AJAX uç noktası — gönderimler doğrudan bu adrese e-posta olur.
+const endpoint = `https://formsubmit.co/ajax/${siteConfig.contact.email}`;
 
 const fieldClass =
   "mt-2 w-full border border-[var(--border-soft)] bg-paper px-4 py-3 text-sm text-ink focus:border-navy-800 focus:outline-none";
@@ -10,42 +11,43 @@ const labelClass = "block";
 const labelTextClass = "text-xs uppercase tracking-[0.22em] text-ink-secondary";
 ---
 
-<form id="contact-form" class="grid gap-6" novalidate>
-  <input type="hidden" name="access_key" value={accessKey} />
-  <input type="hidden" name="subject" value="Randevu Talebi — ES-ES Danışmanlık" />
-  <input type="hidden" name="from_name" value="ES-ES Danışmanlık Web Sitesi" />
-  <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
+<form id="contact-form" class="grid gap-6" data-endpoint={endpoint} novalidate>
+  <input type="hidden" name="_subject" value="Randevu Talebi — esesdanismanlik.net" />
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="_captcha" value="false" />
+  <!-- FormSubmit honeypot -->
+  <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
 
   <div class="grid gap-6 md:grid-cols-2">
     <label class={labelClass}>
       <span class={labelTextClass}>Ad Soyad <span aria-hidden="true">*</span></span>
-      <input type="text" name="ad_soyad" required autocomplete="name" class={fieldClass} />
+      <input type="text" name="Ad Soyad" required autocomplete="name" class={fieldClass} />
     </label>
     <label class={labelClass}>
       <span class={labelTextClass}>E-posta <span aria-hidden="true">*</span></span>
-      <input type="email" name="email" required autocomplete="email" class={fieldClass} />
+      <input type="email" name="E-posta" required autocomplete="email" class={fieldClass} />
     </label>
   </div>
 
   <div class="grid gap-6 md:grid-cols-2">
     <label class={labelClass}>
       <span class={labelTextClass}>Telefon</span>
-      <input type="tel" name="telefon" autocomplete="tel" inputmode="tel" class={fieldClass} />
+      <input type="tel" name="Telefon" autocomplete="tel" inputmode="tel" class={fieldClass} />
     </label>
     <label class={labelClass}>
       <span class={labelTextClass}>Konu</span>
-      <select name="konu" id="konu-select" class={fieldClass}>
-        <option value="genel">Genel Bilgi</option>
-        <option value="bireysel">Bireysel Mentörlük</option>
-        <option value="grup">Grup Programları</option>
-        <option value="kurumsal">Kurumsal Danışmanlık</option>
+      <select name="Konu" id="konu-select" class={fieldClass}>
+        <option value="Genel Bilgi">Genel Bilgi</option>
+        <option value="Bireysel Mentörlük">Bireysel Mentörlük</option>
+        <option value="Grup Programları">Grup Programları</option>
+        <option value="Kurumsal Danışmanlık">Kurumsal Danışmanlık</option>
       </select>
     </label>
   </div>
 
   <label class={labelClass}>
     <span class={labelTextClass}>Mesajınız <span aria-hidden="true">*</span></span>
-    <textarea name="mesaj" rows="5" required class={fieldClass}></textarea>
+    <textarea name="Mesaj" rows="5" required class={fieldClass}></textarea>
   </label>
 
   <label class="flex items-start gap-3 border border-[var(--border-soft)] bg-paper p-4 text-sm">
@@ -69,15 +71,18 @@ const labelTextClass = "text-xs uppercase tracking-[0.22em] text-ink-secondary";
     if (!form) return;
     var statusEl = document.getElementById("form-status");
     var btn = document.getElementById("form-submit");
+    var endpoint = form.getAttribute("data-endpoint");
 
-    // Konu ön-seçimi (?konu=...)
     var params = new URLSearchParams(window.location.search);
     var konu = params.get("konu");
     var select = document.getElementById("konu-select");
-    if (konu && select) {
-      var valid = Array.prototype.map.call(select.options, function (o) { return o.value; });
-      if (valid.indexOf(konu) >= 0) select.value = konu;
-    }
+    var konuMap = {
+      bireysel: "Bireysel Mentörlük",
+      grup: "Grup Programları",
+      kurumsal: "Kurumsal Danışmanlık",
+      genel: "Genel Bilgi",
+    };
+    if (konu && select && konuMap[konu]) select.value = konuMap[konu];
 
     function setStatus(msg, kind) {
       if (!statusEl) return;
@@ -88,43 +93,35 @@ const labelTextClass = "text-xs uppercase tracking-[0.22em] text-ink-secondary";
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
-      var bot = form.querySelector('input[name="botcheck"]');
-      if (bot && bot.checked) return; // honeypot
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
+      var honey = form.querySelector('input[name="_honey"]');
+      if (honey && honey.value) return;
+      if (!form.checkValidity()) { form.reportValidity(); return; }
 
       var data = Object.fromEntries(new FormData(form).entries());
-      btn.disabled = true;
-      btn.style.opacity = "0.6";
+      delete data.kvkk_onay;
+      btn.disabled = true; btn.style.opacity = "0.6";
       setStatus("Gönderiliyor…", "info");
 
-      fetch("https://api.web3forms.com/submit", {
+      fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(data),
       })
         .then(function (r) { return r.json(); })
         .then(function (res) {
-          if (res && res.success) {
+          var ok = res && (res.success === true || res.success === "true");
+          if (ok) {
             form.reset();
             setStatus("Talebiniz iletildi. En kısa sürede dönüş yapacağız.", "ok");
           } else {
-            setStatus(
-              "Gönderilemedi. Lütfen telefon veya e-posta ile ulaşın.",
-              "err"
-            );
+            setStatus("Gönderilemedi. Lütfen telefon veya e-posta ile ulaşın.", "err");
           }
         })
         .catch(function () {
           setStatus("Bağlantı hatası. Lütfen telefon veya e-posta ile ulaşın.", "err");
         })
         .finally(function () {
-          btn.disabled = false;
-          btn.style.opacity = "1";
+          btn.disabled = false; btn.style.opacity = "1";
         });
     });
   })();
