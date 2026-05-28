@@ -3,6 +3,7 @@ import { link } from "~/lib/url";
 
 interface Props {
   title?: string;
+  italicTail?: string;
   description?: string;
   primaryLabel?: string;
   primaryHref?: string;
@@ -12,24 +13,28 @@ interface Props {
 
 const {
   title = "Birlikte etkili bir süreç tasarlayalım.",
+  italicTail,
   description = "Ücretsiz tanışma görüşmesinde önceliklerinizi konuşalım; size en uygun yaklaşımı birlikte belirleyelim.",
-  primaryLabel = "Tanışma Görüşmesi Talep Et",
+  primaryLabel = "Tanışma Görüşmesi",
   primaryHref = "/iletisim#tanisma",
   secondaryLabel = "Hizmetleri İncele",
   secondaryHref = "/hizmetler",
 } = Astro.props;
 ---
 
-<section class="bg-navy-800 text-white">
-  <div class="container-wide py-16 md:py-20">
-    <div class="grid items-center gap-8 md:grid-cols-12">
+<section class="bg-navy-800 text-paper">
+  <div class="container-wide py-20 md:py-24">
+    <div class="grid items-end gap-10 md:grid-cols-12">
       <div class="md:col-span-8">
-        <h2 class="text-white">{title}</h2>
-        <hr class="gold-divider" />
-        <p class="text-cream-100/80 md:text-lg">{description}</p>
+        <h2 class="text-paper" style="color: var(--color-paper);">
+          {title}
+          {italicTail && <><br /><span class="accent-soft">{italicTail}</span></>}
+        </h2>
+        <hr class="gold-divider" style="background: var(--color-gold-400);" />
+        <p class="text-lead text-paper/80 max-w-2xl" style="line-height: 1.7;">{description}</p>
       </div>
       <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap md:col-span-4 md:justify-end">
-        <a href={link(primaryHref)} class="btn btn-primary">{primaryLabel}</a>
+        <a href={link(primaryHref)} class="btn btn-primary" style="background: var(--color-gold-500); color: var(--color-navy-900); border-color: var(--color-gold-500);">{primaryLabel}</a>
         <a href={link(secondaryHref)} class="btn btn-ghost-light">{secondaryLabel}</a>
       </div>
     </div>

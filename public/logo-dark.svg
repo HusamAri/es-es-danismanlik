@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 280" role="img" aria-label="ES-ES Danışmanlık">
+  <defs>
+    <style>
+      .gold { stroke: #B8894E; fill: none; stroke-linecap: round; }
+      .ink-text { fill: #14182B; }
+      .ink-sub { fill: #14182B; }
+    </style>
+  </defs>
+
+  <!-- LEFT GROUP: ES-ES with gold ring -->
+  <g>
+    <!-- Top half ring -->
+    <path d="M 75 140 A 145 145 0 0 1 365 140" class="gold" stroke-width="7" />
+    <!-- Bottom half ring -->
+    <path d="M 75 140 A 145 145 0 0 0 365 140" class="gold" stroke-width="7" />
+
+    <!-- ES-ES text -->
+    <text
+      x="220"
+      y="180"
+      text-anchor="middle"
+      font-family="Playfair Display, Georgia, serif"
+      font-weight="900"
+      font-size="135"
+      letter-spacing="-2"
+      class="ink-text"
+    >ES-ES</text>
+  </g>
+
+  <!-- Vertical divider -->
+  <line x1="445" y1="55" x2="445" y2="225" stroke="#B8894E" stroke-width="1.5" />
+
+  <!-- RIGHT GROUP -->
+  <g>
+    <!-- DANIŞMANLIK -->
+    <text
+      x="490"
+      y="160"
+      font-family="Inter, Arial, sans-serif"
+      font-weight="900"
+      font-size="72"
+      letter-spacing="7"
+      class="ink-text"
+    >DANIŞMANLIK</text>
+
+    <!-- Subtitle -->
+    <text
+      x="490"
+      y="205"
+      font-family="Inter, Arial, sans-serif"
+      font-weight="400"
+      font-size="20"
+      letter-spacing="5"
+      class="ink-sub"
+    >ETKİLİ SÜREÇ, ETKİLİ SONUÇ</text>
+  </g>
+</svg>

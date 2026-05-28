@@ -2,24 +2,38 @@
 interface Props {
   text: string;
   attribution?: string;
+  italicWord?: string;
+  variant?: "light" | "dark";
 }
 
-const { text, attribution } = Astro.props;
+const { text, attribution, italicWord, variant = "light" } = Astro.props;
+
+let before = text;
+let after = "";
+if (italicWord && text.includes(italicWord)) {
+  const idx = text.indexOf(italicWord);
+  before = text.slice(0, idx);
+  after = text.slice(idx + italicWord.length);
+}
+
+const textColor = variant === "dark" ? "text-paper" : "text-navy-800";
 ---
 
-<figure class="relative mx-auto max-w-3xl rounded-3xl border border-gold-200 bg-cream-50 px-8 py-12 text-center md:px-16">
-  <span
-    aria-hidden="true"
-    class="absolute left-6 top-4 font-serif text-6xl leading-none text-gold-400 md:left-10 md:text-7xl"
-  >“</span>
-  <blockquote class="font-serif text-2xl leading-snug text-navy-800 md:text-3xl">
-    {text}
+<figure class="mx-auto max-w-3xl text-center">
+  <hr class={`gold-divider gold-divider-center ${variant === "dark" ? "" : ""}`} style={variant === "dark" ? "background: var(--color-gold-400);" : ""} />
+  <blockquote
+    class={`font-[var(--font-italic)] italic text-2xl md:text-3xl leading-[1.4] ${textColor}`}
+    style="font-weight: 400;"
+  >
+    {italicWord ? (
+      <>
+        {before}<span class="accent">{italicWord}</span>{after}
+      </>
+    ) : text}
   </blockquote>
   {attribution && (
-    <figcaption class="mt-4 text-sm text-muted">{attribution}</figcaption>
+    <figcaption class="mt-6 text-xs uppercase tracking-[0.22em] text-muted" style="font-family: var(--font-sans);">
+      {attribution}
+    </figcaption>
   )}
-  <span
-    aria-hidden="true"
-    class="absolute bottom-2 right-6 font-serif text-6xl leading-none text-gold-400 md:right-10 md:text-7xl"
-  >”</span>
 </figure>

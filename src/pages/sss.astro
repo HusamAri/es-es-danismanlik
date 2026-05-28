@@ -23,20 +23,22 @@ const faqJsonLd = {
   description="ES-ES Danışmanlık hizmetleri, fiyatlandırma, format, KVKK ve kurumsal danışmanlık hakkında en sık sorulan soruların cevapları."
   jsonLd={faqJsonLd}
 >
-  <section class="bg-navy-800 py-20 text-white">
-    <div class="container-wide">
-      <span class="eyebrow text-gold-300">SSS</span>
-      <h1 class="mt-2 text-white">Sıkça Sorulan Sorular</h1>
+  <section class="bg-paper">
+    <div class="container-wide py-24 md:py-32">
+      <span class="eyebrow">SSS</span>
+      <h1 class="mt-6 text-display max-w-3xl">
+        Sıkça sorulan<br /><span class="accent">sorular.</span>
+      </h1>
       <hr class="gold-divider" />
-      <p class="max-w-2xl text-cream-100/85 md:text-lg">
+      <p class="mt-6 max-w-2xl text-lead text-ink-secondary" style="line-height: 1.7;">
         Hizmetlerimizle ilgili en sık sorulan soruları aşağıda toparladık. Aradığınız cevabı
-        bulamazsanız iletişim formundan veya WhatsApp üzerinden bize ulaşabilirsiniz.
+        bulamazsanız iletişim formundan veya WhatsApp üzerinden ulaşabilirsiniz.
       </p>
     </div>
   </section>
 
-  <section class="bg-white py-20">
-    <div class="container-wide">
+  <section class="bg-keten">
+    <div class="container-wide py-24 md:py-32">
       <FAQ items={items} />
     </div>
   </section>

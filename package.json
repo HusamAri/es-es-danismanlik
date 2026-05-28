@@ -16,6 +16,7 @@
     "@astrojs/sitemap": "^3.2.1",
     "@fontsource/cormorant-garamond": "^5.1.0",
     "@fontsource/inter": "^5.1.0",
+    "@fontsource/playfair-display": "^5.2.8",
     "astro": "^5.1.0",
     "astro-seo": "^0.8.4"
   },
