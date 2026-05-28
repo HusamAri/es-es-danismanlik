@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import CTASection from "~/components/CTASection.astro";
-import ImagePlaceholder from "~/components/ImagePlaceholder.astro";
+import SiteImage from "~/components/SiteImage.astro";
 import { link } from "~/lib/url";
 
 const jsonLd = {
@@ -66,11 +66,11 @@ const jsonLd = {
 
       <aside class="md:col-span-5">
         <div class="sticky top-28 space-y-8">
-          <ImagePlaceholder
-            label="Grup masası, sessiz bir saat"
-            meta="Defterler · ahşap · 4:5"
+          <SiteImage
+            name="grup"
+            alt="Ahşap masada birlikte çalışan grup, sessiz bir çalışma saati"
             ratio="4/5"
-            variant="keten"
+            sizes="(min-width: 768px) 40vw, 90vw"
           />
           <div class="card-navy">
             <h3 class="text-paper" style="color: var(--color-paper);">Detaylar</h3>

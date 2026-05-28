@@ -8,7 +8,7 @@ import ProcessSteps from "~/components/ProcessSteps.astro";
 import QuoteBlock from "~/components/QuoteBlock.astro";
 import FAQ from "~/components/FAQ.astro";
 import CTASection from "~/components/CTASection.astro";
-import ImagePlaceholder from "~/components/ImagePlaceholder.astro";
+import SiteImage from "~/components/SiteImage.astro";
 import Marquee from "~/components/Marquee.astro";
 import { getCollection } from "astro:content";
 import { link } from "~/lib/url";
@@ -203,11 +203,11 @@ const homeJsonLd = {
         </div>
         <div class="md:col-span-6" data-reveal="scale">
           <div data-parallax="0.06">
-            <ImagePlaceholder
-              label="Okul ortamında çalışan ekip"
-              meta="Atölye · doğal ışık · 1:1"
+            <SiteImage
+              name="kurumsal"
+              alt="Okul ortamında birlikte çalışan öğretmen ekibi"
               ratio="1/1"
-              variant="olive"
+              sizes="(min-width: 768px) 48vw, 90vw"
             />
           </div>
         </div>

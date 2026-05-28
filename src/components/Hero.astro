@@ -1,6 +1,6 @@
 ---
 import { link } from "~/lib/url";
-import ImagePlaceholder from "./ImagePlaceholder.astro";
+import SiteImage from "./SiteImage.astro";
 ---
 
 <section class="relative overflow-hidden bg-paper grain">
@@ -40,12 +40,13 @@ import ImagePlaceholder from "./ImagePlaceholder.astro";
         >
         </div>
         <div data-parallax="0.08">
-          <ImagePlaceholder
-            label="Sessiz akademik atmosfer"
-            meta="Ofis · doğal ışık · 4:5"
+          <SiteImage
+            name="hero"
+            alt="Pencere kenarında defterine yazan öğrenci, sıcak gün ışığı"
             ratio="4/5"
-            variant="keten"
-            class="relative"
+            loading="eager"
+            sizes="(min-width: 1024px) 40vw, 90vw"
+            class="relative shadow-[var(--shadow-elev)]"
           />
         </div>
       </div>
