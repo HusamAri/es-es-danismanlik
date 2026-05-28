@@ -1,10 +1,8 @@
 ---
-import { link } from "~/lib/url";
-
 interface Props {
-  /** light = beyaz/krem logoyu (koyu zeminler için), dark = lacivert/siyah logoyu (açık zeminler için) */
+  /** light = açık (krem) logo → koyu zeminler. dark = koyu (lacivert) logo → açık zeminler. */
   variant?: "dark" | "light";
-  /** "full" = ES-ES + DANIŞMANLIK yatay set. "mark" = sadece ES-ES monogramı. */
+  /** full = ES-ES + DANIŞMANLIK yatay set. mark = sadece ES-ES monogramı. */
   layout?: "full" | "mark";
   class?: string;
   title?: string;
@@ -17,22 +15,68 @@ const {
   title = "ES-ES Danışmanlık",
 } = Astro.props;
 
-const file =
-  layout === "mark"
-    ? variant === "dark"
-      ? "/logo-mark-dark.svg"
-      : "/logo-mark-light.svg"
-    : variant === "dark"
-      ? "/logo-dark.svg"
-      : "/logo-light.svg";
-
-const src = link(file);
+const wordmark = variant === "dark" ? "#14182B" : "#F7F1E5";
+const gold = variant === "dark" ? "#B8894E" : "#D4B084";
+const sub = variant === "dark" ? "#4A5267" : "#D4B084";
+const danis = variant === "dark" ? "#14182B" : "#EFE7DA";
 ---
 
-<img
-  src={src}
-  alt={title}
-  class={`block ${className}`}
-  loading="eager"
-  decoding="async"
-/>
+{
+  layout === "mark" ? (
+    <svg
+      viewBox="0 0 300 300"
+      class={className}
+      role="img"
+      aria-label={title}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d={`M 48 150 A 102 102 0 0 1 252 150`} fill="none" stroke={gold} stroke-width="6" stroke-linecap="round" />
+      <path d={`M 48 150 A 102 102 0 0 0 252 150`} fill="none" stroke={gold} stroke-width="6" stroke-linecap="round" />
+      <text
+        x="150"
+        y="150"
+        text-anchor="middle"
+        dominant-baseline="central"
+        fill={wordmark}
+        style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 92px; letter-spacing: -2px;"
+      >ES-ES</text>
+    </svg>
+  ) : (
+    <svg
+      viewBox="0 0 1000 250"
+      class={className}
+      role="img"
+      aria-label={title}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Sol: ES-ES + altın halka */}
+      <path d="M 40 125 A 100 100 0 0 1 250 125" fill="none" stroke={gold} stroke-width="5.5" stroke-linecap="round" />
+      <path d="M 40 125 A 100 100 0 0 0 250 125" fill="none" stroke={gold} stroke-width="5.5" stroke-linecap="round" />
+      <text
+        x="145"
+        y="125"
+        text-anchor="middle"
+        dominant-baseline="central"
+        fill={wordmark}
+        style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 118px; letter-spacing: -3px;"
+      >ES-ES</text>
+
+      {/* Dikey ayraç */}
+      <line x1="335" y1="45" x2="335" y2="205" stroke={gold} stroke-width="2" />
+
+      {/* Sağ: DANIŞMANLIK + alt slogan */}
+      <text
+        x="375"
+        y="108"
+        fill={danis}
+        style="font-family: 'Inter', Arial, sans-serif; font-weight: 800; font-size: 62px; letter-spacing: 9px;"
+      >DANIŞMANLIK</text>
+      <text
+        x="378"
+        y="168"
+        fill={sub}
+        style="font-family: 'Inter', Arial, sans-serif; font-weight: 400; font-size: 20px; letter-spacing: 7px;"
+      >ETKİLİ SÜREÇ, ETKİLİ SONUÇ</text>
+    </svg>
+  )
+}
