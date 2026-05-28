@@ -19,6 +19,9 @@ const wordmark = variant === "dark" ? "#14182B" : "#F7F1E5";
 const gold = variant === "dark" ? "#B8894E" : "#D4B084";
 const sub = variant === "dark" ? "#4A5267" : "#D4B084";
 const danis = variant === "dark" ? "#14182B" : "#EFE7DA";
+
+// Aynı sayfada birden çok logo olabileceğinden (header + footer) mask id benzersiz olmalı.
+const maskId = `eslogo-${variant}-${layout}-${Math.random().toString(36).slice(2, 7)}`;
 ---
 
 {
@@ -30,8 +33,23 @@ const danis = variant === "dark" ? "#14182B" : "#EFE7DA";
       aria-label={title}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d={`M 48 150 A 102 102 0 0 1 252 150`} fill="none" stroke={gold} stroke-width="6" stroke-linecap="round" />
-      <path d={`M 48 150 A 102 102 0 0 0 252 150`} fill="none" stroke={gold} stroke-width="6" stroke-linecap="round" />
+      <defs>
+        <mask id={maskId}>
+          <rect x="0" y="0" width="300" height="300" fill="white" />
+          {/* ES-ES bandı: çember bu yatay şeritte (±~1mm) gizlenir */}
+          <rect x="0" y="116" width="300" height="68" fill="black" />
+        </mask>
+      </defs>
+      <circle
+        cx="150"
+        cy="150"
+        r="102"
+        fill="none"
+        stroke={gold}
+        stroke-width="6"
+        stroke-linecap="round"
+        mask={`url(#${maskId})`}
+      />
       <text
         x="150"
         y="150"
@@ -49,9 +67,25 @@ const danis = variant === "dark" ? "#14182B" : "#EFE7DA";
       aria-label={title}
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Sol: ES-ES + altın halka */}
-      <path d="M 40 125 A 100 100 0 0 1 250 125" fill="none" stroke={gold} stroke-width="5.5" stroke-linecap="round" />
-      <path d="M 40 125 A 100 100 0 0 0 250 125" fill="none" stroke={gold} stroke-width="5.5" stroke-linecap="round" />
+      <defs>
+        <mask id={maskId}>
+          <rect x="0" y="0" width="1000" height="250" fill="white" />
+          {/* ES-ES bandı: çember yazının üst ve altında ~1mm boşluk bırakacak şekilde maskelenir */}
+          <rect x="0" y="72" width="300" height="106" fill="black" />
+        </mask>
+      </defs>
+
+      {/* Sol: ES-ES + altın halka (bantta maskeli) */}
+      <circle
+        cx="145"
+        cy="125"
+        r="105"
+        fill="none"
+        stroke={gold}
+        stroke-width="5.5"
+        stroke-linecap="round"
+        mask={`url(#${maskId})`}
+      />
       <text
         x="145"
         y="125"
