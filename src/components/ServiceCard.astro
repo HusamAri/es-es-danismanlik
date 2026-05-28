@@ -19,14 +19,14 @@ const { title, description, href, index, icon } = Astro.props;
   <div class="flex items-center justify-between">
     {
       icon && (
-        <span class="text-gold-500 transition-transform duration-500 group-hover:-translate-y-1">
+        <span class="text-gold-ink transition-transform duration-500 group-hover:-translate-y-1">
           <Icon name={icon} size={40} />
         </span>
       )
     }
     {index && (
       <span
-        class="font-[var(--font-italic)] italic text-xs text-gold-500 tracking-wider"
+        class="font-[var(--font-italic)] italic text-xs text-gold-ink tracking-wider"
         aria-hidden="true"
       >
         {index}
@@ -38,7 +38,7 @@ const { title, description, href, index, icon } = Astro.props;
   <p class="text-sm text-ink-secondary" style="line-height: 1.75;">{description}</p>
   <a
     href={href}
-    class="mt-8 inline-flex min-h-11 items-center gap-2 py-2 text-xs uppercase tracking-[0.22em] text-navy-800 transition-colors hover:text-gold-500"
+    class="mt-auto pt-8 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.22em] text-navy-800 transition-colors hover:text-gold-ink"
     style="font-weight: 500;"
   >
     Detayı oku

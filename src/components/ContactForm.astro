@@ -3,25 +3,17 @@ import { siteConfig } from "~/lib/siteConfig";
 import { link } from "~/lib/url";
 
 const accessKey = siteConfig.forms.web3formsAccessKey;
-const origin = Astro.site?.toString().replace(/\/$/, "") ?? siteConfig.url;
-const redirectUrl = `${origin}${link("/iletisim?gonderildi=1")}`;
 
-const fieldClass = "mt-2 w-full border border-[var(--border-soft)] bg-paper px-4 py-3 text-sm text-ink focus:border-navy-800 focus:outline-none";
+const fieldClass =
+  "mt-2 w-full border border-[var(--border-soft)] bg-paper px-4 py-3 text-sm text-ink focus:border-navy-800 focus:outline-none";
 const labelClass = "block";
-const labelTextClass = "text-xs uppercase tracking-[0.22em] text-muted";
+const labelTextClass = "text-xs uppercase tracking-[0.22em] text-ink-secondary";
 ---
 
-<form
-  id="contact-form"
-  action="https://api.web3forms.com/submit"
-  method="POST"
-  class="grid gap-6"
-  novalidate
->
+<form id="contact-form" class="grid gap-6" novalidate>
   <input type="hidden" name="access_key" value={accessKey} />
-  <input type="hidden" name="subject" value="Yeni İletişim Formu — ES-ES Danışmanlık" />
+  <input type="hidden" name="subject" value="Randevu Talebi — ES-ES Danışmanlık" />
   <input type="hidden" name="from_name" value="ES-ES Danışmanlık Web Sitesi" />
-  <input type="hidden" name="redirect" value={redirectUrl} />
   <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
 
   <div class="grid gap-6 md:grid-cols-2">
@@ -65,34 +57,75 @@ const labelTextClass = "text-xs uppercase tracking-[0.22em] text-muted";
     </span>
   </label>
 
-  <div class="flex items-center justify-between gap-4">
-    <button type="submit" class="btn btn-primary">Gönder</button>
-    <p id="form-status" class="text-xs uppercase tracking-[0.18em] text-muted" role="status" aria-live="polite"></p>
+  <div class="flex flex-wrap items-center justify-between gap-4">
+    <button type="submit" id="form-submit" class="btn btn-primary">Randevu Talebi Gönder</button>
+    <p id="form-status" class="text-sm" role="status" aria-live="polite"></p>
   </div>
 </form>
 
 <script is:inline>
   (function () {
+    var form = document.getElementById("contact-form");
+    if (!form) return;
+    var statusEl = document.getElementById("form-status");
+    var btn = document.getElementById("form-submit");
+
+    // Konu ön-seçimi (?konu=...)
     var params = new URLSearchParams(window.location.search);
     var konu = params.get("konu");
     var select = document.getElementById("konu-select");
     if (konu && select) {
-      var valid = Array.from(select.options).map(function (o) { return o.value; });
+      var valid = Array.prototype.map.call(select.options, function (o) { return o.value; });
       if (valid.indexOf(konu) >= 0) select.value = konu;
     }
 
-    var status = document.getElementById("form-status");
-    if (params.get("gonderildi") === "1" && status) {
-      status.textContent = "Mesajınız iletildi. En kısa sürede dönüş yapacağız.";
+    function setStatus(msg, kind) {
+      if (!statusEl) return;
+      statusEl.textContent = msg;
+      statusEl.style.color =
+        kind === "ok" ? "#3d4a3f" : kind === "err" ? "#9f2f2d" : "#4a5267";
     }
 
-    var form = document.getElementById("contact-form");
-    if (form) {
-      form.addEventListener("submit", function (e) {
-        var bot = form.querySelector('input[name="botcheck"]');
-        if (bot && bot.checked) { e.preventDefault(); return; }
-        if (status) { status.textContent = "Gönderiliyor..."; }
-      });
-    }
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var bot = form.querySelector('input[name="botcheck"]');
+      if (bot && bot.checked) return; // honeypot
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      var data = Object.fromEntries(new FormData(form).entries());
+      btn.disabled = true;
+      btn.style.opacity = "0.6";
+      setStatus("Gönderiliyor…", "info");
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res && res.success) {
+            form.reset();
+            setStatus("Talebiniz iletildi. En kısa sürede dönüş yapacağız.", "ok");
+          } else {
+            setStatus(
+              "Gönderilemedi. Lütfen telefon veya e-posta ile ulaşın.",
+              "err"
+            );
+          }
+        })
+        .catch(function () {
+          setStatus("Bağlantı hatası. Lütfen telefon veya e-posta ile ulaşın.", "err");
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.style.opacity = "1";
+        });
+    });
   })();
 </script>
