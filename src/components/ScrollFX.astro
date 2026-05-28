@@ -1,0 +1,130 @@
+---
+/**
+ * Sayfa hareket motoru (hafif, bağımlılıksız):
+ * - data-reveal / .kinetic / .draw-line elemanlarını görünürlükte tetikler
+ * - data-count sayaçlarını animasyonla artırır
+ * - data-parallax elemanlarını scroll ile kaydırır
+ * - üstte scroll-progress çubuğu
+ * Tümü prefers-reduced-motion'a saygılıdır.
+ */
+---
+
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+<script is:inline>
+  (function () {
+    function init() {
+      var reduce =
+        window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      /* Kinetik satırları <span>'lere böl */
+      document.querySelectorAll(".kinetic .k-line").forEach(function (line, li) {
+        if (line.querySelector("span")) return;
+        var span = document.createElement("span");
+        span.textContent = line.textContent;
+        span.style.setProperty("--k-delay", li * 110 + "ms");
+        line.textContent = "";
+        line.appendChild(span);
+      });
+
+      /* Stagger gecikmeleri */
+      document.querySelectorAll("[data-reveal-group]").forEach(function (group) {
+        var step = parseInt(group.getAttribute("data-reveal-group") || "90", 10);
+        group.querySelectorAll("[data-reveal]").forEach(function (el, i) {
+          el.style.setProperty("--reveal-delay", i * step + "ms");
+        });
+      });
+
+      function animateCount(el) {
+        var target = parseFloat(el.getAttribute("data-count") || "0");
+        var suffix = el.getAttribute("data-count-suffix") || "";
+        var dur = 1500, start = null;
+        function tick(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      if (reduce || !("IntersectionObserver" in window)) {
+        document
+          .querySelectorAll("[data-reveal], .kinetic, .draw-line")
+          .forEach(function (el) { el.classList.add("is-visible"); });
+        document.querySelectorAll("[data-count]").forEach(function (el) {
+          el.textContent =
+            (el.getAttribute("data-count") || "") +
+            (el.getAttribute("data-count-suffix") || "");
+        });
+        return;
+      }
+
+      /* Reveal gözlemcisi */
+      var revealIO = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            e.target.classList.add("is-visible");
+            revealIO.unobserve(e.target);
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+      );
+      document
+        .querySelectorAll("[data-reveal], .kinetic, .draw-line")
+        .forEach(function (el) { revealIO.observe(el); });
+
+      /* Sayaç gözlemcisi (threshold 0 — küçük elemanlar için güvenli) */
+      var countIO = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            animateCount(e.target);
+            countIO.unobserve(e.target);
+          });
+        },
+        { threshold: 0, rootMargin: "0px 0px -10% 0px" }
+      );
+      document
+        .querySelectorAll("[data-count]")
+        .forEach(function (el) { countIO.observe(el); });
+
+      /* Scroll-progress + parallax */
+      var bar = document.getElementById("scroll-progress");
+      var parallaxEls = [].slice.call(document.querySelectorAll("[data-parallax]"));
+      var ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          var st = window.scrollY || document.documentElement.scrollTop;
+          var h = document.documentElement.scrollHeight - window.innerHeight;
+          if (bar) bar.style.transform = "scaleX(" + (h > 0 ? st / h : 0) + ")";
+          if (!reduce) {
+            var vh = window.innerHeight;
+            parallaxEls.forEach(function (el) {
+              var speed = parseFloat(el.getAttribute("data-parallax")) || 0.12;
+              var rect = el.getBoundingClientRect();
+              var center = rect.top + rect.height / 2 - vh / 2;
+              el.style.transform =
+                "translate3d(0," + (-center * speed).toFixed(1) + "px,0)";
+            });
+          }
+          ticking = false;
+        });
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll, { passive: true });
+      onScroll();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  })();
+</script>

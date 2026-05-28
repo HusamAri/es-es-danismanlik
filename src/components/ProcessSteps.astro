@@ -39,10 +39,10 @@ const defaultSteps: Step[] = [
 const { steps = defaultSteps } = Astro.props;
 ---
 
-<ol class="grid gap-10 md:grid-cols-2 lg:grid-cols-4" role="list">
+<ol class="grid gap-10 md:grid-cols-2 lg:grid-cols-4" role="list" data-reveal-group="120">
   {
     steps.map((step) => (
-      <li class="border-t border-[var(--border-soft)] pt-6">
+      <li class="border-t border-[var(--border-soft)] pt-6" data-reveal>
         <span
           class="font-[var(--font-italic)] italic text-xl text-gold-500"
           aria-hidden="true"

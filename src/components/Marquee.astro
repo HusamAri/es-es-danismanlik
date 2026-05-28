@@ -1,0 +1,32 @@
+---
+interface Props {
+  items?: { text: string; italic?: boolean }[];
+}
+const defaultItems = [
+  { text: "Süreç" },
+  { text: "plan", italic: true },
+  { text: "Takip" },
+  { text: "mentörlük", italic: true },
+  { text: "Strateji" },
+  { text: "rehberlik", italic: true },
+  { text: "Disiplin" },
+  { text: "motivasyon", italic: true },
+  { text: "Hedef" },
+  { text: "süreklilik", italic: true },
+];
+const { items = defaultItems } = Astro.props;
+const loop = [...items, ...items];
+---
+
+<div class="marquee border-y border-[var(--border-whisper)] bg-keten py-6" aria-hidden="true">
+  <div class="marquee__track">
+    {
+      loop.map((it) => (
+        <>
+          <span class={`marquee__item ${it.italic ? "is-italic" : ""}`}>{it.text}</span>
+          <span class="marquee__dot">◆</span>
+        </>
+      ))
+    }
+  </div>
+</div>

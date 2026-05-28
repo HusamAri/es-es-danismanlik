@@ -20,10 +20,15 @@ const textColor = variant === "dark" ? "text-paper" : "text-navy-800";
 ---
 
 <figure class="mx-auto max-w-3xl text-center">
-  <hr class={`gold-divider gold-divider-center ${variant === "dark" ? "" : ""}`} style={variant === "dark" ? "background: var(--color-gold-400);" : ""} />
+  <hr
+    class={`gold-divider gold-divider-center draw-line`}
+    data-reveal="fade"
+    style={variant === "dark" ? "background: var(--color-gold-400);" : ""}
+  />
   <blockquote
     class={`font-[var(--font-italic)] italic text-2xl md:text-3xl leading-[1.4] ${textColor}`}
-    style="font-weight: 400;"
+    style="font-weight: 400; --reveal-delay: 150ms;"
+    data-reveal="blur"
   >
     {italicWord ? (
       <>

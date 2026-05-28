@@ -9,7 +9,10 @@ interface Props {
 const { title, description, href, index } = Astro.props;
 ---
 
-<article class="group relative flex h-full flex-col border-l border-[var(--border-soft)] pl-7 transition-colors hover:border-gold-500">
+<article
+  class="svc-card group relative flex h-full flex-col border-l border-[var(--border-soft)] pl-7 transition-colors hover:border-gold-500"
+  data-reveal
+>
   {index && (
     <span
       class="font-[var(--font-italic)] italic text-xs text-gold-500 tracking-wider"
