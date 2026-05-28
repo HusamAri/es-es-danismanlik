@@ -12,7 +12,7 @@ const isActive = (href: string) =>
 <header
   class="sticky top-0 z-50 border-b border-[var(--border-whisper)] bg-paper/95 backdrop-blur supports-[backdrop-filter]:bg-paper/85"
 >
-  <div class="container-wide flex h-16 items-center justify-between gap-3 sm:h-20 sm:gap-8">
+  <div class="container-full flex h-16 items-center justify-between gap-3 sm:h-20 sm:gap-8">
     <a href={link("/")} class="min-w-0 shrink" aria-label={`${siteConfig.brand.name} — Ana Sayfa`}>
       <Logo variant="dark" layout="full" class="h-10 w-auto sm:h-12" />
     </a>
@@ -86,7 +86,7 @@ const isActive = (href: string) =>
     class="hidden max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-[var(--border-whisper)] bg-paper lg:hidden"
     aria-hidden="true"
   >
-    <nav aria-label="Mobil navigasyon" class="container-wide py-5">
+    <nav aria-label="Mobil navigasyon" class="container-full py-5">
       <ul class="flex flex-col gap-1">
         {
           siteConfig.nav.map((item) => (
