@@ -1,43 +1,78 @@
 ---
 import { link } from "~/lib/url";
-import ImagePlaceholder from "./ImagePlaceholder.astro";
+import SiteImage from "./SiteImage.astro";
 ---
 
-<section class="relative bg-paper">
-  <div class="container-wide relative grid gap-16 py-20 sm:py-24 md:py-32 lg:grid-cols-12 lg:gap-12">
+<section class="relative overflow-hidden bg-paper grain">
+  <div class="container-wide relative z-[1] grid gap-16 py-20 sm:py-24 md:py-32 lg:grid-cols-12 lg:gap-12">
     <div class="lg:col-span-7">
-      <span class="eyebrow">ES-ES Danışmanlık</span>
-      <h1 class="mt-6 text-display text-navy-800">
-        Hedefe giden yolun<br />
-        <span class="accent">sessiz rehberi.</span>
+      <span class="eyebrow" data-reveal="fade">ES-ES Danışmanlık</span>
+
+      <h1 class="kinetic mt-6 text-display text-navy-800">
+        <span class="k-line">Hedefe giden yolun</span>
+        <span class="k-line accent">sessiz rehberi.</span>
       </h1>
-      <hr class="gold-divider" />
-      <p class="mt-6 max-w-xl text-lead text-ink-secondary">
+
+      <hr class="gold-divider draw-line" data-reveal="fade" style="--reveal-delay: 700ms;" />
+
+      <p class="mt-6 max-w-xl text-lead text-ink-secondary" data-reveal style="--reveal-delay: 820ms;">
         Birebir rehberlik, grup danışmanlığı ve kişiye özel program tasarımı ile öğrencilerin
         ve eğitim kurumlarının hedeflerine giden süreçleri birlikte planlıyor, sabırla takip
         ediyoruz.
       </p>
-      <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+
+      <div
+        class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
+        data-reveal
+        style="--reveal-delay: 940ms;"
+      >
         <a href={link("/iletisim#tanisma")} class="btn btn-primary">Tanışma Görüşmesi</a>
         <a href={link("/hizmetler")} class="btn btn-secondary">Hizmetleri İncele</a>
       </div>
     </div>
 
     <div class="hidden lg:col-span-5 lg:block">
-      <div class="relative">
+      <div class="relative" data-reveal="scale" style="--reveal-delay: 300ms;">
         <div
-          class="absolute -bottom-6 -left-6 h-32 w-32 border-l border-b border-gold-500"
+          class="absolute -bottom-6 -left-6 z-[2] h-32 w-32 border-l border-b border-gold-500"
           aria-hidden="true"
+          data-parallax="-0.06"
         >
         </div>
-        <ImagePlaceholder
-          label="Sessiz akademik atmosfer"
-          meta="Ofis · doğal ışık · 4:5"
-          ratio="4/5"
-          variant="keten"
-          class="relative"
-        />
+        <div data-parallax="0.08">
+          <SiteImage
+            name="hero"
+            alt="Pencere kenarında defterine yazan öğrenci, sıcak gün ışığı"
+            ratio="4/5"
+            loading="eager"
+            sizes="(min-width: 1024px) 40vw, 90vw"
+            class="relative shadow-[var(--shadow-elev)]"
+          />
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Aşağı kaydır işareti -->
+  <div
+    class="pointer-events-none absolute bottom-6 left-1/2 z-[1] hidden -translate-x-1/2 lg:block"
+    data-reveal="fade"
+    style="--reveal-delay: 1200ms;"
+    aria-hidden="true"
+  >
+    <span
+      class="block h-10 w-px bg-gradient-to-b from-gold-500/0 via-gold-500 to-gold-500/0"
+      style="animation: scrollhint 2.4s ease-in-out infinite;"
+    ></span>
+  </div>
 </section>
+
+<style>
+  @keyframes scrollhint {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.3; transform-origin: top; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [style*="scrollhint"] { animation: none !important; }
+  }
+</style>

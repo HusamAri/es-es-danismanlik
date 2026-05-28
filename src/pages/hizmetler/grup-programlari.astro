@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import CTASection from "~/components/CTASection.astro";
-import ImagePlaceholder from "~/components/ImagePlaceholder.astro";
+import SiteImage from "~/components/SiteImage.astro";
 import { link } from "~/lib/url";
 
 const jsonLd = {
@@ -21,8 +21,8 @@ const jsonLd = {
   <section class="bg-paper">
     <div class="container-wide py-24 md:py-32 grid gap-12 md:grid-cols-12">
       <div class="md:col-span-8">
-        <span class="eyebrow">Hizmet · 02</span>
-        <h1 class="mt-6 text-display">
+        <span class="eyebrow" data-reveal="fade">Hizmet · 02</span>
+        <h1 class="mt-6 text-display" data-reveal style="--reveal-delay: 120ms;">
           Grup mentörlük<br /><span class="accent">programları.</span>
         </h1>
         <hr class="gold-divider" />
@@ -66,11 +66,11 @@ const jsonLd = {
 
       <aside class="md:col-span-5">
         <div class="sticky top-28 space-y-8">
-          <ImagePlaceholder
-            label="Grup masası, sessiz bir saat"
-            meta="Defterler · ahşap · 4:5"
+          <SiteImage
+            name="grup"
+            alt="Ahşap masada birlikte çalışan grup, sessiz bir çalışma saati"
             ratio="4/5"
-            variant="keten"
+            sizes="(min-width: 768px) 40vw, 90vw"
           />
           <div class="card-navy">
             <h3 class="text-paper" style="color: var(--color-paper);">Detaylar</h3>

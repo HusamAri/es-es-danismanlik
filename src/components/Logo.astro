@@ -1,10 +1,8 @@
 ---
-import { link } from "~/lib/url";
-
 interface Props {
-  /** light = beyaz/krem logoyu (koyu zeminler için), dark = lacivert/siyah logoyu (açık zeminler için) */
+  /** light = açık (krem) logo → koyu zeminler. dark = koyu (lacivert) logo → açık zeminler. */
   variant?: "dark" | "light";
-  /** "full" = ES-ES + DANIŞMANLIK yatay set. "mark" = sadece ES-ES monogramı. */
+  /** full = ES-ES + DANIŞMANLIK yatay set. mark = sadece ES-ES monogramı. */
   layout?: "full" | "mark";
   class?: string;
   title?: string;
@@ -17,22 +15,100 @@ const {
   title = "ES-ES Danışmanlık",
 } = Astro.props;
 
-const file =
-  layout === "mark"
-    ? variant === "dark"
-      ? "/logo-mark-dark.svg"
-      : "/logo-mark-light.svg"
-    : variant === "dark"
-      ? "/logo-dark.svg"
-      : "/logo-light.svg";
+const wordmark = variant === "dark" ? "#14182B" : "#F7F1E5";
+const gold = variant === "dark" ? "#B8894E" : "#D4B084";
+const sub = variant === "dark" ? "#4A5267" : "#D4B084";
+const danis = variant === "dark" ? "#14182B" : "#EFE7DA";
 
-const src = link(file);
+// Aynı sayfada birden çok logo olabileceğinden (header + footer) mask id benzersiz olmalı.
+const maskId = `eslogo-${variant}-${layout}-${Math.random().toString(36).slice(2, 7)}`;
 ---
 
-<img
-  src={src}
-  alt={title}
-  class={`block ${className}`}
-  loading="eager"
-  decoding="async"
-/>
+{
+  layout === "mark" ? (
+    <svg
+      viewBox="0 0 300 300"
+      class={className}
+      role="img"
+      aria-label={title}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <mask id={maskId}>
+          <rect x="0" y="0" width="300" height="300" fill="white" />
+          {/* ES-ES bandı: harf görsel merkezine (y=150) simetrik; üst/alt eşit boşluk */}
+          <rect x="0" y="107" width="300" height="86" fill="black" />
+        </mask>
+      </defs>
+      <circle
+        cx="150"
+        cy="150"
+        r="102"
+        fill="none"
+        stroke={gold}
+        stroke-width="6"
+        stroke-linecap="round"
+        mask={`url(#${maskId})`}
+      />
+      <text
+        x="150"
+        y="182"
+        text-anchor="middle"
+        fill={wordmark}
+        style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 92px; letter-spacing: -2px;"
+      >ES-ES</text>
+    </svg>
+  ) : (
+    <svg
+      viewBox="0 0 1000 250"
+      class={className}
+      role="img"
+      aria-label={title}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <mask id={maskId}>
+          <rect x="0" y="0" width="1000" height="250" fill="white" />
+          {/* ES-ES bandı: harf görsel merkezine (y=125) simetrik; üst ve alt yay yazıya eşit uzaklıkta */}
+          <rect x="0" y="71" width="300" height="108" fill="black" />
+        </mask>
+      </defs>
+
+      {/* Sol: ES-ES + altın halka (bantta maskeli) */}
+      <circle
+        cx="145"
+        cy="125"
+        r="105"
+        fill="none"
+        stroke={gold}
+        stroke-width="5.5"
+        stroke-linecap="round"
+        mask={`url(#${maskId})`}
+      />
+      <text
+        x="145"
+        y="166"
+        text-anchor="middle"
+        fill={wordmark}
+        style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 118px; letter-spacing: -3px;"
+      >ES-ES</text>
+
+      {/* Dikey ayraç */}
+      <line x1="335" y1="45" x2="335" y2="205" stroke={gold} stroke-width="2" />
+
+      {/* Sağ: DANIŞMANLIK + alt slogan */}
+      <text
+        x="375"
+        y="108"
+        fill={danis}
+        style="font-family: 'Inter', Arial, sans-serif; font-weight: 800; font-size: 62px; letter-spacing: 9px;"
+      >DANIŞMANLIK</text>
+      <text
+        x="378"
+        y="168"
+        fill={sub}
+        style="font-family: 'Inter', Arial, sans-serif; font-weight: 400; font-size: 20px; letter-spacing: 7px;"
+      >ETKİLİ SÜREÇ, ETKİLİ SONUÇ</text>
+    </svg>
+  )
+}

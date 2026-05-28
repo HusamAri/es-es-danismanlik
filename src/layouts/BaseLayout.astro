@@ -3,16 +3,20 @@ import "~/styles/globals.css";
 import "@fontsource/playfair-display/400.css";
 import "@fontsource/playfair-display/500.css";
 import "@fontsource/playfair-display/600.css";
+import "@fontsource/playfair-display/700.css";
 import "@fontsource/cormorant-garamond/400-italic.css";
 import "@fontsource/cormorant-garamond/500-italic.css";
 import "@fontsource/inter/300.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
+import "@fontsource/inter/700.css";
+import "@fontsource/inter/800.css";
 
 import Header from "~/components/Header.astro";
 import Footer from "~/components/Footer.astro";
 import WhatsAppFloat from "~/components/WhatsAppFloat.astro";
 import CookieBanner from "~/components/CookieBanner.astro";
+import ScrollFX from "~/components/ScrollFX.astro";
 import Seo from "~/components/Seo.astro";
 import { link } from "~/lib/url";
 
@@ -41,6 +45,7 @@ const { title, description, image, noindex, jsonLd } = Astro.props;
     <Seo title={title} description={description} image={image} noindex={noindex} jsonLd={jsonLd} />
   </head>
   <body>
+    <ScrollFX />
     <a href="#main" class="skip-link">İçeriğe geç</a>
     <Header />
     <main id="main">
