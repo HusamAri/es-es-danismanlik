@@ -43,11 +43,13 @@
   --color-gold-500: #b8894e;
   --color-gold-600: #946d3d;
   --color-gold-700: #6f5230;
+  /* Açık zeminde metin için WCAG AA geçen derin altın */
+  --color-gold-ink: #7e6030;
 
   /* === MÜREKKEP (Functional ink) === */
   --color-ink: #14182b;
   --color-ink-secondary: #4a5267;
-  --color-muted: #8b92a8;
+  --color-muted: #5f6675;
 
   /* === Tipografi === */
   --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
@@ -116,7 +118,7 @@
     font-family: var(--font-italic);
     font-style: italic;
     font-weight: 500;
-    color: var(--color-gold-500);
+    color: var(--color-gold-ink);
   }
 
   a {
@@ -124,7 +126,7 @@
     text-decoration: none;
     transition: color 0.15s ease;
   }
-  a:hover { color: var(--color-gold-500); }
+  a:hover { color: var(--color-gold-ink); }
 
   input[type="text"],
   input[type="email"],
@@ -244,7 +246,7 @@
     font-family: var(--font-italic);
     font-style: italic;
     font-size: 0.95rem;
-    color: var(--color-gold-500);
+    color: var(--color-gold-ink);
     font-weight: 500;
     letter-spacing: 0.01em;
   }
@@ -310,7 +312,7 @@
   .accent {
     font-family: var(--font-italic);
     font-style: italic;
-    color: var(--color-gold-500);
+    color: var(--color-gold-ink);
     font-weight: 500;
   }
 
@@ -332,9 +334,9 @@
   .prose-tr ol { list-style: decimal; margin-left: 1.5rem; margin-bottom: 1.25rem; }
   .prose-tr li { margin-bottom: 0.4rem; color: var(--color-ink-secondary); font-size: 0.9375rem; }
   .prose-tr strong { color: var(--color-navy-800); font-weight: 600; }
-  .prose-tr em { font-family: var(--font-italic); font-style: italic; color: var(--color-gold-500); }
+  .prose-tr em { font-family: var(--font-italic); font-style: italic; color: var(--color-gold-ink); }
   .prose-tr a { color: var(--color-navy-800); border-bottom: 1px solid var(--color-gold-500); }
-  .prose-tr a:hover { color: var(--color-gold-500); }
+  .prose-tr a:hover { color: var(--color-gold-ink); }
 
   /* === Image placeholder (görsel yokken) === */
   .img-placeholder {
@@ -545,7 +547,7 @@
 .marquee__item.is-italic {
   font-family: var(--font-italic);
   font-style: italic;
-  color: var(--color-gold-500);
+  color: var(--color-gold-ink);
 }
 .marquee__dot { color: var(--color-gold-400); font-size: 1rem; }
 @keyframes marquee-scroll {

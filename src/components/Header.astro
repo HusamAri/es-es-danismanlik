@@ -26,7 +26,7 @@ const isActive = (href: string) =>
                 href={link(item.href)}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 class={`inline-flex items-center px-3 py-2 text-[0.8125rem] tracking-wide transition-colors ${
-                  isActive(item.href) ? "text-navy-800 font-medium" : "text-ink-secondary hover:text-gold-500"
+                  isActive(item.href) ? "text-navy-800 font-medium" : "text-ink-secondary hover:text-gold-ink"
                 }`}
               >
                 {item.label}

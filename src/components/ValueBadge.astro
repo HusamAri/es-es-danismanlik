@@ -15,13 +15,13 @@ const { title, description, number = "—", icon } = Astro.props;
   <div class="flex items-center gap-3">
     {
       icon && (
-        <span class="text-gold-500">
+        <span class="text-gold-ink">
           <Icon name={icon} size={30} />
         </span>
       )
     }
     <span
-      class="font-[var(--font-italic)] italic text-xl text-gold-500 leading-none"
+      class="font-[var(--font-italic)] italic text-xl text-gold-ink leading-none"
       aria-hidden="true"
     >
       {number}
