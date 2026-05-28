@@ -3,91 +3,99 @@ import BaseLayout from "~/layouts/BaseLayout.astro";
 import ProcessSteps from "~/components/ProcessSteps.astro";
 import CTASection from "~/components/CTASection.astro";
 import QuoteBlock from "~/components/QuoteBlock.astro";
+import SectionHeading from "~/components/SectionHeading.astro";
+import ImagePlaceholder from "~/components/ImagePlaceholder.astro";
+
+const principles = [
+  ["01", "Şeffaflık", "Sürecin başında neyi nasıl çalışacağımızı net olarak paylaşırız. Vaatlerimiz ölçülebilir olur; kesin sonuç garantisi vermeyiz."],
+  ["02", "Süreklilik", "Tek seferlik müdahalelerin yerine, küçük ama sürdürülebilir adımlara inanırız. Düzenli görüşmeler ve periyodik gözden geçirmeler temel ritmimizdir."],
+  ["03", "Bireysellik", "Hazır şablonlar dayatmayız; her öğrencinin ve her kurumun ihtiyacı farklıdır. Süreç ortak tasarlanır."],
+  ["04", "Etik ve Gizlilik", "Görüşme içerikleri, öğrenci bilgileri ve kurumsal veriler KVKK uyumlu biçimde işlenir. İsim, fotoğraf, kurum adı yazılı izin olmadan paylaşılmaz."],
+  ["05", "Ölçülebilirlik", "Sürecin başında belirlediğimiz hedefleri belirli aralıklarla gözden geçirir; gerekirse planı revize ederiz. Karar, hisse değil veriye dayanır."],
+];
 ---
 
 <BaseLayout
   title="Yaklaşımımız"
-  description="Süreç odaklı, şeffaf ve ölçülebilir; ES-ES Danışmanlık'ın bireysel ve kurumsal danışmanlıkta uyguladığı yöntem ve çalışma ilkeleri."
+  description="Süreç odaklı, şeffaf ve ölçülebilir; ES-ES Danışmanlık'ın bireysel ve kurumsal danışmanlıkta uyguladığı yöntem ve ilkeler."
 >
-  <section class="bg-navy-800 py-20 text-white">
-    <div class="container-wide">
-      <span class="eyebrow text-gold-300">Yaklaşımımız</span>
-      <h1 class="mt-2 text-white">Etkili Süreç, Etkili Sonuç.</h1>
+  <section class="bg-paper">
+    <div class="container-wide py-24 md:py-32">
+      <span class="eyebrow">Yaklaşımımız</span>
+      <h1 class="mt-6 text-display max-w-3xl">
+        Etkili süreç,<br /><span class="accent">etkili sonuç.</span>
+      </h1>
       <hr class="gold-divider" />
-      <p class="max-w-2xl text-cream-100/85 md:text-lg">
+      <p class="mt-6 max-w-2xl text-lead text-ink-secondary" style="line-height: 1.7;">
         Bizim için hizmet, görüşmelerden ibaret değildir. Hedeften tasarıma, tasarımdan uygulamaya
-        ve raporlamaya kadar uçtan uca tasarlanmış bir süreçtir.
+        ve raporlamaya kadar uçtan uca tasarlanmış sessiz bir süreç.
       </p>
     </div>
   </section>
 
-  <section class="bg-white py-20">
-    <div class="container-wide grid gap-12 md:grid-cols-12">
+  <section class="bg-keten">
+    <div class="container-wide py-24 md:py-32 grid gap-16 md:grid-cols-12">
       <div class="md:col-span-7">
         <h2>İlkelerimiz</h2>
         <hr class="gold-divider" />
-        <div class="prose-tr">
-          <h3>1. Şeffaflık</h3>
-          <p>
-            Sürecin başında neyi nasıl çalışacağımızı net olarak paylaşırız. Vaatlerimiz ölçülebilir
-            olur; kesin sonuç garantisi vermeyiz.
-          </p>
-          <h3>2. Süreklilik</h3>
-          <p>
-            Tek seferlik müdahalelerin yerine, küçük ama sürdürülebilir adımlara inanırız. Düzenli
-            görüşmeler ve periyodik gözden geçirmeler temel ritmimizdir.
-          </p>
-          <h3>3. Bireysellik</h3>
-          <p>
-            Hazır şablonlar dayatmıyoruz; her öğrencinin ve her kurumun ihtiyacı farklıdır. Süreç
-            ortak tasarlanır.
-          </p>
-          <h3>4. Etik ve Gizlilik</h3>
-          <p>
-            Görüşme içerikleri, öğrenci bilgileri ve kurumsal veriler KVKK uyumlu biçimde işlenir.
-            İsim, fotoğraf, kurum adı yazılı izin olmadan paylaşılmaz.
-          </p>
-          <h3>5. Ölçülebilirlik</h3>
-          <p>
-            Sürecin başında belirlediğimiz hedefleri belirli aralıklarla gözden geçirir; gerekirse
-            planı revize ederiz. Karar, hisse değil veriye dayanır.
-          </p>
+        <div class="grid gap-10">
+          {principles.map(([n, t, d]) => (
+            <div class="border-t border-[var(--border-soft)] pt-6">
+              <span class="font-[var(--font-italic)] italic text-xl text-gold-500">{n}</span>
+              <h3 class="mt-3 text-lg text-navy-800">{t}</h3>
+              <p class="mt-3 text-sm text-ink-secondary" style="line-height: 1.75;">{d}</p>
+            </div>
+          ))}
         </div>
       </div>
 
       <aside class="md:col-span-5">
-        <div class="card-dark sticky top-28">
-          <h3 class="text-white">Kullandığımız Araçlar</h3>
-          <hr class="gold-divider" />
-          <ul class="space-y-2 text-sm text-cream-100/90">
-            <li>● Haftalık ilerleme formları</li>
-            <li>● Kişiye özel hedef takip tabloları</li>
-            <li>● Online görüşme platformları (Meet, Zoom)</li>
-            <li>● Anonim dönem değerlendirme anketleri</li>
-            <li>● Kurumsal süreç raporları</li>
-          </ul>
-          <p class="mt-4 text-xs text-cream-200/65">
-            Tüm araç ve veriler KVKK'ya uygun saklanır ve hizmet sonunda imha edilir veya
-            anonimleştirilir.
-          </p>
+        <div class="sticky top-28 space-y-8">
+          <ImagePlaceholder
+            label="Sayfa kıvrımı ve kalem"
+            meta="Defter detay · 1:1"
+            ratio="1/1"
+            variant="keten"
+          />
+          <div class="card-navy">
+            <h3 class="text-paper" style="color: var(--color-paper);">Kullandığımız araçlar</h3>
+            <hr class="gold-divider" style="background: var(--color-gold-400);" />
+            <ul class="space-y-3 text-sm text-paper/85">
+              <li>— Haftalık ilerleme formları</li>
+              <li>— Kişiye özel hedef takip tabloları</li>
+              <li>— Online görüşme platformları (Meet, Zoom)</li>
+              <li>— Anonim dönem değerlendirme anketleri</li>
+              <li>— Kurumsal süreç raporları</li>
+            </ul>
+            <p class="mt-5 text-xs text-paper/55" style="line-height: 1.7; letter-spacing: 0.04em;">
+              Tüm araç ve veriler KVKK'ya uygun saklanır, hizmet sonunda imha edilir veya anonimleştirilir.
+            </p>
+          </div>
         </div>
       </aside>
     </div>
   </section>
 
-  <section class="bg-cream-50 py-20">
-    <div class="container-wide">
-      <h2 class="text-center">Çalışma Sürecimiz</h2>
-      <hr class="gold-divider mx-auto" />
-      <div class="mt-10">
+  <section class="bg-paper">
+    <div class="container-wide py-24 md:py-32">
+      <SectionHeading
+        eyebrow="Süreç"
+        title="Çalışma"
+        italicTail="ritmimiz."
+      />
+      <div class="mt-16">
         <ProcessSteps />
       </div>
     </div>
   </section>
 
-  <section class="bg-white py-16">
-    <div class="container-wide">
-      <QuoteBlock text="Doğru rehberlik, etkili süreçle birleştiğinde etkili sonuçlar doğurur." />
+  <section class="bg-navy-800 text-paper">
+    <div class="container-wide py-20">
+      <QuoteBlock
+        text="Doğru rehberlik, etkili süreçle birleştiğinde etkili sonuçlar doğurur."
+        italicWord="etkili sonuçlar"
+        variant="dark"
+      />
     </div>
   </section>
 

@@ -1,48 +1,70 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-50: #f0f3f9;
-  --color-navy-100: #d8dff0;
-  --color-navy-200: #aab8d8;
-  --color-navy-300: #7c91c0;
-  --color-navy-400: #4f6aa8;
-  --color-navy-500: #29447f;
-  --color-navy-600: #1a3266;
-  --color-navy-700: #11254e;
-  --color-navy-800: #0b1e3f;
-  --color-navy-900: #06132a;
-  --color-navy-950: #030a18;
+  /* === ÇAPA (Foundation) === */
+  --color-navy-50: #e8eaf2;
+  --color-navy-100: #c5cad9;
+  --color-navy-200: #9098b3;
+  --color-navy-300: #5d6788;
+  --color-navy-400: #353e60;
+  --color-navy-500: #232a4a;
+  --color-navy-600: #1a2038;
+  --color-navy-700: #181c34;
+  --color-navy-800: #14182b;
+  --color-navy-900: #0a0d1a;
+  --color-navy-950: #06081a;
 
-  --color-gold-50: #fbf7ec;
-  --color-gold-100: #f3e7c4;
-  --color-gold-200: #e8d196;
-  --color-gold-300: #dabb6b;
-  --color-gold-400: #c9a35a;
-  --color-gold-500: #b58a40;
-  --color-gold-600: #946d31;
-  --color-gold-700: #6f5125;
-  --color-gold-800: #4b371a;
-  --color-gold-900: #2a1f0f;
+  /* === KÖPRÜ (Bridge — olive, sektör imzası) === */
+  --color-olive-50: #ecedea;
+  --color-olive-100: #d1d6cd;
+  --color-olive-200: #a8b1a4;
+  --color-olive-300: #7e887a;
+  --color-olive-400: #5c6b5e;
+  --color-olive-500: #4a5749;
+  --color-olive-600: #3d4a3f;
+  --color-olive-700: #313b32;
+  --color-olive-800: #242c25;
+  --color-olive-900: #161b17;
 
-  --color-cream-50: #fbf8ee;
-  --color-cream-100: #f6efd9;
-  --color-cream-200: #f2ead3;
-  --color-cream-300: #e8dbb5;
-  --color-cream-400: #d8c690;
+  /* === YÜZEY (Breath — cream tones) === */
+  --color-paper: #f7f1e5;
+  --color-paper-soft: #f1e9d7;
+  --color-keten: #efe7da;
+  --color-keten-soft: #e7dcc8;
+  --color-cream-50: #f7f1e5;
+  --color-cream-100: #efe7da;
+  --color-cream-200: #e7dcc8;
+  --color-cream-300: #d8cab1;
+  --color-cream-400: #c2b08e;
 
-  --color-ink: #1f2937;
-  --color-muted: #6b7280;
+  /* === AKSAN (Whisper — gold, ≤%5) === */
+  --color-gold-300: #e0c7a4;
+  --color-gold-400: #d4b084;
+  --color-gold-500: #b8894e;
+  --color-gold-600: #946d3d;
+  --color-gold-700: #6f5230;
 
-  --font-serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  /* === MÜREKKEP (Functional ink) === */
+  --color-ink: #14182b;
+  --color-ink-secondary: #4a5267;
+  --color-muted: #8b92a8;
+
+  /* === Tipografi === */
+  --font-display: "Playfair Display", "Iowan Old Style", Georgia, serif;
+  --font-italic: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
-  --shadow-soft: 0 6px 24px -8px rgba(11, 30, 63, 0.18);
-  --shadow-elev: 0 18px 40px -16px rgba(11, 30, 63, 0.28);
+  /* === Border / Gölge === */
+  --shadow-soft: 0 8px 24px -10px rgba(20, 24, 43, 0.18);
+  --shadow-elev: 0 22px 48px -18px rgba(20, 24, 43, 0.32);
 }
 
 :root {
   color-scheme: light;
-  --content-max: 72rem;
+  --content-max: 76rem;
+  --border-whisper: rgba(20, 24, 43, 0.08);
+  --border-soft: rgba(20, 24, 43, 0.15);
+  --border-firm: rgba(20, 24, 43, 0.25);
 }
 
 @layer base {
@@ -51,16 +73,58 @@
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
     overflow-x: clip;
+    background: var(--color-paper);
   }
 
   body {
     font-family: var(--font-sans);
     color: var(--color-ink);
-    background-color: white;
+    background: var(--color-paper);
     line-height: 1.6;
     font-feature-settings: "ss01", "cv11";
     overflow-x: clip;
+    font-weight: 400;
+    letter-spacing: 0.005em;
   }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--color-navy-800);
+    line-height: 1.1;
+  }
+
+  /* Boyut ölçeği (design system §3.2) */
+  h1 { font-size: clamp(2rem, 5.5vw, 3rem); letter-spacing: -0.02em; }   /* 48px desktop, 32px mobile */
+  h2 { font-size: clamp(1.5rem, 4vw, 2rem); letter-spacing: -0.015em; }  /* 32px / 24px */
+  h3 { font-size: clamp(1.125rem, 2.5vw, 1.375rem); }                    /* 22px */
+  h4 { font-size: 1rem; letter-spacing: -0.005em; }
+
+  .text-display {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 4.5rem); /* 72px / 48px */
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+  }
+
+  p { font-size: 0.875rem; line-height: 1.7; }  /* 14px body */
+  .text-lead { font-size: 1rem; line-height: 1.65; }   /* 16px lead */
+
+  em, .italic-accent {
+    font-family: var(--font-italic);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--color-gold-500);
+  }
+
+  a {
+    color: var(--color-navy-800);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  a:hover { color: var(--color-gold-500); }
 
   input[type="text"],
   input[type="email"],
@@ -70,42 +134,21 @@
   select {
     min-height: 2.75rem;
     font-size: 1rem;
+    background: var(--color-paper);
+    border: 1px solid var(--border-soft);
+    color: var(--color-ink);
   }
 
-  textarea {
-    min-height: 7rem;
-  }
-
-  h1, h2, h3, h4 {
-    font-family: var(--font-serif);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--color-navy-800);
-    line-height: 1.2;
-  }
-
-  h1 { font-size: clamp(2.25rem, 4.5vw, 3.5rem); }
-  h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); }
-  h3 { font-size: clamp(1.25rem, 2vw, 1.625rem); }
-  h4 { font-size: 1.125rem; }
-
-  p { font-size: 1rem; }
-
-  a {
-    color: var(--color-navy-700);
-    text-decoration: none;
-    transition: color 0.15s ease;
-  }
-  a:hover { color: var(--color-gold-500); }
+  textarea { min-height: 7.5rem; }
 
   :where(button, a, input, textarea, select):focus-visible {
-    outline: 2px solid var(--color-gold-400);
+    outline: 1.5px solid var(--color-gold-500);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 2px;
   }
 
   ::selection {
-    background: var(--color-gold-200);
+    background: var(--color-gold-400);
     color: var(--color-navy-900);
   }
 }
@@ -115,94 +158,210 @@
     width: 100%;
     max-width: var(--content-max);
     margin-inline: auto;
-    padding-inline: 1.25rem;
+    padding-inline: 1.5rem;
   }
 
   @media (min-width: 768px) {
-    .container-wide { padding-inline: 2rem; }
+    .container-wide { padding-inline: 2.5rem; }
+  }
+  @media (min-width: 1280px) {
+    .container-wide { padding-inline: 3rem; }
   }
 
+  /* === Buton: lacivert anchor, altın whisper === */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 0.85rem 1.5rem;
-    min-height: 2.75rem;
-    border-radius: 9999px;
+    gap: 0.625rem;
+    padding: 0.95rem 1.75rem;
+    min-height: 2.875rem;
+    font-family: var(--font-sans);
     font-weight: 500;
-    font-size: 0.95rem;
-    transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    line-height: 1.2;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    line-height: 1;
     border: 1px solid transparent;
+    border-radius: 2px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
     text-align: center;
   }
-  .btn:hover { transform: translateY(-1px); }
 
   .btn-primary {
-    background: var(--color-gold-400);
-    color: var(--color-navy-900);
-    box-shadow: var(--shadow-soft);
+    background: var(--color-navy-800);
+    color: var(--color-paper);
+    border-color: var(--color-navy-800);
   }
-  .btn-primary:hover { background: var(--color-gold-300); color: var(--color-navy-900); }
+  .btn-primary:hover {
+    background: var(--color-navy-900);
+    color: var(--color-gold-300);
+    border-color: var(--color-navy-900);
+  }
 
   .btn-secondary {
     background: transparent;
     color: var(--color-navy-800);
-    border-color: var(--color-navy-200);
+    border-color: var(--border-firm);
   }
-  .btn-secondary:hover { border-color: var(--color-gold-400); background: var(--color-cream-50); }
+  .btn-secondary:hover {
+    border-color: var(--color-navy-800);
+    background: var(--color-keten);
+    color: var(--color-navy-800);
+  }
 
   .btn-ghost-light {
     background: transparent;
-    color: white;
-    border-color: rgba(255, 255, 255, 0.4);
+    color: var(--color-paper);
+    border-color: rgba(247, 241, 229, 0.35);
   }
-  .btn-ghost-light:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--color-gold-300); color: var(--color-gold-200); }
+  .btn-ghost-light:hover {
+    background: rgba(247, 241, 229, 0.08);
+    color: var(--color-gold-300);
+    border-color: var(--color-gold-400);
+  }
 
+  /* === Eyebrow (italic gold whisper) === */
   .eyebrow {
     display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-size: 0.75rem;
+    font-family: var(--font-italic);
+    font-style: italic;
+    font-size: 0.95rem;
     color: var(--color-gold-500);
-    font-weight: 600;
+    font-weight: 500;
+    letter-spacing: 0.01em;
   }
 
+  .eyebrow-caps {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  /* === Bölücü === */
   .gold-divider {
-    width: 56px;
-    height: 2px;
-    background: var(--color-gold-400);
+    width: 40px;
+    height: 1px;
+    background: var(--color-gold-500);
     border: none;
-    margin: 1rem 0 1.25rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+  .gold-divider-center { margin-inline: auto; }
+
+  .whisper-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border-whisper);
+    border: none;
   }
 
+  /* === Kart === */
   .card {
-    background: white;
-    border: 1px solid rgb(0 0 0 / 0.06);
-    border-radius: 14px;
-    padding: 1.75rem;
-    box-shadow: var(--shadow-soft);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    background: var(--color-paper);
+    border: 1px solid var(--border-whisper);
+    padding: 2rem 1.75rem;
+    transition: border-color 0.2s ease;
   }
-  .card:hover { box-shadow: var(--shadow-elev); transform: translateY(-2px); }
+  .card:hover { border-color: var(--border-firm); }
 
-  .card-dark {
+  .card-keten {
+    background: var(--color-keten);
+    border: 1px solid var(--border-whisper);
+    padding: 2rem 1.75rem;
+  }
+
+  .card-navy {
     background: var(--color-navy-800);
-    color: white;
-    border-radius: 14px;
-    padding: 1.75rem;
+    color: var(--color-paper);
+    padding: 2rem 1.75rem;
+  }
+  .card-navy h3, .card-navy h4 { color: var(--color-paper); }
+
+  .card-olive {
+    background: var(--color-olive-600);
+    color: var(--color-paper);
+    padding: 2rem 1.75rem;
+  }
+  .card-olive h3, .card-olive h4 { color: var(--color-paper); }
+
+  /* === Italic vurgu kelimesi === */
+  .accent {
+    font-family: var(--font-italic);
+    font-style: italic;
+    color: var(--color-gold-500);
+    font-weight: 500;
   }
 
-  .prose-tr h2 { margin-top: 2.5rem; margin-bottom: 1rem; }
-  .prose-tr h3 { margin-top: 2rem; margin-bottom: 0.75rem; }
-  .prose-tr p { margin-bottom: 1rem; color: var(--color-ink); }
-  .prose-tr ul { list-style: disc; margin-left: 1.25rem; margin-bottom: 1rem; }
-  .prose-tr ol { list-style: decimal; margin-left: 1.5rem; margin-bottom: 1rem; }
-  .prose-tr li { margin-bottom: 0.4rem; }
-  .prose-tr strong { color: var(--color-navy-800); }
-  .prose-tr a { color: var(--color-navy-700); text-decoration: underline; text-underline-offset: 3px; }
-  .prose-tr a:hover { color: var(--color-gold-600); }
+  .accent-soft {
+    font-family: var(--font-italic);
+    font-style: italic;
+    color: var(--color-gold-300);
+    font-weight: 500;
+  }
+
+  /* === Prose (KVKK gibi metin-yoğun sayfalar) === */
+  .prose-tr {
+    max-width: 42rem;
+  }
+  .prose-tr h2 { margin-top: 2.5rem; margin-bottom: 0.875rem; font-size: 1.5rem; }
+  .prose-tr h3 { margin-top: 1.75rem; margin-bottom: 0.625rem; font-size: 1.125rem; }
+  .prose-tr p { margin-bottom: 1rem; color: var(--color-ink-secondary); font-size: 0.9375rem; line-height: 1.75; }
+  .prose-tr ul { list-style: disc; margin-left: 1.25rem; margin-bottom: 1.25rem; }
+  .prose-tr ol { list-style: decimal; margin-left: 1.5rem; margin-bottom: 1.25rem; }
+  .prose-tr li { margin-bottom: 0.4rem; color: var(--color-ink-secondary); font-size: 0.9375rem; }
+  .prose-tr strong { color: var(--color-navy-800); font-weight: 600; }
+  .prose-tr em { font-family: var(--font-italic); font-style: italic; color: var(--color-gold-500); }
+  .prose-tr a { color: var(--color-navy-800); border-bottom: 1px solid var(--color-gold-500); }
+  .prose-tr a:hover { color: var(--color-gold-500); }
+
+  /* === Image placeholder (görsel yokken) === */
+  .img-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--color-keten);
+    border: 1px dashed var(--border-soft);
+    color: var(--color-muted);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+  .img-placeholder::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(
+      135deg,
+      transparent 0,
+      transparent 49%,
+      var(--border-whisper) 49%,
+      var(--border-whisper) 51%,
+      transparent 51%
+    );
+    background-size: 12px 12px;
+    opacity: 0.6;
+  }
+  .img-placeholder > * { position: relative; z-index: 1; }
+  .img-placeholder-label {
+    font-family: var(--font-italic);
+    font-style: italic;
+    font-size: 0.875rem;
+    color: var(--color-olive-600);
+  }
+  .img-placeholder-meta {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-muted);
+  }
 
   .skip-link {
     position: absolute;
@@ -210,9 +369,9 @@
     left: 1rem;
     z-index: 200;
     background: var(--color-navy-800);
-    color: white;
+    color: var(--color-paper);
     padding: 0.75rem 1.25rem;
-    border-radius: 6px;
+    border-radius: 2px;
     min-height: 2.75rem;
     display: inline-flex;
     align-items: center;

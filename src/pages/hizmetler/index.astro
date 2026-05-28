@@ -8,37 +8,39 @@ import { link } from "~/lib/url";
 
 <BaseLayout
   title="Hizmetlerimiz"
-  description="Bireysel akademik mentörlük, grup mentörlük programları ve okullara yönelik kurumsal danışmanlık hizmetlerimizin tamamına buradan ulaşabilirsiniz."
+  description="Bireysel akademik mentörlük, grup mentörlük programları ve okullara yönelik kurumsal danışmanlık."
 >
-  <section class="bg-navy-800 py-20 text-white">
-    <div class="container-wide">
-      <span class="eyebrow text-gold-300">Hizmetler</span>
-      <h1 class="mt-2 text-white">Hangi alanda destek olabiliriz?</h1>
+  <section class="bg-paper">
+    <div class="container-wide py-24 md:py-32">
+      <span class="eyebrow">Hizmetler</span>
+      <h1 class="mt-6 text-display max-w-3xl">
+        Hangi alanda<br /><span class="accent">destek olabiliriz?</span>
+      </h1>
       <hr class="gold-divider" />
-      <p class="max-w-2xl text-cream-100/85 md:text-lg">
-        Bireysel öğrencilerden okullara kadar farklı ölçeklerde danışmanlık ve mentörlük
-        sunuyoruz. Aşağıdaki üç ana hizmet, ihtiyacınıza göre özelleştirilebilir.
+      <p class="mt-6 max-w-2xl text-lead text-ink-secondary" style="line-height: 1.7;">
+        Bireysel öğrencilerden okullara kadar farklı ölçeklerde danışmanlık ve mentörlük sunuyoruz.
+        Aşağıdaki üç hizmet, ihtiyacınıza göre kişiselleştirilebilir.
       </p>
     </div>
   </section>
 
-  <section class="bg-white py-20">
-    <div class="container-wide">
-      <div class="grid gap-6 md:grid-cols-3">
+  <section class="bg-keten">
+    <div class="container-wide py-24 md:py-32">
+      <div class="grid gap-12 md:grid-cols-3 md:gap-10">
         <ServiceCard
-          icon="user"
+          index="01"
           title="Bireysel Akademik Mentörlük"
-          description="Öğrenciye özel hedef belirleme, planlama, motivasyon takibi ve düzenli geri bildirim odaklı 1-1 mentörlük programı."
+          description="Öğrenciye özel hedef belirleme, planlama, motivasyon takibi ve düzenli geri bildirim odaklı birebir mentörlük programı."
           href={link("/hizmetler/bireysel-mentorluk")}
         />
         <ServiceCard
-          icon="users"
+          index="02"
           title="Grup Mentörlük Programları"
           description="Sınırlı kontenjanlı, modüler temalarla işlenen, akran etkileşimi ve ortak hedef oluşturmaya dayalı grup süreci."
           href={link("/hizmetler/grup-programlari")}
         />
         <ServiceCard
-          icon="building"
+          index="03"
           title="Kurumsal Danışmanlık"
           description="Okul ve eğitim kurumları için öğretmen gelişimi, rehberlik birimi danışmanlığı ve süreç tasarımı."
           href={link("/hizmetler/kurumsal")}
@@ -47,11 +49,12 @@ import { link } from "~/lib/url";
     </div>
   </section>
 
-  <section class="bg-cream-50 py-20">
-    <div class="container-wide">
+  <section class="bg-paper">
+    <div class="container-wide py-24 md:py-32">
       <SectionHeading
-        eyebrow="Hizmetlerimizin Tamamı"
-        title="Net olalım: ders, kurs, etüt sunmuyoruz."
+        eyebrow="Net olalım"
+        title="Ders, kurs, etüt"
+        italicTail="sunmuyoruz."
         description="Hizmetlerimiz; çalışma stratejisi, zaman ve odak yönetimi, hedef belirleme, sınav süreç planlaması, motivasyon takibi, kariyer ve tercih süreçlerine destek gibi danışmanlık ve mentörlük başlıklarından oluşur. Konu anlatımı, sınav garantisi veya kurs hizmeti vermeyiz."
       />
     </div>

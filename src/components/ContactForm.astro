@@ -5,13 +5,17 @@ import { link } from "~/lib/url";
 const accessKey = siteConfig.forms.web3formsAccessKey;
 const origin = Astro.site?.toString().replace(/\/$/, "") ?? siteConfig.url;
 const redirectUrl = `${origin}${link("/iletisim?gonderildi=1")}`;
+
+const fieldClass = "mt-2 w-full border border-[var(--border-soft)] bg-paper px-4 py-3 text-sm text-ink focus:border-navy-800 focus:outline-none";
+const labelClass = "block";
+const labelTextClass = "text-xs uppercase tracking-[0.22em] text-muted";
 ---
 
 <form
   id="contact-form"
   action="https://api.web3forms.com/submit"
   method="POST"
-  class="grid gap-4"
+  class="grid gap-6"
   novalidate
 >
   <input type="hidden" name="access_key" value={accessKey} />
@@ -20,47 +24,25 @@ const redirectUrl = `${origin}${link("/iletisim?gonderildi=1")}`;
   <input type="hidden" name="redirect" value={redirectUrl} />
   <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" />
 
-  <div class="grid gap-4 md:grid-cols-2">
-    <label class="block">
-      <span class="text-sm font-medium text-navy-800">Ad Soyad <span class="text-red-600" aria-hidden="true">*</span></span>
-      <input
-        type="text"
-        name="ad_soyad"
-        required
-        autocomplete="name"
-        class="mt-1 w-full rounded-lg border border-navy-100 bg-white px-3 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
-      />
+  <div class="grid gap-6 md:grid-cols-2">
+    <label class={labelClass}>
+      <span class={labelTextClass}>Ad Soyad <span aria-hidden="true">*</span></span>
+      <input type="text" name="ad_soyad" required autocomplete="name" class={fieldClass} />
     </label>
-    <label class="block">
-      <span class="text-sm font-medium text-navy-800">E-posta <span class="text-red-600" aria-hidden="true">*</span></span>
-      <input
-        type="email"
-        name="email"
-        required
-        autocomplete="email"
-        class="mt-1 w-full rounded-lg border border-navy-100 bg-white px-3 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
-      />
+    <label class={labelClass}>
+      <span class={labelTextClass}>E-posta <span aria-hidden="true">*</span></span>
+      <input type="email" name="email" required autocomplete="email" class={fieldClass} />
     </label>
   </div>
 
-  <div class="grid gap-4 md:grid-cols-2">
-    <label class="block">
-      <span class="text-sm font-medium text-navy-800">Telefon</span>
-      <input
-        type="tel"
-        name="telefon"
-        autocomplete="tel"
-        inputmode="tel"
-        class="mt-1 w-full rounded-lg border border-navy-100 bg-white px-3 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
-      />
+  <div class="grid gap-6 md:grid-cols-2">
+    <label class={labelClass}>
+      <span class={labelTextClass}>Telefon</span>
+      <input type="tel" name="telefon" autocomplete="tel" inputmode="tel" class={fieldClass} />
     </label>
-    <label class="block">
-      <span class="text-sm font-medium text-navy-800">Konu</span>
-      <select
-        name="konu"
-        id="konu-select"
-        class="mt-1 w-full rounded-lg border border-navy-100 bg-white px-3 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
-      >
+    <label class={labelClass}>
+      <span class={labelTextClass}>Konu</span>
+      <select name="konu" id="konu-select" class={fieldClass}>
         <option value="genel">Genel Bilgi</option>
         <option value="bireysel">Bireysel Mentörlük</option>
         <option value="grup">Grup Programları</option>
@@ -69,33 +51,23 @@ const redirectUrl = `${origin}${link("/iletisim?gonderildi=1")}`;
     </label>
   </div>
 
-  <label class="block">
-    <span class="text-sm font-medium text-navy-800">Mesajınız <span class="text-red-600" aria-hidden="true">*</span></span>
-    <textarea
-      name="mesaj"
-      rows="5"
-      required
-      class="mt-1 w-full resize-y rounded-lg border border-navy-100 bg-white px-3 py-2.5 text-sm focus:border-gold-400 focus:outline-none"
-    ></textarea>
+  <label class={labelClass}>
+    <span class={labelTextClass}>Mesajınız <span aria-hidden="true">*</span></span>
+    <textarea name="mesaj" rows="5" required class={fieldClass}></textarea>
   </label>
 
-  <label class="flex items-start gap-3 rounded-lg bg-cream-50 p-3 text-sm">
-    <input
-      type="checkbox"
-      name="kvkk_onay"
-      required
-      class="mt-1 h-5 w-5 shrink-0 accent-gold-500"
-    />
-    <span class="text-navy-800">
-      <a href={link("/kvkk-aydinlatma")} class="underline">KVKK Aydınlatma Metni</a>'ni okudum;
-      kişisel verilerimin formdaki amaç doğrultusunda işlenmesine
-      <strong>açık rızam ile</strong> onay veriyorum.
+  <label class="flex items-start gap-3 border border-[var(--border-soft)] bg-paper p-4 text-sm">
+    <input type="checkbox" name="kvkk_onay" required class="mt-1 h-5 w-5 shrink-0 accent-[var(--color-gold-500)]" />
+    <span class="text-ink-secondary" style="line-height: 1.6;">
+      <a href={link("/kvkk-aydinlatma")} class="underline decoration-gold-500 underline-offset-4 text-navy-800">KVKK Aydınlatma Metni</a>'ni
+      okudum; kişisel verilerimin formdaki amaç doğrultusunda işlenmesine
+      <em>açık rızam ile</em> onay veriyorum.
     </span>
   </label>
 
   <div class="flex items-center justify-between gap-4">
     <button type="submit" class="btn btn-primary">Gönder</button>
-    <p id="form-status" class="text-sm text-muted" role="status" aria-live="polite"></p>
+    <p id="form-status" class="text-xs uppercase tracking-[0.18em] text-muted" role="status" aria-live="polite"></p>
   </div>
 </form>
 
@@ -112,21 +84,14 @@ const redirectUrl = `${origin}${link("/iletisim?gonderildi=1")}`;
     var status = document.getElementById("form-status");
     if (params.get("gonderildi") === "1" && status) {
       status.textContent = "Mesajınız iletildi. En kısa sürede dönüş yapacağız.";
-      status.classList.add("text-green-700");
     }
 
     var form = document.getElementById("contact-form");
     if (form) {
       form.addEventListener("submit", function (e) {
         var bot = form.querySelector('input[name="botcheck"]');
-        if (bot && bot.checked) {
-          e.preventDefault();
-          return;
-        }
-        if (status) {
-          status.textContent = "Gönderiliyor...";
-          status.classList.remove("text-green-700", "text-red-700");
-        }
+        if (bot && bot.checked) { e.preventDefault(); return; }
+        if (status) { status.textContent = "Gönderiliyor..."; }
       });
     }
   })();

@@ -6,57 +6,54 @@ import { link } from "~/lib/url";
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-navy-800 text-cream-100">
-  <div class="container-wide grid gap-10 py-14 md:grid-cols-12">
+<footer class="bg-navy-800 text-paper">
+  <div class="container-wide grid gap-12 py-16 md:grid-cols-12 md:py-20">
     <div class="md:col-span-4">
-      <Logo variant="light" />
-      <p class="mt-5 max-w-sm text-sm text-cream-200/85">
-        {siteConfig.brand.subTagline}
+      <Logo variant="light" layout="full" class="h-10 w-auto md:h-12" />
+      <p class="mt-6 max-w-sm text-sm text-paper/80" style="line-height: 1.7;">
+        Doğru rehberlik, etkili süreçle birleştiğinde
+        <span class="accent-soft">etkili sonuçlar</span> doğurur.
       </p>
     </div>
 
     <div class="md:col-span-3">
-      <h4 class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-gold-300">
-        Hizmetler
-      </h4>
-      <ul class="space-y-2 text-sm">
-        <li><a class="text-cream-100 hover:text-gold-200" href={link("/hizmetler/bireysel-mentorluk")}>Bireysel Akademik Mentörlük</a></li>
-        <li><a class="text-cream-100 hover:text-gold-200" href={link("/hizmetler/grup-programlari")}>Grup Mentörlük Programları</a></li>
-        <li><a class="text-cream-100 hover:text-gold-200" href={link("/hizmetler/kurumsal")}>Kurumsal Danışmanlık</a></li>
-        <li><a class="text-cream-100 hover:text-gold-200" href={link("/yaklasimimiz")}>Yaklaşımımız</a></li>
-        <li><a class="text-cream-100 hover:text-gold-200" href={link("/sss")}>Sıkça Sorulanlar</a></li>
+      <h4 class="mb-5 eyebrow-caps text-gold-300">Hizmetler</h4>
+      <ul class="space-y-3 text-sm">
+        <li><a class="text-paper/80 hover:text-gold-300" href={link("/hizmetler/bireysel-mentorluk")}>Bireysel Mentörlük</a></li>
+        <li><a class="text-paper/80 hover:text-gold-300" href={link("/hizmetler/grup-programlari")}>Grup Programları</a></li>
+        <li><a class="text-paper/80 hover:text-gold-300" href={link("/hizmetler/kurumsal")}>Kurumsal Danışmanlık</a></li>
+        <li><a class="text-paper/80 hover:text-gold-300" href={link("/yaklasimimiz")}>Yaklaşımımız</a></li>
+        <li><a class="text-paper/80 hover:text-gold-300" href={link("/sss")}>Sıkça Sorulanlar</a></li>
       </ul>
     </div>
 
     <div class="md:col-span-3">
-      <h4 class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-gold-300">
-        İletişim
-      </h4>
-      <address class="not-italic space-y-2 text-sm text-cream-100">
-        <p>{siteConfig.contact.address.street}<br />{siteConfig.contact.address.district} / {siteConfig.contact.address.city}</p>
+      <h4 class="mb-5 eyebrow-caps text-gold-300">İletişim</h4>
+      <address class="not-italic space-y-3 text-sm text-paper/80">
+        <p style="line-height: 1.7;">{siteConfig.contact.address.street}<br />{siteConfig.contact.address.district} / {siteConfig.contact.address.city}</p>
         <p>
-          <a href={`tel:${siteConfig.contact.phoneE164}`} class="hover:text-gold-200">
+          <a href={`tel:${siteConfig.contact.phoneE164}`} class="hover:text-gold-300">
             {siteConfig.contact.phone}
           </a>
         </p>
         <p>
-          <a href={`mailto:${siteConfig.contact.email}`} class="hover:text-gold-200 break-all">
+          <a href={`mailto:${siteConfig.contact.email}`} class="hover:text-gold-300 break-all">
             {siteConfig.contact.email}
           </a>
         </p>
       </address>
-      <p class="mt-3 text-xs text-cream-200/65">Yüz yüze görüşmeler yalnızca randevuludur.</p>
+      <p class="mt-4 text-[0.7rem] text-paper/55" style="letter-spacing: 0.06em;">
+        Yüz yüze görüşmeler yalnızca randevuludur.
+      </p>
     </div>
 
     <div class="md:col-span-2">
-      <h4 class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-gold-300">
-        Yasal
-      </h4>
-      <ul class="space-y-2 text-sm">
+      <h4 class="mb-5 eyebrow-caps text-gold-300">Yasal</h4>
+      <ul class="space-y-3 text-sm">
         {
           siteConfig.footerLegal.map((item) => (
             <li>
-              <a class="text-cream-100 hover:text-gold-200" href={link(item.href)}>
+              <a class="text-paper/80 hover:text-gold-300" href={link(item.href)}>
                 {item.label}
               </a>
             </li>
@@ -66,14 +63,12 @@ const year = new Date().getFullYear();
     </div>
   </div>
 
-  <div class="border-t border-white/10">
+  <div class="border-t border-paper/10">
     <div
-      class="container-wide flex flex-col gap-4 py-6 text-xs text-cream-200/70 md:flex-row md:items-center md:justify-between"
+      class="container-wide flex flex-col gap-4 py-6 text-xs text-paper/55 md:flex-row md:items-center md:justify-between"
     >
-      <p>
-        © {year} {siteConfig.brand.legalName}. Tüm hakları saklıdır.
-      </p>
-      <p class="max-w-2xl text-cream-200/60">
+      <p>© {year} {siteConfig.brand.legalName}. Tüm hakları saklıdır.</p>
+      <p class="max-w-2xl" style="line-height: 1.7;">
         {siteConfig.brand.legalName}, 5580 sayılı Özel Öğretim Kurumları Kanunu kapsamında bir
         özel öğretim kurumu değildir; ders, kurs veya etüt hizmeti vermez. Bireylere ve kurumlara
         danışmanlık ile mentörlük hizmeti sunar.

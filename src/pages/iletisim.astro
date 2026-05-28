@@ -9,82 +9,85 @@ const c = siteConfig.contact;
 
 <BaseLayout
   title="İletişim & Tanışma Görüşmesi"
-  description="ES-ES Danışmanlık ile iletişime geçin: form, telefon, e-posta, WhatsApp ve online randevu seçenekleriyle size en uygun yöntemi seçin."
+  description="ES-ES Danışmanlık ile iletişime geçin: form, telefon, e-posta, WhatsApp ve online randevu."
 >
-  <section class="bg-navy-800 py-20 text-white">
-    <div class="container-wide">
-      <span class="eyebrow text-gold-300">İletişim</span>
-      <h1 class="mt-2 text-white">Tanışalım, Birlikte Doğru Süreci Tasarlayalım.</h1>
+  <section class="bg-paper">
+    <div class="container-wide py-24 md:py-32">
+      <span class="eyebrow">İletişim</span>
+      <h1 class="mt-6 text-display max-w-3xl">
+        Tanışalım.<br /><span class="accent">Önce dinleyelim.</span>
+      </h1>
       <hr class="gold-divider" />
-      <p class="max-w-2xl text-cream-100/85 md:text-lg">
+      <p class="mt-6 max-w-2xl text-lead text-ink-secondary" style="line-height: 1.7;">
         Bize en uygun yöntemden ulaşabilirsiniz. İlk görüşme ücretsiz ve bağlayıcı değildir.
       </p>
     </div>
   </section>
 
-  <section class="bg-white py-20" id="tanisma">
-    <div class="container-wide grid gap-12 md:grid-cols-12">
+  <section class="bg-keten" id="tanisma">
+    <div class="container-wide py-24 md:py-32 grid gap-16 md:grid-cols-12">
       <div class="md:col-span-7">
-        <h2>Bize Yazın</h2>
+        <h2>Bize yazın</h2>
         <hr class="gold-divider" />
-        <p class="text-sm text-muted">
-          Formu doldurduğunuzda mesajınız e-posta ile bize ulaşır; 1-2 iş günü içinde geri dönüş
-          yaparız.
+        <p class="text-sm text-ink-secondary" style="line-height: 1.7;">
+          Formu doldurduğunuzda mesajınız e-posta ile ulaşır; 1-2 iş günü içinde dönüş yaparız.
         </p>
-        <div class="mt-6">
+        <div class="mt-10">
           <ContactForm />
         </div>
       </div>
 
       <aside class="md:col-span-5">
-        <div class="card-dark">
-          <h3 class="text-white">İletişim Bilgileri</h3>
-          <hr class="gold-divider" />
-          <ul class="space-y-4 text-sm text-cream-100/90">
+        <div class="card-navy">
+          <h3 class="text-paper" style="color: var(--color-paper);">İletişim</h3>
+          <hr class="gold-divider" style="background: var(--color-gold-400);" />
+          <ul class="space-y-5 text-sm text-paper/85">
             <li>
-              <p class="text-cream-200/65 text-xs uppercase tracking-wider">Adres</p>
-              <p>{c.address.street}<br />{c.address.district} / {c.address.city}</p>
-              <a href={c.address.mapsUrl} target="_blank" rel="noopener" class="mt-1 inline-block text-xs text-gold-300 underline">
+              <p class="text-xs uppercase tracking-[0.22em] text-paper/55" style="font-family: var(--font-sans);">Adres</p>
+              <p class="mt-1" style="line-height: 1.7;">{c.address.street}<br />{c.address.district} / {c.address.city}</p>
+              <a href={c.address.mapsUrl} target="_blank" rel="noopener" class="mt-2 inline-block text-xs text-gold-300 underline decoration-gold-400 underline-offset-4">
                 Haritada aç
               </a>
             </li>
             <li>
-              <p class="text-cream-200/65 text-xs uppercase tracking-wider">Telefon</p>
-              <a href={`tel:${c.phoneE164}`} class="hover:text-gold-200">{c.phone}</a>
+              <p class="text-xs uppercase tracking-[0.22em] text-paper/55" style="font-family: var(--font-sans);">Telefon</p>
+              <a href={`tel:${c.phoneE164}`} class="mt-1 inline-block hover:text-gold-300">{c.phone}</a>
             </li>
             <li>
-              <p class="text-cream-200/65 text-xs uppercase tracking-wider">E-posta</p>
-              <a href={`mailto:${c.email}`} class="break-all hover:text-gold-200">{c.email}</a>
+              <p class="text-xs uppercase tracking-[0.22em] text-paper/55" style="font-family: var(--font-sans);">E-posta</p>
+              <a href={`mailto:${c.email}`} class="mt-1 inline-block break-all hover:text-gold-300">{c.email}</a>
             </li>
             <li>
-              <p class="text-cream-200/65 text-xs uppercase tracking-wider">WhatsApp</p>
+              <p class="text-xs uppercase tracking-[0.22em] text-paper/55" style="font-family: var(--font-sans);">WhatsApp</p>
               <a
                 href={`https://wa.me/${c.whatsapp.replace(/^\+/, "")}`}
                 target="_blank"
                 rel="noopener"
-                class="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white"
+                class="mt-2 inline-flex min-h-11 items-center gap-2 px-5 py-2.5 text-xs uppercase tracking-[0.22em] text-paper"
+                style="background: var(--color-olive-600); border: 1px solid var(--color-olive-400); font-family: var(--font-sans);"
               >
                 WhatsApp'ta Yaz
               </a>
             </li>
           </ul>
-          <p class="mt-6 text-xs text-cream-200/65">
-            Merkez ofisimizde dersi/etüt verilmemektedir. Yüz yüze görüşmeler yalnızca randevuludur.
+          <p class="mt-8 text-[0.7rem] text-paper/55" style="line-height: 1.7; letter-spacing: 0.04em;">
+            Merkez ofisimizde ders / etüt verilmemektedir. Yüz yüze görüşmeler yalnızca randevuludur.
           </p>
         </div>
       </aside>
     </div>
   </section>
 
-  <section class="bg-cream-50 py-20">
-    <div class="container-wide">
-      <h2 class="text-center">Online Randevu</h2>
-      <hr class="gold-divider mx-auto" />
-      <p class="mx-auto max-w-xl text-center text-muted">
-        Takvimden size uygun bir saat seçin; tanışma görüşmesi için randevunuzu birkaç tıkla
-        oluşturun.
-      </p>
-      <div class="mx-auto mt-10 max-w-3xl">
+  <section class="bg-paper">
+    <div class="container-wide py-24 md:py-32">
+      <div class="mx-auto max-w-2xl text-center">
+        <span class="eyebrow">Online Randevu</span>
+        <h2 class="mt-3">
+          Takvimden<br /><span class="accent">size uygun bir saat.</span>
+        </h2>
+        <hr class="gold-divider gold-divider-center" />
+      </div>
+      <div class="mx-auto mt-12 max-w-3xl">
         <CalendlyEmbed />
       </div>
     </div>

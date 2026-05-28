@@ -8,17 +8,19 @@ import { link } from "~/lib/url";
   description="Aradığınız sayfa bulunamadı."
   noindex={true}
 >
-  <section class="bg-navy-800 py-24 text-white">
-    <div class="container-wide text-center">
-      <span class="eyebrow text-gold-300">404</span>
-      <h1 class="mt-2 text-white">Bu Sayfa Bulunamadı</h1>
-      <hr class="gold-divider mx-auto" />
-      <p class="mx-auto max-w-xl text-cream-100/85">
+  <section class="bg-paper">
+    <div class="container-wide py-32 text-center">
+      <span class="eyebrow">404</span>
+      <h1 class="mt-6 text-display">
+        Bu sayfa<br /><span class="accent">bulunamadı.</span>
+      </h1>
+      <hr class="gold-divider gold-divider-center" />
+      <p class="mx-auto max-w-xl text-lead text-ink-secondary" style="line-height: 1.7;">
         Aradığınız sayfa taşınmış, kaldırılmış veya hiç var olmamış olabilir.
       </p>
-      <div class="mt-8 flex justify-center gap-3">
+      <div class="mt-10 flex justify-center gap-3">
         <a href={link("/")} class="btn btn-primary">Ana Sayfaya Dön</a>
-        <a href={link("/iletisim")} class="btn btn-ghost-light">İletişime Geç</a>
+        <a href={link("/iletisim")} class="btn btn-secondary">İletişime Geç</a>
       </div>
     </div>
   </section>

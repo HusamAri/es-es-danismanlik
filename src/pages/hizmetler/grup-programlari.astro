@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import CTASection from "~/components/CTASection.astro";
+import ImagePlaceholder from "~/components/ImagePlaceholder.astro";
 import { link } from "~/lib/url";
 
 const jsonLd = {
@@ -14,71 +15,100 @@ const jsonLd = {
 
 <BaseLayout
   title="Grup Mentörlük Programları"
-  description="Sınırlı kontenjanlı, modüler temalı grup mentörlük programlarıyla akran etkileşimini güçlendirirken; çalışma alışkanlıkları, motivasyon ve hedef yönetimi gibi başlıklara odaklanıyoruz."
+  description="Sınırlı kontenjanlı, modüler temalı grup mentörlük programları."
   jsonLd={jsonLd}
 >
-  <section class="bg-navy-800 py-20 text-white">
-    <div class="container-wide grid gap-8 md:grid-cols-12">
+  <section class="bg-paper">
+    <div class="container-wide py-24 md:py-32 grid gap-12 md:grid-cols-12">
       <div class="md:col-span-8">
-        <span class="eyebrow text-gold-300">Hizmet</span>
-        <h1 class="mt-2 text-white">Grup Mentörlük Programları</h1>
+        <span class="eyebrow">Hizmet · 02</span>
+        <h1 class="mt-6 text-display">
+          Grup mentörlük<br /><span class="accent">programları.</span>
+        </h1>
         <hr class="gold-divider" />
-        <p class="max-w-2xl text-cream-100/85 md:text-lg">
-          Akranların birbirinden öğrenebileceği, ortak bir ritim ile motive olabileceği ve aynı
-          zamanda kişisel bir mentörden geri bildirim alabileceği modüler programlar tasarlıyoruz.
+        <p class="mt-6 max-w-2xl text-lead text-ink-secondary" style="line-height: 1.7;">
+          Akranların birbirinden öğrendiği, ortak bir ritimde motive olduğu ve aynı zamanda kişisel
+          bir mentörden geri bildirim alabildiği, kontenjanı sınırlı modüler programlar.
         </p>
-        <div class="mt-8 flex flex-wrap gap-3">
+        <div class="mt-10 flex flex-col gap-3 sm:flex-row">
           <a href={link("/iletisim?konu=grup")} class="btn btn-primary">Bilgi Talep Et</a>
-          <a href={link("/hizmetler/bireysel-mentorluk")} class="btn btn-ghost-light">Bireysel ile Karşılaştır</a>
+          <a href={link("/hizmetler/bireysel-mentorluk")} class="btn btn-secondary">Bireysel ile Karşılaştır</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="bg-white py-20">
-    <div class="container-wide grid gap-12 md:grid-cols-12">
+  <section class="bg-keten">
+    <div class="container-wide py-24 md:py-32 grid gap-16 md:grid-cols-12">
       <div class="md:col-span-7">
-        <h2>Program Felsefemiz</h2>
+        <h2>Program felsefemiz</h2>
         <hr class="gold-divider" />
         <div class="prose-tr">
           <p>
-            Grup programlarımız; bireysel mentörlüğün kişiselleştirilmiş yapısı ile akran
-            etkileşiminin motive edici gücünü bir araya getirir. Kontenjan sınırlıdır; böylece her
-            katılımcı süreç içinde görülür ve duyulur.
+            Grup programlarımız; bireysel mentörlüğün kişiselleştirilmiş yapısı ile akran etkileşiminin
+            motive edici gücünü bir araya getirir. Kontenjan sınırlıdır; böylece her katılımcı süreç
+            içinde <em>görülür ve duyulur</em>.
           </p>
-          <h3>Tipik Modüller</h3>
+          <h3>Modüller</h3>
           <ul>
-            <li><strong>Çalışma alışkanlıkları:</strong> verimli rutin tasarımı.</li>
-            <li><strong>Zaman ve odak:</strong> dijital dikkat dağıtıcılarla baş etme.</li>
-            <li><strong>Hedef ve plan:</strong> aylık ve haftalık plan tasarımı.</li>
-            <li><strong>Motivasyon dönemleri:</strong> düşüşten toparlanma stratejileri.</li>
-            <li><strong>Sınav öncesi süreç:</strong> psikolojik ve operasyonel hazırlık.</li>
+            <li><strong>Çalışma alışkanlıkları.</strong> Verimli rutin tasarımı.</li>
+            <li><strong>Zaman ve odak.</strong> Dijital dikkat dağıtıcılarla baş etme.</li>
+            <li><strong>Hedef ve plan.</strong> Aylık ve haftalık plan tasarımı.</li>
+            <li><strong>Motivasyon dönemleri.</strong> Düşüşten toparlanma stratejileri.</li>
+            <li><strong>Sınav öncesi süreç.</strong> Psikolojik ve operasyonel hazırlık.</li>
           </ul>
           <p>
-            Her modül 1-2 haftalık seanslara bölünür; iki seans arasında uygulanabilir küçük
-            ödevler verilir (bunlar akademik konu ödevi değil; süreç ödevleridir).
+            Her modül 1-2 haftalık seanslara bölünür; iki seans arasında uygulanabilir küçük ödevler
+            verilir (akademik konu ödevi değil; süreç ödevi).
           </p>
         </div>
       </div>
 
       <aside class="md:col-span-5">
-        <div class="card-dark sticky top-28">
-          <h3 class="text-white">Detaylar</h3>
-          <hr class="gold-divider" />
-          <dl class="space-y-3 text-sm text-cream-100/90">
-            <div><dt class="text-cream-200/65">Kontenjan</dt><dd>Grup başına sınırlı (örn. 6-10 kişi)</dd></div>
-            <div><dt class="text-cream-200/65">Süre</dt><dd>6-12 hafta arası modüller</dd></div>
-            <div><dt class="text-cream-200/65">Frekans</dt><dd>Haftalık 1-2 seans</dd></div>
-            <div><dt class="text-cream-200/65">Format</dt><dd>Online veya randevulu yüz yüze</dd></div>
-          </dl>
-          <a href={link("/iletisim?konu=grup")} class="btn btn-primary mt-6 w-full">Kontenjan Sor</a>
+        <div class="sticky top-28 space-y-8">
+          <ImagePlaceholder
+            label="Grup masası, sessiz bir saat"
+            meta="Defterler · ahşap · 4:5"
+            ratio="4/5"
+            variant="keten"
+          />
+          <div class="card-navy">
+            <h3 class="text-paper" style="color: var(--color-paper);">Detaylar</h3>
+            <hr class="gold-divider" style="background: var(--color-gold-400);" />
+            <dl class="space-y-4 text-sm text-paper/85">
+              <div>
+                <dt class="text-xs uppercase tracking-[0.22em] text-paper/55" style="font-family: var(--font-sans);">Kontenjan</dt>
+                <dd class="mt-1">Grup başına sınırlı (örn. 6-10 kişi)</dd>
+              </div>
+              <div>
+                <dt class="text-xs uppercase tracking-[0.22em] text-paper/55" style="font-family: var(--font-sans);">Süre</dt>
+                <dd class="mt-1">6-12 hafta arası modüller</dd>
+              </div>
+              <div>
+                <dt class="text-xs uppercase tracking-[0.22em] text-paper/55" style="font-family: var(--font-sans);">Frekans</dt>
+                <dd class="mt-1">Haftalık 1-2 seans</dd>
+              </div>
+              <div>
+                <dt class="text-xs uppercase tracking-[0.22em] text-paper/55" style="font-family: var(--font-sans);">Format</dt>
+                <dd class="mt-1">Online veya randevulu yüz yüze</dd>
+              </div>
+            </dl>
+            <a
+              href={link("/iletisim?konu=grup")}
+              class="btn mt-8 w-full"
+              style="background: var(--color-gold-500); color: var(--color-navy-900); border-color: var(--color-gold-500);"
+            >
+              Kontenjan Sor
+            </a>
+          </div>
         </div>
       </aside>
     </div>
   </section>
 
   <CTASection
-    title="Bir grupla birlikte aynı yöne yürüyelim."
+    title="Bir grupla birlikte"
+    italicTail="aynı yöne."
     description="Açık kontenjanlar ve yaklaşan programlar için bizimle iletişime geçin."
   />
 </BaseLayout>
