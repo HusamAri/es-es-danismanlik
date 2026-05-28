@@ -95,6 +95,7 @@
     letter-spacing: -0.02em;
     color: var(--color-navy-800);
     line-height: 1.1;
+    text-wrap: balance;
   }
 
   /* Boyut ölçeği (design system §3.2) */
@@ -111,7 +112,7 @@
     font-weight: 500;
   }
 
-  p { font-size: 0.875rem; line-height: 1.7; }  /* 14px body */
+  p { font-size: 0.875rem; line-height: 1.7; text-wrap: pretty; }  /* 14px body */
   .text-lead { font-size: 1rem; line-height: 1.65; }   /* 16px lead */
 
   em, .italic-accent {
