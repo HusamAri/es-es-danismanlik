@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import ContactForm from "~/components/ContactForm.astro";
+import SiteImage from "~/components/SiteImage.astro";
 import { siteConfig } from "~/lib/siteConfig";
 
 const c = siteConfig.contact;
@@ -38,7 +39,14 @@ const c = siteConfig.contact;
       </div>
 
       <aside class="md:col-span-5">
-        <div class="card-navy">
+        <div class="space-y-8">
+          <SiteImage
+            name="detay"
+            alt="Açık bir kitap ve gözlük; sıcak ışıkta sakin bir çalışma masası"
+            ratio="4/5"
+            sizes="(min-width: 768px) 40vw, 90vw"
+            class="img-zoom" />
+          <div class="card-navy">
           <h3 class="text-paper" style="color: var(--color-paper);">İletişim</h3>
           <hr class="gold-divider" style="background: var(--color-gold-400);" />
           <ul class="space-y-5 text-sm text-paper/85">
@@ -61,6 +69,7 @@ const c = siteConfig.contact;
           <p class="mt-8 text-[0.7rem] text-paper/55" style="line-height: 1.7; letter-spacing: 0.04em;">
             Yüz yüze görüşmeler randevu ile gerçekleştirilir.
           </p>
+        </div>
         </div>
       </aside>
     </div>

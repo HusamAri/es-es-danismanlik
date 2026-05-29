@@ -3,6 +3,8 @@ import BaseLayout from "~/layouts/BaseLayout.astro";
 import CTASection from "~/components/CTASection.astro";
 import QuoteBlock from "~/components/QuoteBlock.astro";
 import SiteImage from "~/components/SiteImage.astro";
+import { Image } from "astro:assets";
+import doku from "~/assets/img/doku.jpg";
 ---
 
 <BaseLayout
@@ -94,8 +96,19 @@ import SiteImage from "~/components/SiteImage.astro";
     </div>
   </section>
 
-  <section class="bg-paper">
-    <div class="container-wide py-20">
+  <section class="relative overflow-hidden bg-paper">
+    <Image
+      src={doku}
+      alt=""
+      aria-hidden="true"
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 bg-paper/50" aria-hidden="true"></div>
+    <div class="container-wide relative z-[1] py-20">
       <QuoteBlock
         text="Başarı tesadüf değil, doğru strateji ve sabırla yapılan iştir."
         italicWord="sabırla yapılan iştir"
