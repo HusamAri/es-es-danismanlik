@@ -1,0 +1,38 @@
+---
+/**
+ * Dekoratif botanik aksan — gerçek yaprak cutout'u (şeffaf PNG).
+ * Vektörel dalın yerine geçer; bölümlerde ince, sakin bir doğa dokunuşu.
+ * pointer-events:none + aria-hidden → tamamen dekoratif, erişilebilirliği etkilemez.
+ *
+ * Kullanım: konumlandırma için ana <section> 'relative overflow-hidden' olmalı,
+ * içerik kabı da 'relative z-[1]' olmalı (yaprak içeriğin arkasında kalsın).
+ */
+import { Image } from "astro:assets";
+import dal1 from "~/assets/img/dal-1.png";
+import dal2 from "~/assets/img/dal-2.png";
+import dal3 from "~/assets/img/dal-3.png";
+
+const sources = { 1: dal1, 2: dal2, 3: dal3 } as const;
+
+interface Props {
+  variant?: 1 | 2 | 3;
+  width?: number;
+  class?: string;
+  style?: string;
+}
+
+const { variant = 1, width = 200, class: className = "", style } = Astro.props;
+const src = sources[variant];
+---
+
+<div class={`pointer-events-none absolute z-0 select-none ${className}`} aria-hidden="true" style={style}>
+  <Image
+    src={src}
+    alt=""
+    width={width}
+    densities={[1.5, 2]}
+    loading="lazy"
+    decoding="async"
+    class="block h-auto"
+  />
+</div>
