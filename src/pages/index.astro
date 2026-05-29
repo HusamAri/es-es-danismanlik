@@ -76,8 +76,23 @@ const homeJsonLd = {
     </div>
   </section>
 
-  <section class="bg-paper">
-    <div class="container-wide py-24 md:py-32">
+  <section class="relative overflow-hidden bg-paper">
+    <div
+      class="pointer-events-none absolute -bottom-4 left-0 hidden md:block"
+      aria-hidden="true"
+      style="width: 148px; color: rgba(92, 107, 94, 0.3);"
+    >
+      <svg viewBox="0 0 110 250" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M54 248 C51 200 49 158 54 116 C58 82 66 50 76 14" />
+        <path d="M52 206 C35 200 27 183 30 166 C47 171 55 188 52 206 Z" />
+        <path d="M55 176 C73 172 83 155 80 138 C63 143 54 160 55 176 Z" />
+        <path d="M53 146 C37 140 29 123 33 106 C49 112 56 129 53 146 Z" />
+        <path d="M58 116 C76 112 86 95 83 78 C66 83 57 100 58 116 Z" />
+        <path d="M64 86 C49 80 42 64 46 48 C61 54 67 70 64 86 Z" />
+        <path d="M76 14 C71 7 73 -1 80 -2" />
+      </svg>
+    </div>
+    <div class="container-wide relative z-[1] py-24 md:py-32">
       <div class="grid gap-12 md:grid-cols-12">
         <div class="md:col-span-5">
           <SectionHeading

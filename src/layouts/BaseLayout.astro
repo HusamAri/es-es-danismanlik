@@ -41,6 +41,21 @@ const { title, description, image, noindex, jsonLd } = Astro.props;
     <link rel="icon" type="image/png" sizes="32x32" href={link("/favicon-32.png")} />
     <link rel="apple-touch-icon" href={link("/apple-touch-icon.png")} />
     <link rel="alternate" hreflang="tr-TR" href={Astro.url.href} />
+    {/* Sayfalar arası yumuşak geçiş — saf CSS cross-document view transitions.
+        is:inline ile build işlemcisi (esbuild) bu yeni at-rule'ü düşürmesin diye
+        doğrudan head'e gömülür. Desteklemeyen tarayıcıda normal gezinme. */}
+    <style is:inline>
+      @view-transition { navigation: auto; }
+      @media (prefers-reduced-motion: no-preference) {
+        ::view-transition-old(root) { animation: vt-out 0.26s cubic-bezier(0.4, 0, 1, 1) both; }
+        ::view-transition-new(root) { animation: vt-in 0.46s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        @keyframes vt-out { to { opacity: 0; transform: translateY(-6px); } }
+        @keyframes vt-in { from { opacity: 0; transform: translateY(12px); } }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+      }
+    </style>
     <Seo title={title} description={description} image={image} noindex={noindex} jsonLd={jsonLd} />
   </head>
   <body>
