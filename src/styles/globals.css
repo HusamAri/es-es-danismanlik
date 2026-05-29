@@ -67,6 +67,24 @@
   --border-whisper: rgba(20, 24, 43, 0.08);
   --border-soft: rgba(20, 24, 43, 0.15);
   --border-firm: rgba(20, 24, 43, 0.25);
+
+  /* ===== SOFT-UI / NEO-TACTILE (referans tasarım dili) =====
+     Renkler markadan (sıcak krem/lacivert/altın) — referansın mat grisi DEĞİL.
+     Tüm yüzeyler yumuşak çift gölge ile kabartılır/oyulur. */
+  --radius-sm: 12px;
+  --radius: 18px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  /* Açık (krem) yüzey için ışık/gölge */
+  --nm-light: rgba(255, 253, 246, 0.9);   /* sol-üst sıcak parlama */
+  --nm-shadow: rgba(150, 121, 74, 0.30);  /* sağ-alt sıcak taupe gölge */
+  --nm-d: 6px;     /* kayma mesafesi */
+  --nm-b: 16px;    /* yumuşaklık (blur) */
+
+  /* Koyu (lacivert) yüzey için ışık/gölge */
+  --nm-dark-light: rgba(74, 86, 120, 0.30);
+  --nm-dark-shadow: rgba(3, 5, 14, 0.62);
 }
 
 @layer base {
@@ -135,14 +153,32 @@
   input[type="search"],
   textarea,
   select {
-    min-height: 2.75rem;
+    min-height: 3rem;
     font-size: 1rem;
     background: var(--color-paper);
-    border: 1px solid var(--border-soft);
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.85rem 1.15rem;
     color: var(--color-ink);
+    box-shadow:
+      inset 3px 3px 7px var(--nm-shadow),
+      inset -3px -3px 7px var(--nm-light);
+    transition: box-shadow 0.25s ease;
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="tel"]:focus,
+  input[type="search"]:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    box-shadow:
+      inset 4px 4px 9px var(--nm-shadow),
+      inset -3px -3px 7px var(--nm-light),
+      0 0 0 2px var(--color-gold-400);
   }
 
-  textarea { min-height: 7.5rem; }
+  textarea { min-height: 8rem; }
 
   :where(button, a, input, textarea, select):focus-visible {
     outline: 1.5px solid var(--color-gold-500);
@@ -183,62 +219,119 @@
     .container-full { padding-inline: 4.5rem; }
   }
 
-  /* === Buton: lacivert anchor, altın whisper === */
+  /* ===== SOFT-UI yüzey yardımcıları (kabartma / oyma) ===== */
+  .nm-raised {
+    border-radius: var(--radius);
+    box-shadow:
+      calc(var(--nm-d) * -1) calc(var(--nm-d) * -1) var(--nm-b) var(--nm-light),
+      var(--nm-d) var(--nm-d) var(--nm-b) var(--nm-shadow);
+  }
+  .nm-inset {
+    border-radius: var(--radius);
+    box-shadow:
+      inset calc(var(--nm-d) * -1) calc(var(--nm-d) * -1) calc(var(--nm-b) - 4px) var(--nm-light),
+      inset var(--nm-d) var(--nm-d) calc(var(--nm-b) - 4px) var(--nm-shadow);
+  }
+  .nm-raised-dark {
+    border-radius: var(--radius);
+    box-shadow:
+      calc(var(--nm-d) * -1) calc(var(--nm-d) * -1) var(--nm-b) var(--nm-dark-light),
+      var(--nm-d) var(--nm-d) var(--nm-b) var(--nm-dark-shadow);
+  }
+  .nm-inset-dark {
+    border-radius: var(--radius);
+    box-shadow:
+      inset calc(var(--nm-d) * -1) calc(var(--nm-d) * -1) calc(var(--nm-b) - 4px) var(--nm-dark-light),
+      inset var(--nm-d) var(--nm-d) calc(var(--nm-b) - 4px) var(--nm-dark-shadow);
+  }
+
+  /* === Buton: yumuşak kabartılmış hap (soft-UI) === */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.625rem;
-    padding: 0.95rem 1.75rem;
-    min-height: 2.875rem;
+    padding: 1rem 1.9rem;
+    min-height: 3rem;
     font-family: var(--font-sans);
-    font-weight: 500;
+    font-weight: 600;
     font-size: 0.875rem;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
     text-transform: none;
     line-height: 1;
-    border: 1px solid transparent;
-    border-radius: 2px;
+    border: none;
+    border-radius: var(--radius-pill);
     transition:
       background-color 0.3s ease,
       color 0.3s ease,
-      border-color 0.3s ease,
-      transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+      box-shadow 0.3s ease,
+      transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
     text-align: center;
   }
-  .btn:active { transform: scale(0.97); }
+  .btn:active { transform: translateY(1px) scale(0.985); }
 
+  /* Birincil: kabartılmış lacivert hap, üstte ince ışık hattı */
   .btn-primary {
-    background: var(--color-navy-800);
+    background: var(--color-navy-700);
     color: var(--color-paper);
-    border-color: var(--color-navy-800);
+    box-shadow:
+      -4px -4px 12px rgba(255, 253, 246, 0.55),
+      5px 6px 14px rgba(94, 74, 38, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
   }
   .btn-primary:hover {
-    background: var(--color-navy-900);
+    background: var(--color-navy-800);
     color: var(--color-gold-300);
-    border-color: var(--color-navy-900);
+    box-shadow:
+      -3px -3px 9px rgba(255, 253, 246, 0.5),
+      4px 5px 12px rgba(94, 74, 38, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  }
+  .btn-primary:active {
+    box-shadow:
+      inset 3px 3px 8px rgba(3, 5, 14, 0.5),
+      inset -2px -2px 6px rgba(94, 110, 150, 0.25);
   }
 
+  /* İkincil: krem zeminden kabartılmış hap (aynı yüzey, gölgeyle tanımlı) */
   .btn-secondary {
-    background: transparent;
+    background: var(--color-paper);
     color: var(--color-navy-800);
-    border-color: var(--border-firm);
+    box-shadow:
+      -4px -4px 11px var(--nm-light),
+      5px 6px 14px var(--nm-shadow);
   }
   .btn-secondary:hover {
-    border-color: var(--color-navy-800);
-    background: var(--color-keten);
-    color: var(--color-navy-800);
+    color: var(--color-gold-ink);
+    box-shadow:
+      -3px -3px 8px var(--nm-light),
+      4px 5px 11px var(--nm-shadow);
+  }
+  .btn-secondary:active {
+    box-shadow:
+      inset 4px 4px 9px var(--nm-shadow),
+      inset -3px -3px 8px var(--nm-light);
   }
 
+  /* Koyu zeminde hayalet: lacivert yüzeyden kabartılmış */
   .btn-ghost-light {
-    background: transparent;
+    background: var(--color-navy-700);
     color: var(--color-paper);
-    border-color: rgba(247, 241, 229, 0.35);
+    box-shadow:
+      -4px -4px 12px var(--nm-dark-light),
+      5px 6px 14px var(--nm-dark-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
   .btn-ghost-light:hover {
-    background: rgba(247, 241, 229, 0.08);
     color: var(--color-gold-300);
-    border-color: var(--color-gold-400);
+    box-shadow:
+      -3px -3px 9px var(--nm-dark-light),
+      4px 5px 12px var(--nm-dark-shadow);
+  }
+  .btn-ghost-light:active {
+    box-shadow:
+      inset 4px 4px 9px var(--nm-dark-shadow),
+      inset -3px -3px 7px var(--nm-dark-light);
   }
 
   /* === Eyebrow (italic gold whisper) === */
@@ -279,33 +372,54 @@
     border: none;
   }
 
-  /* === Kart === */
+  /* === Kart (soft-UI: krem yüzeyden kabartılmış) === */
   .card {
     background: var(--color-paper);
-    border: 1px solid var(--border-whisper);
-    padding: 2rem 1.75rem;
-    transition: border-color 0.2s ease;
+    border-radius: var(--radius-lg);
+    padding: 2.25rem 2rem;
+    box-shadow:
+      -6px -6px 16px var(--nm-light),
+      6px 7px 18px var(--nm-shadow);
+    transition:
+      box-shadow 0.35s ease,
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .card:hover { border-color: var(--border-firm); }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      -7px -7px 18px var(--nm-light),
+      9px 11px 24px var(--nm-shadow);
+  }
 
   .card-keten {
     background: var(--color-keten);
-    border: 1px solid var(--border-whisper);
-    padding: 2rem 1.75rem;
+    border-radius: var(--radius-lg);
+    padding: 2.25rem 2rem;
+    box-shadow:
+      -6px -6px 16px rgba(255, 253, 246, 0.85),
+      6px 7px 18px var(--nm-shadow);
   }
 
   .card-navy {
-    background: var(--color-navy-800);
+    background: var(--color-navy-700);
     color: var(--color-paper);
-    padding: 2rem 1.75rem;
-    box-shadow: inset 0 1px 0 rgba(247, 241, 229, 0.06);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem 2rem;
+    box-shadow:
+      -6px -6px 16px var(--nm-dark-light),
+      6px 7px 18px var(--nm-dark-shadow),
+      inset 0 1px 0 rgba(247, 241, 229, 0.05);
   }
   .card-navy h3, .card-navy h4 { color: var(--color-paper); }
 
   .card-olive {
     background: var(--color-olive-600);
     color: var(--color-paper);
-    padding: 2rem 1.75rem;
+    border-radius: var(--radius-lg);
+    padding: 2.25rem 2rem;
+    box-shadow:
+      -6px -6px 16px rgba(126, 136, 122, 0.28),
+      6px 7px 18px rgba(18, 24, 18, 0.42);
   }
   .card-olive h3, .card-olive h4 { color: var(--color-paper); }
 

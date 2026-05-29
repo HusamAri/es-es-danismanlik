@@ -11,12 +11,12 @@ interface Props {
 const { title, description, number = "—", icon } = Astro.props;
 ---
 
-<div class="flex flex-col items-start text-left" data-reveal>
+<div class="card flex h-full flex-col items-start text-left" data-reveal>
   <div class="flex items-center gap-3">
     {
       icon && (
-        <span class="text-gold-ink">
-          <Icon name={icon} size={30} />
+        <span class="grid h-11 w-11 place-items-center rounded-full text-gold-ink nm-inset">
+          <Icon name={icon} size={24} />
         </span>
       )
     }
