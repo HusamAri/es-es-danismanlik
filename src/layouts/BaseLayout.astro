@@ -59,6 +59,10 @@ const { title, description, image, noindex, jsonLd } = Astro.props;
     <Seo title={title} description={description} image={image} noindex={noindex} jsonLd={jsonLd} />
   </head>
   <body>
+    {/* Kâğıt his katmanı — sabit, içeriğin üzerinde ama etkileşimi engellemez (pointer-events:none).
+        Lif dokusu (multiply) + sıcak vignette. Sticky başlık/çerez paneli (z-50) bunların üzerinde kalır. */}
+    <div class="paper-vignette" aria-hidden="true"></div>
+    <div class="paper-texture" aria-hidden="true"></div>
     <ScrollFX />
     <a href="#main" class="skip-link">İçeriğe geç</a>
     <Header />

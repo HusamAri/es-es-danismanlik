@@ -738,3 +738,74 @@
 @media (prefers-reduced-motion: reduce) {
   .ambient-blob { animation: none; }
 }
+
+/* ============================================================
+   KÂĞIT HİS — lif dokusu · sıcak vignette · letterpress · kart üst ışıltısı
+   Sabit overlay'ler içeriğin üzerinde durur; pointer-events:none ile
+   etkileşimi engellemez. Sticky başlık/çerez paneli (z-50) üstte kalır.
+   ============================================================ */
+
+/* 1) Lif dokusu — tüm yüzeyde ince kâğıt lifi (multiply → sıcak benek) */
+.paper-texture {
+  position: fixed;
+  inset: 0;
+  z-index: 36;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5 0.6' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+/* 2) Sıcak vignette — köşelerde hafif sıcak koyulaşma (derinlik) */
+.paper-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  pointer-events: none;
+  background: radial-gradient(
+    130% 115% at 50% 42%,
+    transparent 55%,
+    rgba(60, 46, 26, 0.06) 82%,
+    rgba(60, 46, 26, 0.13) 100%
+  );
+}
+
+/* 3) Letterpress başlıklar — açık zeminde "kâğıda basılmış" his
+   (alt kenarda ince sıcak ışık çizgisi). Unlayered → @layer base'i geçer. */
+h1, h2, h3, h4, .text-display {
+  text-shadow: 0 1px 0 rgba(255, 253, 246, 0.55);
+}
+/* Koyu yüzeylerde ters çevir: okunurluğu koruyan ince derinlik gölgesi */
+:is(.text-paper, .card-navy, .card-olive) :is(h1, h2, h3, h4),
+:is(h1, h2, h3, h4).text-paper {
+  text-shadow: 0 1px 2px rgba(6, 8, 18, 0.35);
+}
+
+/* 4) Kart üst ışıltısı — kartın üst kenarından inen sıcak ışık.
+   isolation + z-index:-1 ile yüzeyde, metnin arkasında durur. */
+.card, .card-keten, .card-navy, .card-olive {
+  position: relative;
+  isolation: isolate;
+}
+.card::before,
+.card-keten::before,
+.card-navy::before,
+.card-olive::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(125% 72% at 50% 0%, rgba(255, 253, 246, 0.5), transparent 62%);
+}
+/* Koyu kartlarda ışıltı serin ve daha ince tutulur */
+.card-navy::before {
+  background: radial-gradient(125% 72% at 50% 0%, rgba(160, 178, 220, 0.16), transparent 60%);
+}
+.card-olive::before {
+  background: radial-gradient(125% 72% at 50% 0%, rgba(210, 220, 200, 0.14), transparent 60%);
+}
+
+/* Hareket azaltma: dokular statik kalır, ek işlem gerekmez. */
